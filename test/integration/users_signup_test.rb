@@ -4,7 +4,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'invalid signup information' do
     get signup_path
     assert_no_difference 'User.count' do
-      post signup_path, params: {
+      post users_path, params: {
         user: {
           name:  '',
           email: 'user@invalid',
@@ -26,7 +26,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'valid signup information' do
     get signup_path
     assert_difference 'User.count', 1 do
-      post signup_path, params: {
+      post users_path, params: {
         user: {
           name:  'Fake McName',
           email: 'user@valid.com',
@@ -39,5 +39,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
     assert_not flash.empty?
     assert_select 'div.alert.alert-success', 'Welcome to the Sample App!'
+    assert is_logged_in?
   end
 end
