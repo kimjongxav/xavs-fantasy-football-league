@@ -2,3 +2,8 @@ frodo:
   name: Frodo Baggins
   email: frodo@example.com
   password_digest: <%= User.digest('password') %>
+
+bilbo:
+  name: Bilbo Baggins
+  email: bilbo@example.com
+  password_digest: <%= User.digest('password') %>
