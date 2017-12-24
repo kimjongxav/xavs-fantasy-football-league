@@ -1,4 +1,22 @@
+gandalf:
+  name: Gandalf the Grey
+  email: gandalf@example.com
+  password_digest: <%= User.digest('password') %>
+  admin: true
+
 frodo:
   name: Frodo Baggins
   email: frodo@example.com
   password_digest: <%= User.digest('password') %>
+
+bilbo:
+  name: Bilbo Baggins
+  email: bilbo@example.com
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User#{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
