@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersSignupTest < ActionDispatch::IntegrationTest
   def setup
     # Resets the delivery array because it is a global array
+    # used in testing
     ActionMailer::Base.deliveries.clear
   end
 
