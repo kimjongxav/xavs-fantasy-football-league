@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  get '/microposts', to: 'static_pages#home'
+
   resources :users
   resources :account_activations, only: %i[edit]
   resources :password_resets,     only: %i[new create edit update]

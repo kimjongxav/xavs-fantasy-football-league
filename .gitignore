@@ -23,3 +23,6 @@
 .byebug_history
 
 /spring/*.pid
+
+# Ignore uploaded test images.
+/public/uploads
