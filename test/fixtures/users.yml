@@ -4,21 +4,28 @@ gandalf:
   password_digest: <%= User.digest('password') %>
   admin: true
   activated: true
-  activated_at: <%= DateTime.now %>
+  activated_at: <%= Time.zone.now %>
 
 frodo:
   name: Frodo Baggins
   email: frodo@example.com
   password_digest: <%= User.digest('password') %>
   activated: true
-  activated_at: <%= DateTime.now %>
+  activated_at: <%= Time.zone.now %>
 
 bilbo:
   name: Bilbo Baggins
   email: bilbo@example.com
   password_digest: <%= User.digest('password') %>
   activated: true
-  activated_at: <%= DateTime.now %>
+  activated_at: <%= Time.zone.now %>
+
+samwise:
+  name: Samwise Gamgee
+  email: samwise@example.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 gollum:
   name: Gollum
@@ -31,5 +38,5 @@ user_<%= n %>:
   email: <%= "user-#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
   activated: true
-  activated_at: <%= DateTime.now %>
+  activated_at: <%= Time.zone.now %>
 <% end %>

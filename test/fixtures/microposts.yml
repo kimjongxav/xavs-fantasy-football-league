@@ -15,8 +15,24 @@ damn_donald:
 
 most_recent:
   content: "Writing a short test"
-  created_at: <%= DateTime.now %>
+  created_at: <%= Time.zone.now %>
   user: frodo
+
+adventures:
+  content: "Sorry! I don’t want any adventures, thank you. Not Today. Good morning!
+    But please come to tea – any time you like! Why not tomorrow? Good bye!"
+  created_at: <%= 9.hours.ago %>
+  user: bilbo
+
+burgaling:
+  content: "Bother burgling and everything to do with it!"
+  created_at: <%= 6.days.ago %>
+  user: bilbo
+
+breaking_things:
+  content: "He that breaks a thing to find out what it is has left the path of wisdom."
+  created_at: <%= 10.minutes.ago %>
+  user: gandalf
 
 <% 30.times do |n| %>
 micropost_<%= n %>:
