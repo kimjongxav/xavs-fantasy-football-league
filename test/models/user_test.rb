@@ -90,12 +90,12 @@ class UserTest < ActiveSupport::TestCase
 
   test 'should follow and unfollow a user' do
     frodo = users(:frodo)
-    bilbo = users(:bilbo)
-    assert_not frodo.following?(bilbo)
-    frodo.follow(bilbo)
-    assert frodo.following?(bilbo)
-    assert bilbo.followers.include?(frodo)
-    frodo.unfollow(bilbo)
-    assert_not frodo.following?(bilbo)
+    samwise = users(:samwise)
+    assert_not frodo.following?(samwise)
+    frodo.follow(samwise)
+    assert frodo.following?(samwise)
+    assert samwise.followers.include?(frodo)
+    frodo.unfollow(samwise)
+    assert_not frodo.following?(samwise)
   end
 end

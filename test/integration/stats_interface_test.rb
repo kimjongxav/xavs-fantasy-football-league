@@ -3,8 +3,6 @@ require 'test_helper'
 class StatsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:frodo)
-    @other_user = users(:bilbo)
-    @user.follow(@other_user)
   end
 
   test 'stats interface' do

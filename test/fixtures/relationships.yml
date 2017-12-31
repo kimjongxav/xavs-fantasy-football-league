@@ -1,1 +1,15 @@
-# empty
+one:
+  follower: frodo
+  followed: bilbo
+
+two:
+  follower: frodo
+  followed: gandalf
+
+three:
+  follower: bilbo
+  followed: frodo
+
+four:
+  follower: samwise
+  followed: frodo
