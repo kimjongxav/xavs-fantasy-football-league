@@ -98,4 +98,23 @@ class UserTest < ActiveSupport::TestCase
     frodo.unfollow(samwise)
     assert_not frodo.following?(samwise)
   end
+
+  test 'feed should have the right posts' do
+    bilbo = users(:bilbo)
+    frodo = users(:frodo)
+    gandalf = users(:gandalf)
+
+    # Posts from followed user
+    frodo.microposts.each do |post_following|
+      assert bilbo.feed.include?(post_following)
+    end
+    # Posts from self
+    bilbo.microposts.each do |post_self|
+      assert bilbo.feed.include?(post_self)
+    end
+    # Posts from unfollowed user
+    gandalf.microposts.each do |post_unfollowed|
+      assert_not bilbo.feed.include?(post_unfollowed)
+    end
+  end
 end
