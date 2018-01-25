@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  transfers_remaining: 1
+  points_in_gameweek_1: 1
+  properties: 
+
+two:
+  name: MyString
+  transfers_remaining: 1
+  points_in_gameweek_1: 1
+  properties: 
