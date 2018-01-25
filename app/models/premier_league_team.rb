@@ -1,0 +1,2 @@
+class PremierLeagueTeam < ApplicationRecord
+end

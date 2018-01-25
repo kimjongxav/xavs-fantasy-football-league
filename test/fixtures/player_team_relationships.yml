@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gameweek_in: 1
+  gameweek_out: 1
+  captain_in: false
+  captain_out: false
+
+two:
+  gameweek_in: 1
+  gameweek_out: 1
+  captain_in: false
+  captain_out: false

@@ -1,0 +1,2 @@
+class PlayerTeamRelationship < ApplicationRecord
+end
