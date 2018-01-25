@@ -7,6 +7,5 @@ class CreateBids < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :bids, :player_id
   end
 end

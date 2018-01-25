@@ -9,8 +9,6 @@ class CreateMatches < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :matches, :team_id
-    add_index :matches, :league_id
     add_index :matches, :gameweek
   end
 end
