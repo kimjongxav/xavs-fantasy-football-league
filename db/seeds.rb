@@ -39,7 +39,7 @@ end
   full_name = Faker::Name.name
   common_name = full_name.split(' ').last
   position = position(n)
-  User.create!(
+  Player.create!(
     full_name: full_name,
     common_name: common_name,
     position: position,
@@ -67,11 +67,11 @@ end
 # team
 15.times do |n|
   name = Faker::Name.name
-  PremierLeagueTeam.create!(
+  Team.create!(
     name: name,
-    short_name: short_name,
     user_id: n,
-    league_id: 1
+    league_id: 1,
+    properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}'
   )
 end
 
