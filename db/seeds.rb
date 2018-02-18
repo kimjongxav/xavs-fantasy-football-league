@@ -1,8 +1,8 @@
 User.create!(
   name: 'Xavier Lacey',
   email: 'xavlacey@gmail.com',
-  password: ENV['ADMIN_PASSWORD'],
-  password_confirmation: ENV['ADMIN_PASSWORD'],
+  password: 'cookie123',
+  password_confirmation: 'cookie123',
   admin: true,
   activated: true,
   activated_at: Time.zone.now
