@@ -1,13 +1,11 @@
 <div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+  <h1>Welcome to Xav's Fantasy Football League</h1>
 
-  <h2>
-    This is the home page for the
-    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+  <div>
+    <%= link_to image_tag("premier-league-logo.png", class: "prem-logo", alt: "Premier League logo"), 'https://fantasy.premierleague.com/', target: 'blank' %>
+  </div>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <div>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
 </div>
-
-<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>
