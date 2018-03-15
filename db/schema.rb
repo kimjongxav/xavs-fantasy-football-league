@@ -62,44 +62,44 @@ ActiveRecord::Schema.define(version: 20180125181918) do
     t.string "common_name"
     t.string "position"
     t.integer "premier_league_team_id"
-    t.integer "points_in_gameweek_1"
-    t.integer "points_in_gameweek_2"
-    t.integer "points_in_gameweek_3"
-    t.integer "points_in_gameweek_4"
-    t.integer "points_in_gameweek_5"
-    t.integer "points_in_gameweek_6"
-    t.integer "points_in_gameweek_7"
-    t.integer "points_in_gameweek_8"
-    t.integer "points_in_gameweek_9"
-    t.integer "points_in_gameweek_10"
-    t.integer "points_in_gameweek_11"
-    t.integer "points_in_gameweek_12"
-    t.integer "points_in_gameweek_13"
-    t.integer "points_in_gameweek_14"
-    t.integer "points_in_gameweek_15"
-    t.integer "points_in_gameweek_16"
-    t.integer "points_in_gameweek_17"
-    t.integer "points_in_gameweek_18"
-    t.integer "points_in_gameweek_19"
-    t.integer "points_in_gameweek_20"
-    t.integer "points_in_gameweek_21"
-    t.integer "points_in_gameweek_22"
-    t.integer "points_in_gameweek_23"
-    t.integer "points_in_gameweek_24"
-    t.integer "points_in_gameweek_25"
-    t.integer "points_in_gameweek_26"
-    t.integer "points_in_gameweek_27"
-    t.integer "points_in_gameweek_28"
-    t.integer "points_in_gameweek_29"
-    t.integer "points_in_gameweek_30"
-    t.integer "points_in_gameweek_31"
-    t.integer "points_in_gameweek_32"
-    t.integer "points_in_gameweek_33"
-    t.integer "points_in_gameweek_34"
-    t.integer "points_in_gameweek_35"
-    t.integer "points_in_gameweek_36"
-    t.integer "points_in_gameweek_37"
-    t.integer "points_in_gameweek_38"
+    t.integer "points_in_gameweek_1", default: 0
+    t.integer "points_in_gameweek_2", default: 0
+    t.integer "points_in_gameweek_3", default: 0
+    t.integer "points_in_gameweek_4", default: 0
+    t.integer "points_in_gameweek_5", default: 0
+    t.integer "points_in_gameweek_6", default: 0
+    t.integer "points_in_gameweek_7", default: 0
+    t.integer "points_in_gameweek_8", default: 0
+    t.integer "points_in_gameweek_9", default: 0
+    t.integer "points_in_gameweek_10", default: 0
+    t.integer "points_in_gameweek_11", default: 0
+    t.integer "points_in_gameweek_12", default: 0
+    t.integer "points_in_gameweek_13", default: 0
+    t.integer "points_in_gameweek_14", default: 0
+    t.integer "points_in_gameweek_15", default: 0
+    t.integer "points_in_gameweek_16", default: 0
+    t.integer "points_in_gameweek_17", default: 0
+    t.integer "points_in_gameweek_18", default: 0
+    t.integer "points_in_gameweek_19", default: 0
+    t.integer "points_in_gameweek_20", default: 0
+    t.integer "points_in_gameweek_21", default: 0
+    t.integer "points_in_gameweek_22", default: 0
+    t.integer "points_in_gameweek_23", default: 0
+    t.integer "points_in_gameweek_24", default: 0
+    t.integer "points_in_gameweek_25", default: 0
+    t.integer "points_in_gameweek_26", default: 0
+    t.integer "points_in_gameweek_27", default: 0
+    t.integer "points_in_gameweek_28", default: 0
+    t.integer "points_in_gameweek_29", default: 0
+    t.integer "points_in_gameweek_30", default: 0
+    t.integer "points_in_gameweek_31", default: 0
+    t.integer "points_in_gameweek_32", default: 0
+    t.integer "points_in_gameweek_33", default: 0
+    t.integer "points_in_gameweek_34", default: 0
+    t.integer "points_in_gameweek_35", default: 0
+    t.integer "points_in_gameweek_36", default: 0
+    t.integer "points_in_gameweek_37", default: 0
+    t.integer "points_in_gameweek_38", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["common_name"], name: "index_players_on_common_name"
@@ -116,48 +116,52 @@ ActiveRecord::Schema.define(version: 20180125181918) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "transfers_remaining"
+    t.integer "transfers_remaining", default: 3
     t.string "properties"
-    t.integer "points_in_gameweek_1"
-    t.integer "points_in_gameweek_2"
-    t.integer "points_in_gameweek_3"
-    t.integer "points_in_gameweek_4"
-    t.integer "points_in_gameweek_5"
-    t.integer "points_in_gameweek_6"
-    t.integer "points_in_gameweek_7"
-    t.integer "points_in_gameweek_8"
-    t.integer "points_in_gameweek_9"
-    t.integer "points_in_gameweek_10"
-    t.integer "points_in_gameweek_11"
-    t.integer "points_in_gameweek_12"
-    t.integer "points_in_gameweek_13"
-    t.integer "points_in_gameweek_14"
-    t.integer "points_in_gameweek_15"
-    t.integer "points_in_gameweek_16"
-    t.integer "points_in_gameweek_17"
-    t.integer "points_in_gameweek_18"
-    t.integer "points_in_gameweek_19"
-    t.integer "points_in_gameweek_20"
-    t.integer "points_in_gameweek_21"
-    t.integer "points_in_gameweek_22"
-    t.integer "points_in_gameweek_23"
-    t.integer "points_in_gameweek_24"
-    t.integer "points_in_gameweek_25"
-    t.integer "points_in_gameweek_26"
-    t.integer "points_in_gameweek_27"
-    t.integer "points_in_gameweek_28"
-    t.integer "points_in_gameweek_29"
-    t.integer "points_in_gameweek_30"
-    t.integer "points_in_gameweek_31"
-    t.integer "points_in_gameweek_32"
-    t.integer "points_in_gameweek_33"
-    t.integer "points_in_gameweek_34"
-    t.integer "points_in_gameweek_35"
-    t.integer "points_in_gameweek_36"
-    t.integer "points_in_gameweek_37"
-    t.integer "points_in_gameweek_38"
+    t.integer "user_id"
+    t.integer "league_id"
+    t.integer "points_in_gameweek_1", default: 0
+    t.integer "points_in_gameweek_2", default: 0
+    t.integer "points_in_gameweek_3", default: 0
+    t.integer "points_in_gameweek_4", default: 0
+    t.integer "points_in_gameweek_5", default: 0
+    t.integer "points_in_gameweek_6", default: 0
+    t.integer "points_in_gameweek_7", default: 0
+    t.integer "points_in_gameweek_8", default: 0
+    t.integer "points_in_gameweek_9", default: 0
+    t.integer "points_in_gameweek_10", default: 0
+    t.integer "points_in_gameweek_11", default: 0
+    t.integer "points_in_gameweek_12", default: 0
+    t.integer "points_in_gameweek_13", default: 0
+    t.integer "points_in_gameweek_14", default: 0
+    t.integer "points_in_gameweek_15", default: 0
+    t.integer "points_in_gameweek_16", default: 0
+    t.integer "points_in_gameweek_17", default: 0
+    t.integer "points_in_gameweek_18", default: 0
+    t.integer "points_in_gameweek_19", default: 0
+    t.integer "points_in_gameweek_20", default: 0
+    t.integer "points_in_gameweek_21", default: 0
+    t.integer "points_in_gameweek_22", default: 0
+    t.integer "points_in_gameweek_23", default: 0
+    t.integer "points_in_gameweek_24", default: 0
+    t.integer "points_in_gameweek_25", default: 0
+    t.integer "points_in_gameweek_26", default: 0
+    t.integer "points_in_gameweek_27", default: 0
+    t.integer "points_in_gameweek_28", default: 0
+    t.integer "points_in_gameweek_29", default: 0
+    t.integer "points_in_gameweek_30", default: 0
+    t.integer "points_in_gameweek_31", default: 0
+    t.integer "points_in_gameweek_32", default: 0
+    t.integer "points_in_gameweek_33", default: 0
+    t.integer "points_in_gameweek_34", default: 0
+    t.integer "points_in_gameweek_35", default: 0
+    t.integer "points_in_gameweek_36", default: 0
+    t.integer "points_in_gameweek_37", default: 0
+    t.integer "points_in_gameweek_38", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_teams_on_league_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

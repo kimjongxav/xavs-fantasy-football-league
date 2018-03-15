@@ -10,7 +10,5 @@ class CreateTeams < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :teams, :user_id
-    add_index :teams, :league_id
   end
 end

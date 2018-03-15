@@ -43,7 +43,8 @@ end
     full_name: full_name,
     common_name: common_name,
     position: position,
-    premier_league_team_id: n % 20
+    premier_league_team_id: n % 20,
+    fantasy_football_id: 1
   )
 end
 
