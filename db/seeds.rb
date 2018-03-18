@@ -28,29 +28,34 @@ end
 
 def position(n)
   # 40 GK, 220 DEF, 220 MID, 120 STR
-  'GK' if n <= 40
-  'DEF' if n <= 260
-  'MID' if n <= 480
-  'FWD'
+  if n <= 40
+    'GK'
+  elsif n <= 260
+    'DEF'
+  elsif n <= 480
+    'MID'
+  else
+    'FWD'
+  end
 end
 
 # players
 600.times do |n|
-  full_name = Faker::Name.name
-  common_name = full_name.split(' ').last
+  surname = Faker::Name.last_name
+  full_name = "#{Faker::Name.first_name} #{surname}"
   position = position(n)
   Player.create!(
     full_name: full_name,
-    common_name: common_name,
+    common_name: surname,
     position: position,
-    premier_league_team_id: n % 20,
+    premier_league_team_id: (n % 20) + 1,
     fantasy_football_id: 1
   )
 end
 
 # users
 15.times do |n|
-  name = Faker::Name.name
+  name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   initials = name.split.map(&:first).join
   email = "example-#{n + 1}@railstutorial.org"
   password = 'password'
@@ -67,7 +72,7 @@ end
 
 # team
 15.times do |n|
-  name = Faker::Name.name
+  name = Faker::Team.name
   Team.create!(
     name: name,
     user_id: n,

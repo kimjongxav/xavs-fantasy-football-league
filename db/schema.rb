@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125181918) do
+ActiveRecord::Schema.define(version: 20180318191856) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "value"
-    t.integer "team_id"
-    t.integer "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_bids_on_player_id"
-    t.index ["team_id"], name: "index_bids_on_team_id"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -33,13 +29,9 @@ ActiveRecord::Schema.define(version: 20180125181918) do
     t.integer "home_score"
     t.integer "away_score"
     t.integer "gameweek"
-    t.integer "team_id"
-    t.integer "league_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gameweek"], name: "index_matches_on_gameweek"
-    t.index ["league_id"], name: "index_matches_on_league_id"
-    t.index ["team_id"], name: "index_matches_on_team_id"
   end
 
   create_table "player_team_relationships", force: :cascade do |t|
@@ -61,7 +53,6 @@ ActiveRecord::Schema.define(version: 20180125181918) do
     t.string "full_name"
     t.string "common_name"
     t.string "position"
-    t.integer "premier_league_team_id"
     t.integer "points_in_gameweek_1", default: 0
     t.integer "points_in_gameweek_2", default: 0
     t.integer "points_in_gameweek_3", default: 0
@@ -102,6 +93,7 @@ ActiveRecord::Schema.define(version: 20180125181918) do
     t.integer "points_in_gameweek_38", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "premier_league_team_id"
     t.index ["common_name"], name: "index_players_on_common_name"
     t.index ["fantasy_football_id"], name: "index_players_on_fantasy_football_id"
     t.index ["premier_league_team_id"], name: "index_players_on_premier_league_team_id"
@@ -118,8 +110,6 @@ ActiveRecord::Schema.define(version: 20180125181918) do
     t.string "name"
     t.integer "transfers_remaining", default: 3
     t.string "properties"
-    t.integer "user_id"
-    t.integer "league_id"
     t.integer "points_in_gameweek_1", default: 0
     t.integer "points_in_gameweek_2", default: 0
     t.integer "points_in_gameweek_3", default: 0
@@ -160,6 +150,8 @@ ActiveRecord::Schema.define(version: 20180125181918) do
     t.integer "points_in_gameweek_38", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "league_id"
     t.index ["league_id"], name: "index_teams_on_league_id"
     t.index ["user_id"], name: "index_teams_on_user_id"
   end

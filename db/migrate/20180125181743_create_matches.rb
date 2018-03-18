@@ -4,8 +4,9 @@ class CreateMatches < ActiveRecord::Migration[5.1]
       t.integer :home_score
       t.integer :away_score
       t.integer :gameweek
-      t.references :team, foreign_key: true
-      t.references :league, foreign_key: true
+
+      add_foreign_key :matches, :teams
+      add_foreign_key :matches, :leagues
 
       t.timestamps
     end

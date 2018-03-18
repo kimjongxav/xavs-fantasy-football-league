@@ -5,7 +5,6 @@ class CreatePlayers < ActiveRecord::Migration[5.1]
       t.string :full_name
       t.string :common_name
       t.string :position
-      t.references :premier_league_team, foreign_key: true
       (1..38).to_a.map { |i| t.integer "points_in_gameweek_#{i}", default: 0 }
 
       t.timestamps

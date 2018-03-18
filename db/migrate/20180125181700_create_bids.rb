@@ -2,8 +2,8 @@ class CreateBids < ActiveRecord::Migration[5.1]
   def change
     create_table :bids do |t|
       t.integer :value
-      t.references :team, foreign_key: true
-      t.references :player, foreign_key: true
+      add_foreign_key :bids, :teams
+      add_foreign_key :bids, :players
 
       t.timestamps
     end
