@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'premier_league_teams/new'
-
   root   'static_pages#home'
   get    '/help',    to: 'static_pages#help'
   get    '/about',   to: 'static_pages#about'
@@ -13,8 +11,6 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  get '/microposts', to: 'static_pages#home'
-
   resources :players
   resources :premier_league_teams
 
@@ -25,6 +21,4 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: %i[edit]
   resources :password_resets,     only: %i[new create edit update]
-  resources :microposts,          only: %i[create destroy]
-  resources :relationships,       only: %i[create destroy]
 end
