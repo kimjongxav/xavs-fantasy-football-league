@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get '/microposts', to: 'static_pages#home'
 
+  resources :players
+
   resources :users do
     member do
       get :following, :followers
