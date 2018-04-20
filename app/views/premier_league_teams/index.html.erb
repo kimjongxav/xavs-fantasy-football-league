@@ -1,0 +1,10 @@
+<% provide(:title, 'All premier_league_teams') %>
+<h1>All premier league teams</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @premier_league_teams %>
+</ul>
+
+<%= will_paginate %>

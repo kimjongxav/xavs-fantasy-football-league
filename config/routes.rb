@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'premier_league_teams/new'
+
   root   'static_pages#home'
   get    '/help',    to: 'static_pages#help'
   get    '/about',   to: 'static_pages#about'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   get '/microposts', to: 'static_pages#home'
 
   resources :players
+  resources :premier_league_teams
 
   resources :users do
     member do

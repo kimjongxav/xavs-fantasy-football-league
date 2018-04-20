@@ -1,6 +1,6 @@
 <li>
   <%= player.id %>
-  <%= link_to player.full_name, player %>
-  <%= player.position %>
-  <%= player.premier_league_team.name %>
+  <%= link_to player.full_name, player %> -
+  <%= player.position %> -
+  <%= link_to player.premier_league_team.name, player.premier_league_team %>
 </li>
