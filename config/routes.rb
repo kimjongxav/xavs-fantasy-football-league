@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :players
   resources :premier_league_teams
+  resources :teams
+  resources :leagues
 
   resources :users do
     member do
