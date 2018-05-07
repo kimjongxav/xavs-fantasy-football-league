@@ -70,16 +70,16 @@ end
   )
 end
 
-# team
+# teams
 15.times do |n|
   name = Faker::Team.name
   Team.create!(
     name: name,
-    user_id: n,
+    user_id: n + 1,
     league_id: 1,
     properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}'
   )
 end
 
 # todo
-# create seeds for: teams, players, leagues, bids, matches, premier league teams
+# create seeds for: bids, matches
