@@ -1,3 +1,10 @@
+require 'rubygems'
+require 'httparty'
+
+resp = HTTParty.get('https://fantasy.premierleague.com/drf/bootstrap-static')
+teams = JSON.parse(resp.body)['teams']
+players = JSON.parse(resp.body)['elements']
+
 # league
 League.create!(
   season: '2018/2019',
@@ -17,22 +24,22 @@ User.create!(
 )
 
 # premier league teams
-20.times do
-  name = Faker::Address.city
-  short_name = name.slice(0..2).upcase
+teams.each do |team|
+  name = team['name']
+  short_name = team['short_name']
   PremierLeagueTeam.create!(
     name: name,
     short_name: short_name
   )
 end
 
-def position(n)
+def position(type)
   # 40 GK, 220 DEF, 220 MID, 120 STR
-  if n <= 40
+  if type == 1
     'GK'
-  elsif n <= 260
+  elsif type == 2
     'DEF'
-  elsif n <= 480
+  elsif type == 3
     'MID'
   else
     'FWD'
@@ -40,15 +47,16 @@ def position(n)
 end
 
 # players
-600.times do |n|
-  surname = Faker::Name.last_name
-  full_name = "#{Faker::Name.first_name} #{surname}"
-  position = position(n)
+players.each do |player|
+  surname = player['web_name']
+  full_name = "#{player['first_name']} #{player['last_name']}"
+  position = position(player['element_type'])
   Player.create!(
+    id: player['id'],
     full_name: full_name,
     common_name: surname,
     position: position,
-    premier_league_team_id: (n % 20) + 1,
+    premier_league_team_id: player['team'],
     fantasy_football_id: 1
   )
 end
