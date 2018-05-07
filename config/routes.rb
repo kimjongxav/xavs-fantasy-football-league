@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  get '/microposts', to: 'static_pages#home'
+  resources :players
+  resources :premier_league_teams
+  resources :teams
+  resources :leagues
 
   resources :users do
     member do
@@ -20,6 +23,4 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: %i[edit]
   resources :password_resets,     only: %i[new create edit update]
-  resources :microposts,          only: %i[create destroy]
-  resources :relationships,       only: %i[create destroy]
 end
