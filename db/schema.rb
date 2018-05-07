@@ -14,10 +14,12 @@ ActiveRecord::Schema.define(version: 20180507000000) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "value"
-    t.integer "player_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "player_id"
+    t.integer "user_id"
+    t.index ["player_id"], name: "index_bids_on_player_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -28,12 +30,16 @@ ActiveRecord::Schema.define(version: 20180507000000) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "home_scorefdsafdsa"
+    t.integer "home_score"
     t.integer "away_score"
     t.integer "gameweek"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "team_id"
+    t.integer "league_id"
     t.index ["gameweek"], name: "index_matches_on_gameweek"
+    t.index ["league_id"], name: "index_matches_on_league_id"
+    t.index ["team_id"], name: "index_matches_on_team_id"
   end
 
   create_table "players", force: :cascade do |t|

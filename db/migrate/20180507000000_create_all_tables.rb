@@ -61,12 +61,11 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
       t.integer :away_score
       t.integer :gameweek
 
-      add_foreign_key :matches, :teams
-      add_foreign_key :matches, :leagues
-
       t.timestamps
     end
     add_index :matches, :gameweek
+    add_reference :matches, :team, foreign_key: true
+    add_reference :matches, :league, foreign_key: true
 
     create_table :premier_league_teams do |t|
       t.string :name
