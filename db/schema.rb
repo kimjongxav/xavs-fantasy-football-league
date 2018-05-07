@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318191856) do
+ActiveRecord::Schema.define(version: 20180507000000) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "value"
+    t.integer "player_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,26 +28,12 @@ ActiveRecord::Schema.define(version: 20180318191856) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "home_score"
+    t.integer "home_scorefdsafdsa"
     t.integer "away_score"
     t.integer "gameweek"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gameweek"], name: "index_matches_on_gameweek"
-  end
-
-  create_table "player_team_relationships", force: :cascade do |t|
-    t.integer "player_id"
-    t.integer "team_id"
-    t.integer "gameweek_in"
-    t.integer "gameweek_out"
-    t.boolean "captain_in"
-    t.boolean "captain_out"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["player_id", "team_id"], name: "index_player_team_relationships_on_player_id_and_team_id", unique: true
-    t.index ["player_id"], name: "index_player_team_relationships_on_player_id"
-    t.index ["team_id"], name: "index_player_team_relationships_on_team_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -159,8 +147,6 @@ ActiveRecord::Schema.define(version: 20180318191856) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
@@ -170,6 +156,8 @@ ActiveRecord::Schema.define(version: 20180318191856) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.string "initials"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
