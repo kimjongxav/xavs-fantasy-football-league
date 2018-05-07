@@ -50,8 +50,6 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
     create_table :bids do |t|
       t.integer :value
-      t.integer :player_id
-      t.integer :user_id
 
       t.timestamps
     end
