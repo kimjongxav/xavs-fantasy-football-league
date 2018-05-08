@@ -49,7 +49,7 @@ end
 # players
 players.each do |player|
   surname = player['web_name']
-  full_name = "#{player['first_name']} #{player['last_name']}"
+  full_name = "#{player['first_name']} #{player['second_name']}"
   position = position(player['element_type'])
   Player.create!(
     id: player['id'],
