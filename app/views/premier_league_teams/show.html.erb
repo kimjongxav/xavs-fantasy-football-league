@@ -4,6 +4,10 @@
 </h1>
 
 <ul class="users">
-  <% @players = Player.where(:premier_league_team_id => @premier_league_team.id) %>
-  <%= render @players %>
+  <% @players.each do |player| %>
+    <li>
+      <%= player.position %> - 
+      <%= link_to player.full_name, player %>
+    </li>
+  <% end %>
 </ul>
