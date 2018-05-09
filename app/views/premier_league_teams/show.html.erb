@@ -2,3 +2,8 @@
 <h1>
   <%= @premier_league_team.name %>
 </h1>
+
+<ul class="users">
+  <% @players = Player.where(:premier_league_team_id => @premier_league_team.id) %>
+  <%= render @players %>
+</ul>
