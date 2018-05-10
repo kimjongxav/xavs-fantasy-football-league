@@ -46,22 +46,6 @@ def position(type)
   end
 end
 
-# players
-players.each do |player|
-  surname = player['web_name']
-  full_name = "#{player['first_name']} #{player['second_name']}"
-  position = position(player['element_type'])
-  Player.create!(
-    id: player['id'],
-    full_name: full_name,
-    common_name: surname,
-    position: position,
-    premier_league_team_id: player['team'],
-    fantasy_football_id: 1,
-    team_id: rand(1..15),
-  )
-end
-
 # users
 15.times do |n|
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
@@ -87,6 +71,22 @@ end
     user_id: n + 1,
     league_id: 1,
     properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}'
+  )
+end
+
+# players
+players.each do |player|
+  surname = player['web_name']
+  full_name = "#{player['first_name']} #{player['second_name']}"
+  position = position(player['element_type'])
+  Player.create!(
+    id: player['id'],
+    full_name: full_name,
+    common_name: surname,
+    position: position,
+    premier_league_team_id: player['team'],
+    fantasy_football_id: 1,
+    team_id: rand(1..15),
   )
 end
 
