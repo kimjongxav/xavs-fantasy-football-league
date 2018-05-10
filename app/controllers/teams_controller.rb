@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @players = sort_by_position(@team.players)
   end
 
   def new

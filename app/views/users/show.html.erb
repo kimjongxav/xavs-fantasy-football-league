@@ -6,6 +6,7 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <%= link_to @user.teams.first.name, @user.teams.first %>
     </section>
   </aside>
 </div>

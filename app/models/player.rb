@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   belongs_to :premier_league_team
+  belongs_to :team
 
   has_many :bids
   has_many :player_team_relationships

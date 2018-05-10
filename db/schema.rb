@@ -87,10 +87,12 @@ ActiveRecord::Schema.define(version: 20180507000000) do
     t.integer "points_in_gameweek_38", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "team_id"
     t.integer "premier_league_team_id"
     t.index ["common_name"], name: "index_players_on_common_name"
     t.index ["fantasy_football_id"], name: "index_players_on_fantasy_football_id"
     t.index ["premier_league_team_id"], name: "index_players_on_premier_league_team_id"
+    t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "premier_league_teams", force: :cascade do |t|

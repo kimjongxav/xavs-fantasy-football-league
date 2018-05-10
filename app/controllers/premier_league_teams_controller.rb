@@ -11,18 +11,6 @@ class PremierLeagueTeamsController < ApplicationController
     @players = sort_by_position(unsorted_players)
   end
 
-  def sort_by_position(players)
-    positions = {
-      'GK' => 1,
-      'DEF' => 2,
-      'MID' => 3,
-      'FWD' => 4,
-    }
-    players.sort_by do |player|
-      positions[player.position]
-    end
-  end
-
   def new
   end
 end

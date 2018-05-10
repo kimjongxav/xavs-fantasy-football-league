@@ -3,6 +3,10 @@
   <%= @team.name %>
 </h1>
 
-<div>
+<h3>
   Manager: <%= @team.user.name %>
-</div>
+</h3>
+
+<ul class="list">
+  <%= render @players  %>
+</ul>

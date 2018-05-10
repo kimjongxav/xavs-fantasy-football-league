@@ -57,7 +57,8 @@ players.each do |player|
     common_name: surname,
     position: position,
     premier_league_team_id: player['team'],
-    fantasy_football_id: 1
+    fantasy_football_id: 1,
+    team_id: rand(1..15),
   )
 end
 

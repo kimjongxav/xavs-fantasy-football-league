@@ -36,6 +36,7 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_reference :players, :team, foreign_key: true
     add_index :players, :fantasy_football_id
     add_index :players, :common_name
 
