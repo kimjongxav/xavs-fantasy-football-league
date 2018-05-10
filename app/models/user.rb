@@ -13,6 +13,8 @@ class User < ApplicationRecord
   # don't need the source attribute here. keep to emphasize the parallel structure
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :teams
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
