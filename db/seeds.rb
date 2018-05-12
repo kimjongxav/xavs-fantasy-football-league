@@ -79,15 +79,54 @@ players.each do |player|
   surname = player['web_name']
   full_name = "#{player['first_name']} #{player['second_name']}"
   position = position(player['element_type'])
+
+   # Get specific player url
+   url = 'https://fantasy.premierleague.com/drf/element-summary/' << player['id'].to_s
+   response = HTTParty.get(url)
+ 
+    # Get specific player url
+    url = 'https://fantasy.premierleague.com/drf/element-summary/' << player['id'].to_s
+    response = HTTParty.get(url)
+  
+    # Gives hisory of the player
+    history_raw = JSON.parse(response.body)['history']
+ 
+  
+    # Gives the round number as the key
+    round_as_key = history_raw.collect { |p| {p['round'] => p['total_points'] }}
+  
+    # Consolidates keys, adds round number when there are multiple keys
+    points_tidy = round_as_key.each_with_object({}) { |h,g| g.update(h) { |_,o,n| o+n } }
+  
+    # Prepend points_in_gameweek to Key
+    pig_hash = Hash[points_tidy.map{|k,v| [k.to_s.dup.prepend("points_in_gameweek_"),v]}]
+   puts( pig_hash.merge(
+      id: player['id'],
+      full_name: full_name,
+      common_name: surname,
+      position: position,
+      premier_league_team_id: player['team'],
+      fantasy_football_id: 1,
+      team_id: rand(1..15),
+    ) )
+
+   
+
   Player.create!(
-    id: player['id'],
-    full_name: full_name,
-    common_name: surname,
-    position: position,
-    premier_league_team_id: player['team'],
-    fantasy_football_id: 1,
-    team_id: rand(1..15),
+    pig_hash.merge(
+      id: player['id'],
+      full_name: full_name,
+      common_name: surname,
+      position: position,
+      premier_league_team_id: player['team'],
+      fantasy_football_id: 1,
+      team_id: rand(1..15),
+    )
+    
+    
   )
+
+  
 end
 
 # todo
