@@ -63,6 +63,10 @@ end
   )
 end
 
+def gameweek_points
+  (1..38).map{ 0 }.to_s
+end
+
 # teams
 15.times do |n|
   name = Faker::Team.name
@@ -70,7 +74,8 @@ end
     name: name,
     user_id: n + 1,
     league_id: 1,
-    properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}'
+    properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
+    gameweek_points: gameweek_points,
   )
 end
 
@@ -87,6 +92,7 @@ players.each do |player|
     premier_league_team_id: player['team'],
     fantasy_football_id: 1,
     team_id: rand(1..15),
+    gameweek_points: gameweek_points,    
   )
 end
 

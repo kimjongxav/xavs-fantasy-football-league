@@ -4,6 +4,9 @@
 </h1>
 
 <ul class="list">
+  <li>
+    <strong>Total points: <%= @points.inject(:+) %></strong>
+  </li>
   <% @points.each_with_index do |gw, i| %>
     <li>
       Gameweek <%= i + 1 %>: <%= gw %>
