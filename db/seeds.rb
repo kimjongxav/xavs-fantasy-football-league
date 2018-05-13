@@ -100,15 +100,7 @@ players.each do |player|
   
     # Prepend points_in_gameweek to Key
     pig_hash = Hash[points_tidy.map{|k,v| [k.to_s.dup.prepend("points_in_gameweek_"),v]}]
-   puts( pig_hash.merge(
-      id: player['id'],
-      full_name: full_name,
-      common_name: surname,
-      position: position,
-      premier_league_team_id: player['team'],
-      fantasy_football_id: 1,
-      team_id: rand(1..15),
-    ) )
+   
 
    
 
