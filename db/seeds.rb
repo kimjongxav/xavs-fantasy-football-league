@@ -80,41 +80,24 @@ players.each do |player|
   full_name = "#{player['first_name']} #{player['second_name']}"
   position = position(player['element_type'])
 
-    # Get specific player url
-    url = 'https://fantasy.premierleague.com/drf/element-summary/' + player['id'].to_s
-    response = HTTParty.get(url)
-  
-    
-   player_history = JSON.parse(response.body)['history']
- 
-  
-    # Gives the round number as the key
-    round_as_key = player_history.collect { |a| {a['round'] => a['total_points'] }}
-  
-    # Consolidates keys, adds round number when there are multiple keys
-    points_tidy = round_as_key.each_with_object({}) { |h,g| g.update(h) { |_,o,n| o+n } }
-  
-    # Prepend points_in_gameweek to Key
-    points_in_gameweek = points_tidy.map{ |gw| ["points_in_gameweek_#{gw['round']}", gw['total_points']] }.to_h
-   
+  # Get specific player url
+  url = 'https://fantasy.premierleague.com/drf/element-summary/' + player['id'].to_s
+  response = HTTParty.get(url)
+  points = []
 
-   
+  JSON.parse(response.body)['history'].
+    each { |m| points[m['round']] = m['total_points'] }
 
   Player.create!(
-    points_in_gameweek.merge(
-      id: player['id'],
-      full_name: full_name,
-      common_name: surname,
-      position: position,
-      premier_league_team_id: player['team'],
-      fantasy_football_id: 1,
-      team_id: rand(1..15),
-    )
-    
-    
+    id: player['id'],
+    full_name: full_name,
+    common_name: surname,
+    position: position,
+    premier_league_team_id: player['team'],
+    fantasy_football_id: 1,
+    team_id: rand(1..15),
+    gameweek_points: points,
   )
-
-  
 end
 
 # todo
