@@ -92,7 +92,9 @@ players.each do |player|
   points = []
 
   player_match_history = JSON.parse(response.body)['history']
-  gameweek_history = Hash[ player_match_history.collect{ |m| [m['round'], m['total_points']] } ]
+  gameweek_history = Hash[
+    player_match_history.collect{ |m| [m['round'].to_s, m['total_points']] }
+  ].to_json
 
   Player.create!(
     id: player['id'],
