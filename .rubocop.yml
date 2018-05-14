@@ -1,0 +1,2 @@
+inherit_from:
+  - ../style/.rubocop.yml

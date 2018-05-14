@@ -7,7 +7,8 @@
   <% @players.each do |player| %>
     <li>
       <%= player.position %> - 
-      <%= link_to player.full_name, player %>
+      <%= link_to player.full_name, player %> - 
+      <strong><%= JSON.parse(player.gameweek_points).inject(:+) %> points</strong>
     </li>
   <% end %>
 </ul>

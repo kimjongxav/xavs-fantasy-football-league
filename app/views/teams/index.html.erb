@@ -4,7 +4,7 @@
 <%= will_paginate %>
 
 <ul class="list">
-  <%= render @teams %>
+  <%= render @teams.sort_by { |team| -JSON.parse(team['gameweek_points']).inject(:+) } %>
 </ul>
 
 <%= will_paginate %>

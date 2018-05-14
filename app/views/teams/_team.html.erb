@@ -1,3 +1,4 @@
 <li>
   <%= link_to team.name, team %>
+  <strong><%= JSON.parse(team.gameweek_points).inject(:+) %> points</strong>
 </li>
