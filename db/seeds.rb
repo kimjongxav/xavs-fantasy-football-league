@@ -63,6 +63,10 @@ end
   )
 end
 
+def gameweek_points
+  (1..38).map{ 0 }.to_s
+end
+
 # teams
 15.times do |n|
   name = Faker::Team.name
@@ -70,7 +74,8 @@ end
     name: name,
     user_id: n + 1,
     league_id: 1,
-    properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}'
+    properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
+    gameweek_points: gameweek_points,
   )
 end
 
@@ -83,10 +88,11 @@ players.each do |player|
   # Get specific player url
   url = 'https://fantasy.premierleague.com/drf/element-summary/' + player['id'].to_s
   response = HTTParty.get(url)
+  next unless response.ok?
   points = []
 
-  JSON.parse(response.body)['history'].
-    each { |m| points[m['round']] = m['total_points'] }
+  player_match_history = JSON.parse(response.body)['history']
+  gameweek_history = Hash[ player_match_history.collect{ |m| [m['round'], m['total_points']] } ]
 
   Player.create!(
     id: player['id'],
@@ -96,7 +102,7 @@ players.each do |player|
     premier_league_team_id: player['team'],
     fantasy_football_id: 1,
     team_id: rand(1..15),
-    gameweek_points: points,
+    gameweek_points: gameweek_history,
   )
 end
 

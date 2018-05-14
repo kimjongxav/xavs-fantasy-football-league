@@ -7,15 +7,9 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-    @points = points
+    @points = JSON.parse(@player['gameweek_points'])
   end
 
   def new
-  end
-
-  def points
-    (1..38).map do |gw|
-      @player["points_in_gameweek_#{gw}"]
-    end
   end
 end
