@@ -1,6 +1,6 @@
 <% provide(:title, @player.full_name) %>
 <h1>
-  <%= @player.full_name %> (<%= @player.premier_league_team.name %> <%= @player.position %>)
+  <%= @player.full_name %> (<%= link_to @player.premier_league_team.name, @player.premier_league_team %> <%= @player.position %>)
 </h1>
 
 <ul class="list">
