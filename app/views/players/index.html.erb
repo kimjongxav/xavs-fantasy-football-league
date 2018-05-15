@@ -3,8 +3,21 @@
 
 <%= will_paginate %>
 
-<ul class="list">
-  <%= render @players %>
-</ul>
+<div class="list">
+  <table class='nice-table striped'>
+    <thead>
+      <tr>
+        <th style=''>player</th>
+        <th style=''>position</th>
+        <th>pl team</th>
+        <th style=''>points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @players %>
+    </tbody>
+  </table>
+</div>
 
 <%= will_paginate %>
+

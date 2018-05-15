@@ -73,7 +73,6 @@ end
   Team.create!(
     name: name,
     user_id: n + 1,
-    league_id: 1,
     properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
     gameweek_points: gameweek_points,
   )
@@ -104,13 +103,32 @@ players.each do |player|
     common_name: surname,
     position: position,
     premier_league_team_id: player['team'],
-    fantasy_football_id: 1,
-    team_id: rand(1..15),
-    gameweek_points: gameweek_history,
+    gameweek_points: gameweek_history.to_json,
   )
 
   puts "done #{full_name}" if player['id'].to_i % 50 == 0
 end
+
+# player team relationships
+Player.all.each do |player|
+  PlayerTeamRelationship.create!(
+    player_id: player['id'],
+    team_id: (player['id'] % 15) + 1,
+    gameweek_in: 1,
+    gameweek_out: nil,
+    captain_in: player['id'] <= 15 ? true : false,
+    captain_out: false,
+  )
+end
+
+# add points to team
+# team = Team.first
+# (1..5).each do |gw|
+
+# end
+
+# matches
+
 
 # todo
 # create seeds for: bids, matches

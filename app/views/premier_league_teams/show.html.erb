@@ -3,12 +3,23 @@
   <%= @premier_league_team.name %>
 </h1>
 
-<ul class="list">
-  <% @players.each do |player| %>
-    <li>
-      <%= player.position %> - 
-      <%= link_to player.full_name, player %> - 
-      <strong><%= total_player_points(player) %> points</strong>
-    </li>
-  <% end %>
-</ul>
+<div class="list">
+  <table class='nice-table striped'>
+    <thead>
+      <tr>
+        <th style=''>position</th>
+        <th style=''>name</th>
+        <th style=''>points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @players.each do |player| %>
+      <tr>
+        <td><%= player.position %></td>
+        <td><%= link_to player.full_name, player %></td>
+        <td><%= total_player_points(player) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

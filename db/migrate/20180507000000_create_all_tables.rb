@@ -28,7 +28,6 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
     end
 
     create_table :players do |t|
-      t.integer :fantasy_football_id
       t.string :full_name
       t.string :common_name
       t.string :position
@@ -45,7 +44,6 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
       t.timestamps
     end
     add_reference :teams, :user, foreign_key: true
-    add_reference :teams, :league, foreign_key: true
 
     create_table :bids do |t|
       t.integer :value

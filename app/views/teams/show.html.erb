@@ -3,10 +3,19 @@
   <%= @team.name %>
 </h1>
 
-<h3>
-  Manager: <%= @team.user.name %>
-</h3>
-
-<ul class="list">
-  <%= render @players  %>
-</ul>
+<div class="list">
+  <h3>Manager: <%= @team.user.name %></h3>
+  <table class='nice-table striped'>
+    <thead>
+      <tr>
+        <th style=''>player</th>
+        <th style=''>position</th>
+        <th>pl team</th>
+        <th style=''>points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @players %>
+    </tbody>
+  </table>
+</div>
