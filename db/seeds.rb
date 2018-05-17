@@ -7,20 +7,20 @@ players = JSON.parse(resp.body)['elements']
 
 # league
 League.create!(
-  season: '2018/2019',
-  name: 'Test League'
+  :season => '2018/2019',
+  :name => 'Test League',
 )
 
 # admin user
 User.create!(
-  name: 'Xavier Lacey',
-  email: 'xavlacey@gmail.com',
-  initials: 'XL',
-  password: 'cookie123',
-  password_confirmation: 'cookie123',
-  admin: true,
-  activated: true,
-  activated_at: Time.zone.now
+  :name => 'Xavier Lacey',
+  :email => 'xavlacey@gmail.com',
+  :initials => 'XL',
+  :password => 'cookie123',
+  :password_confirmation => 'cookie123',
+  :admin => true,
+  :activated => true,
+  :activated_at => Time.zone.now,
 )
 
 # premier league teams
@@ -28,8 +28,8 @@ teams.each do |team|
   name = team['name']
   short_name = team['short_name']
   PremierLeagueTeam.create!(
-    name: name,
-    short_name: short_name
+    :name => name,
+    :short_name => short_name,
   )
 end
 
@@ -47,19 +47,19 @@ def position(type)
 end
 
 # users
-15.times do |n|
+16.times do |n|
   name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   initials = name.split.map(&:first).join
   email = "example-#{n + 1}@railstutorial.org"
   password = 'password'
   User.create!(
-    name: name,
-    email: email,
-    initials: initials,
-    password: password,
-    password_confirmation: password,
-    activated: true,
-    activated_at: Time.zone.now
+    :name => name,
+    :email => email,
+    :initials => initials,
+    :password => password,
+    :password_confirmation => password,
+    :activated => true,
+    :activated_at => Time.zone.now,
   )
 end
 
@@ -68,13 +68,14 @@ def gameweek_points
 end
 
 # teams
-15.times do |n|
+16.times do |n|
   name = Faker::Team.name
   Team.create!(
-    name: name,
-    user_id: n + 1,
-    properties: '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
-    gameweek_points: gameweek_points,
+    :name => name,
+    :league_id => 1,
+    :user_id => n + 1,
+    :properties => '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
+    :gameweek_points => gameweek_points,
   )
 end
 
@@ -98,37 +99,77 @@ players.each do |player|
   end
 
   Player.create!(
-    id: player['id'],
-    full_name: full_name,
-    common_name: surname,
-    position: position,
-    premier_league_team_id: player['team'],
-    gameweek_points: gameweek_history.to_json,
+    :id => player['id'],
+    :full_name => full_name,
+    :common_name => surname,
+    :position => position,
+    :premier_league_team_id => player['team'],
+    :gameweek_points => gameweek_history.to_json,
   )
 
-  puts "done #{full_name}" if player['id'].to_i % 50 == 0
+  puts "done #{full_name}" if (player['id'].to_i % 50).zero?
 end
 
 # player team relationships
 Player.all.each do |player|
   PlayerTeamRelationship.create!(
-    player_id: player['id'],
-    team_id: (player['id'] % 15) + 1,
-    gameweek_in: 1,
-    gameweek_out: nil,
-    captain_in: player['id'] <= 15 ? true : false,
-    captain_out: false,
+    :player_id => player['id'],
+    :team_id => (player['id'] % 16) + 1,
+    :gameweek_in => 1,
+    :gameweek_out => nil,
+    :captain_in => player['id'] <= 16,
+    :captain_out => false,
   )
 end
 
-# add points to team
-# team = Team.first
-# (1..5).each do |gw|
+def empty_matches
+  {
+    :home_score => nil,
+    :away_score => nil,
+    :played => false,
+  }
+end
 
-# end
+def calculate_fixtures(league)
+  teams_ids = league.teams.map(&:id)
+  first_half_fixtures = []
+  second_half_fixtures = []
+  team_ids.each do |home_team_id|
+    counter = 0
+    team_ids.each do |away_team_id|
+      next if home_team_id == away_team_id
+      if home_team_id < away_team_id
+        first_half_fixtures.push(
+          empty_matches.merge(
+            :home_team_id => home_team_id,
+            :away_team_id => away_team_id,
+          ),
+        )
+      else
+        second_half_fixtures.unshift(
+          empty_matches.merge(
+            :home_team_id => home_team_id,
+            :away_team_id => away_team_id,
+          ),
+        )
+      end
+      counter += 1
+    end
+  end
+
+  fixtures = (first_half_fixtures.shuffle + second_half_fixtures.shuffle)
+
+  fixtures.each_with_index{ |f, i| f[:gameweek] = i + 1 }
+end
 
 # matches
+team = Team.first
+(1..5).each do |gw|
+  Match.create!(
+    :league_id => 1,
 
+  )
+end
 
 # todo
 # create seeds for: bids, matches

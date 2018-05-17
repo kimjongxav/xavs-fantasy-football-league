@@ -43,15 +43,16 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_reference :teams, :user, foreign_key: true
+    add_reference :teams, :user, :foreign_key => true
+    add_reference :teams, :league, :foreign_key => true
 
     create_table :bids do |t|
       t.integer :value
 
       t.timestamps
     end
-    add_reference :bids, :player, foreign_key: true
-    add_reference :bids, :user, foreign_key: true
+    add_reference :bids, :player, :foreign_key => true
+    add_reference :bids, :user, :foreign_key => true
 
     create_table :matches do |t|
       t.integer :home_team_id
@@ -59,11 +60,12 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
       t.integer :home_score
       t.integer :away_score
       t.integer :gameweek
+      t.boolean :played
 
       t.timestamps
     end
     add_index :matches, :gameweek
-    add_reference :matches, :league, foreign_key: true
+    add_reference :matches, :league, :foreign_key => true
 
     create_table :premier_league_teams do |t|
       t.string :name
@@ -71,7 +73,7 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_reference :players, :premier_league_team, foreign_key: true, index: true
+    add_reference :players, :premier_league_team, :foreign_key => true, index: true
 
     create_table :player_team_relationships do |t|
       t.integer :player_id

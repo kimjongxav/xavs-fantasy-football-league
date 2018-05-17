@@ -1,10 +1,10 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name:  'Relationship',
-                                  foreign_key: 'follower_id',
+                                  :foreign_key => 'follower_id',
                                   dependent:   :destroy
   has_many :passive_relationships, class_name:  'Relationship',
-                                   foreign_key: 'followed_id',
+                                   :foreign_key => 'followed_id',
                                    dependent:   :destroy
 
   # could put 'has_many followeds', but this seems cumbersome

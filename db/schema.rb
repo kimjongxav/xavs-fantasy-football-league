@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180507000000) do
     t.integer "home_score"
     t.integer "away_score"
     t.integer "gameweek"
+    t.boolean "played"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "league_id"
@@ -80,6 +81,8 @@ ActiveRecord::Schema.define(version: 20180507000000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "league_id"
+    t.index ["league_id"], name: "index_teams_on_league_id"
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
