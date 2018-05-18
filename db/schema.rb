@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20180507000000) do
   create_table "matches", force: :cascade do |t|
     t.integer "home_team_id"
     t.integer "away_team_id"
-    t.integer "home_score"
-    t.integer "away_score"
+    t.integer "home_score", default: 0
+    t.integer "away_score", default: 0
     t.integer "gameweek"
-    t.boolean "played"
+    t.boolean "played", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "league_id"

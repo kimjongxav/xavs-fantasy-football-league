@@ -79,6 +79,49 @@ end
   )
 end
 
+# matches
+def half_fixtures(original_team_ids, first = true)
+  fixtures = []
+  half_of_gameweeks = (original_team_ids.size - 1)
+  (1..half_of_gameweeks).each do |gw|
+    team_ids = original_team_ids.clone
+    pivot_team = team_ids.pop
+    team_ids.rotate!(gw)
+
+    fixtures.push(
+      :home_team_id => first ? pivot_team : team_ids.shift,
+      :away_team_id => first ? team_ids.shift : pivot_team,
+      :gameweek => first ? gw : half_of_gameweeks + gw,
+    )
+
+    while team_ids.any?
+      fixtures.push(
+        :home_team_id => first ? team_ids.pop : team_ids.shift,
+        :away_team_id => first ? team_ids.shift : team_ids.pop,
+        :gameweek => first ? gw : half_of_gameweeks + gw,
+      )
+    end
+  end
+  fixtures
+end
+
+def season_fixtures(league)
+  team_ids = league.teams.map(&:id)
+  first_half_fixtures = half_fixtures(team_ids)
+  second_half_fixtures = half_fixtures(team_ids, false)
+
+  (first_half_fixtures + second_half_fixtures)
+end
+
+season_fixtures(League.first).each do |fixture|
+  Match.create!(
+    :league_id => 1,
+    :gameweek => fixture[:gameweek],
+    :home_team_id => fixture[:home_team_id],
+    :away_team_id => fixture[:away_team_id],
+  )
+end
+
 # players
 players.each do |player|
   surname = player['web_name']
@@ -122,54 +165,5 @@ Player.all.each do |player|
   )
 end
 
-def empty_matches
-  {
-    :home_score => nil,
-    :away_score => nil,
-    :played => false,
-  }
-end
-
-def calculate_fixtures(league)
-  teams_ids = league.teams.map(&:id)
-  first_half_fixtures = []
-  second_half_fixtures = []
-  team_ids.each do |home_team_id|
-    counter = 0
-    team_ids.each do |away_team_id|
-      next if home_team_id == away_team_id
-      if home_team_id < away_team_id
-        first_half_fixtures.push(
-          empty_matches.merge(
-            :home_team_id => home_team_id,
-            :away_team_id => away_team_id,
-          ),
-        )
-      else
-        second_half_fixtures.unshift(
-          empty_matches.merge(
-            :home_team_id => home_team_id,
-            :away_team_id => away_team_id,
-          ),
-        )
-      end
-      counter += 1
-    end
-  end
-
-  fixtures = (first_half_fixtures.shuffle + second_half_fixtures.shuffle)
-
-  fixtures.each_with_index{ |f, i| f[:gameweek] = i + 1 }
-end
-
-# matches
-team = Team.first
-(1..5).each do |gw|
-  Match.create!(
-    :league_id => 1,
-
-  )
-end
-
 # todo
-# create seeds for: bids, matches
+# create seeds for: bids
