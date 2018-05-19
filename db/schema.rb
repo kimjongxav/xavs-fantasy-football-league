@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20180507000000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "player_id"
-    t.integer "user_id"
+    t.integer "team_id"
     t.index ["player_id"], name: "index_bids_on_player_id"
-    t.index ["user_id"], name: "index_bids_on_user_id"
+    t.index ["team_id"], name: "index_bids_on_team_id"
   end
 
   create_table "leagues", force: :cascade do |t|

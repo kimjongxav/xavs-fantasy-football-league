@@ -95,6 +95,7 @@ players.each do |player|
   gameweek_history = Hash[ player_match_history.collect{ |m| [m['round'], m['total_points']] } ]
 
   Player.create!(
+<<<<<<< Updated upstream
     id: player['id'],
     full_name: full_name,
     common_name: surname,
@@ -108,3 +109,27 @@ end
 
 # todo
 # create seeds for: bids, matches
+=======
+    :id => player['id'],
+    :full_name => full_name,
+    :common_name => surname,
+    :position => position,
+    :premier_league_team_id => player['team'],
+    :gameweek_points => gameweek_history.to_json,
+  )
+
+  puts "done #{full_name}" if (player['id'].to_i % 50).zero?
+end
+
+# player team relationships
+# Player.all.each do |player|
+#   PlayerTeamRelationship.create!(
+#     :player_id => player['id'],
+#     :team_id => (player['id'] % 16) + 1,
+#     :gameweek_in => 1,
+#     :gameweek_out => nil,
+#     :captain_in => player['id'] <= 16,
+#     :captain_out => false,
+#   )
+# end
+>>>>>>> Stashed changes
