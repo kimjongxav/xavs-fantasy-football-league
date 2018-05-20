@@ -3,13 +3,21 @@
   <%= @player.full_name %> (<%= link_to @player.premier_league_team.name, @player.premier_league_team %> <%= @player.position %>)
 </h1>
 
-<ul class="list">
-  <li>
-    <strong>Total points: <%= total_player_points(@player) %></strong>
-  </li>
-  <% (1..38).each do |gw| %>
-    <li>
-      Gameweek <%= gw %>: <%= @points[gw.to_s] || 0 %>
-    </li>
-  <% end %>
-</ul>
+<div class="list">
+  <table class='nice-table striped'>
+    <thead>
+      <tr>
+        <th style=''>gameweek</th>
+        <th style=''>points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (1..38).each do |gw| %>
+      <tr>
+        <td><%= gw %></td>
+        <td><%= @points[gw.to_s] || 0 %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

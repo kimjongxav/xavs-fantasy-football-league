@@ -97,21 +97,6 @@ players.each do |player|
   ].to_json
 
   Player.create!(
-<<<<<<< Updated upstream
-    id: player['id'],
-    full_name: full_name,
-    common_name: surname,
-    position: position,
-    premier_league_team_id: player['team'],
-    fantasy_football_id: 1,
-    team_id: rand(1..15),
-    gameweek_points: gameweek_history,
-  )
-end
-
-# todo
-# create seeds for: bids, matches
-=======
     :id => player['id'],
     :full_name => full_name,
     :common_name => surname,
@@ -134,4 +119,3 @@ end
 #     :captain_out => false,
 #   )
 # end
->>>>>>> Stashed changes
