@@ -89,7 +89,6 @@ players.each do |player|
   url = 'https://fantasy.premierleague.com/drf/element-summary/' + player['id'].to_s
   response = HTTParty.get(url)
   next unless response.ok?
-  points = []
 
   player_match_history = JSON.parse(response.body)['history']
   gameweek_history = Hash[
