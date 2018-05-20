@@ -24,4 +24,10 @@ class ApplicationController < ActionController::Base
       positions[player.position]
     end
   end
+
+  def total_player_points(player)
+    JSON.parse(player.gameweek_points).values.inject(:+)
+  end
+
+  helper_method :total_player_points
 end

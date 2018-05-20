@@ -8,7 +8,7 @@
     <li>
       <%= player.position %> - 
       <%= link_to player.full_name, player %> - 
-      <strong><%= JSON.parse(player.gameweek_points).inject(:+) %> points</strong>
+      <strong><%= total_player_points(player) %> points</strong>
     </li>
   <% end %>
 </ul>
