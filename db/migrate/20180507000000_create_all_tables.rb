@@ -6,9 +6,9 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
       t.string :email
       t.string :password_digest
       t.string :remember_digest
-      t.boolean :admin, default: false
+      t.boolean :admin, :default => false
       t.string :activation_digest
-      t.boolean :activated, default: false
+      t.boolean :activated, :default => false
       t.datetime :activated_at
       t.string :reset_digest
       t.datetime :reset_sent_at
@@ -16,11 +16,11 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :users, :email, unique: true
+    add_index :users, :email, :unique => true
 
     create_table :teams do |t|
       t.string :name
-      t.integer :transfers_remaining, default: 3
+      t.integer :transfers_remaining, :default => 3
       t.string :properties # this will be a string in the style of json
       t.string :gameweek_points # this will be a string in the style of json
 
@@ -28,7 +28,6 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
     end
 
     create_table :players do |t|
-      t.integer :fantasy_football_id
       t.string :full_name
       t.string :common_name
       t.string :position
@@ -36,8 +35,6 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_reference :players, :team, foreign_key: true
-    add_index :players, :fantasy_football_id
     add_index :players, :common_name
 
     create_table :leagues do |t|
@@ -46,27 +43,31 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_reference :teams, :user, foreign_key: true
-    add_reference :teams, :league, foreign_key: true
+    add_reference :teams, :user, :foreign_key => true
+    add_reference :teams, :league, :foreign_key => true
 
     create_table :bids do |t|
       t.integer :value
 
       t.timestamps
     end
-    add_reference :bids, :player, foreign_key: true
-    add_reference :bids, :user, foreign_key: true
+    add_reference :bids, :player, :foreign_key => true
+    add_reference :bids, :user, :foreign_key => true
 
     create_table :matches do |t|
-      t.integer :home_score
-      t.integer :away_score
+      t.integer :home_team_id
+      t.integer :away_team_id
       t.integer :gameweek
+      t.integer :home_score, :default => 0
+      t.integer :away_score, :default => 0
+      t.integer :home_points, :default => 0
+      t.integer :away_points, :default => 0
+      t.boolean :played, :default => false
 
       t.timestamps
     end
     add_index :matches, :gameweek
-    add_reference :matches, :team, foreign_key: true
-    add_reference :matches, :league, foreign_key: true
+    add_reference :matches, :league, :foreign_key => true
 
     create_table :premier_league_teams do |t|
       t.string :name
@@ -74,6 +75,17 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_reference :players, :premier_league_team, foreign_key: true, index: true
+    add_reference :players, :premier_league_team, :foreign_key => true, :index => true
+
+    create_table :player_team_relationships do |t|
+      t.integer :player_id
+      t.integer :team_id
+      t.integer :gameweek_in
+      t.integer :gameweek_out
+      t.boolean :captain_in
+      t.boolean :captain_out
+
+      t.timestamps
+    end
   end
 end

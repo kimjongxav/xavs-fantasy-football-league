@@ -30,32 +30,40 @@ ActiveRecord::Schema.define(version: 20180507000000) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "home_score"
-    t.integer "away_score"
+    t.integer "home_team_id"
+    t.integer "away_team_id"
+    t.integer "home_score", default: 0
+    t.integer "away_score", default: 0
     t.integer "gameweek"
+    t.boolean "played", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "team_id"
     t.integer "league_id"
     t.index ["gameweek"], name: "index_matches_on_gameweek"
     t.index ["league_id"], name: "index_matches_on_league_id"
-    t.index ["team_id"], name: "index_matches_on_team_id"
+  end
+
+  create_table "player_team_relationships", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "team_id"
+    t.integer "gameweek_in"
+    t.integer "gameweek_out"
+    t.boolean "captain_in"
+    t.boolean "captain_out"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|
-    t.integer "fantasy_football_id"
     t.string "full_name"
     t.string "common_name"
     t.string "position"
     t.string "gameweek_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "team_id"
     t.integer "premier_league_team_id"
     t.index ["common_name"], name: "index_players_on_common_name"
-    t.index ["fantasy_football_id"], name: "index_players_on_fantasy_football_id"
     t.index ["premier_league_team_id"], name: "index_players_on_premier_league_team_id"
-    t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "premier_league_teams", force: :cascade do |t|
