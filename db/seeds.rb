@@ -154,16 +154,13 @@ players.each do |player|
 end
 
 # player team relationships
-Player.all.each do |player|
-  PlayerTeamRelationship.create!(
-    :player_id => player['id'],
-    :team_id => (player['id'] % 16) + 1,
-    :gameweek_in => 1,
-    :gameweek_out => nil,
-    :captain_in => player['id'] <= 16,
-    :captain_out => false,
-  )
-end
-
-# todo
-# create seeds for: bids
+# Player.all.each do |player|
+#   PlayerTeamRelationship.create!(
+#     :player_id => player['id'],
+#     :team_id => (player['id'] % 16) + 1,
+#     :gameweek_in => 1,
+#     :gameweek_out => nil,
+#     :captain_in => player['id'] <= 16,
+#     :captain_out => false,
+#   )
+# end
