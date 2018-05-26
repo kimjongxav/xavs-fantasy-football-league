@@ -4,7 +4,7 @@
     <%= @team.name %>
   </div>
   <div class='title-extra'>
-    <%= link_to 'Bids', bids_path %>
+    <%= link_to 'Bids', team_bids_url(@team.id) %>
   </div>
 </div>
 
