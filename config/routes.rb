@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :premier_league_teams
 
   resources :teams do
-    resources :bids, :only => %i[index new]
+    resources :bids, :only => %i[index new create]
   end
 
   resources :leagues

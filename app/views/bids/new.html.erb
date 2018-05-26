@@ -1,2 +1,14 @@
-<h1>Bids#new</h1>
-<p>Find me in app/views/bids/new.html.erb</p>
+<h1>New bid</h1>
+
+<h3>Choose formation</h3>
+<select>
+  <option value=''>None</option>
+  <% @available_formations.each do |formation| %>
+    <option value='<%= formation %>'><%= formation %></option>
+  <% end %>
+</select>
+
+<%= form_for @bid, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <%= f.text_field :value %>
+  <%= f.submit "Submit" %>
+<% end %>

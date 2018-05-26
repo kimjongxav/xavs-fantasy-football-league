@@ -1,0 +1,17 @@
+<% provide(:title, 'All bids') %>
+<div class='title-bar'>
+  <div class='main-title'>
+    <%= "All bids for #{@team.name}" %>
+  </div>
+  <div class='title-extra'>
+    <%= link_to 'New bid', new_team_bid_url(@team.id) %>
+  </div>
+</div>
+
+<%= will_paginate %>
+
+<ul class="list">
+  <%= render @bids %>
+</ul>
+
+<%= will_paginate %>
