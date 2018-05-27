@@ -16,15 +16,13 @@ Rails.application.routes.draw do
 
   resources :teams do
     resources :bids, :only => %i[index new create]
+
+    get '/bids/round/:window/:round' => 'bids#round'
   end
 
   resources :leagues
 
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
+  resources :users
 
   resources :account_activations, :only => %i[edit]
   resources :password_resets, :only => %i[new create edit update]

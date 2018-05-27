@@ -8,10 +8,16 @@
   </div>
 </div>
 
-<%= will_paginate %>
-
+<h3>Summer</h3>
 <ul class="list">
-  <%= render @bids %>
+  <% @summer_rounds.each do |round| %>
+    <%= round %>
+  <% end %>
 </ul>
 
-<%= will_paginate %>
+<h3>January</h3>
+<ul class="list">
+  <% @january_rounds.each do |round| %>
+    <%= round %>
+  <% end %>
+</ul>

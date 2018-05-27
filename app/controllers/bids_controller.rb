@@ -1,4 +1,8 @@
 class BidsController < TeamsController
+  before_action do
+    @team = Team.find(params[:team_id])
+  end
+
   def new
     @available_formations = available_formations
     @bid = Bid.new
@@ -6,7 +10,23 @@ class BidsController < TeamsController
 
   def index
     @bids = Bid.paginate(:page => params[:page])
-    @team = Team.find(params[:team_id])
+    @summer_rounds = @team.bids.where(:window => 'summer').map(&:round).uniq
+    @january_rounds = @team.bids.where(:window => 'january').map(&:round).uniq
+  end
+
+  def create
+    Bid.create!(
+      :value => params[:bid][:value],
+      :player_id => params[:bid][:player_id],
+      :team_id => @team.id,
+      :window => 'summer',
+      :round => 1,
+    )
+    redirect_to :bids
+  end
+
+  def round
+    
   end
 
   def available_formations

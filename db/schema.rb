@@ -14,6 +14,8 @@ ActiveRecord::Schema.define(version: 20180507000000) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "value"
+    t.string "window"
+    t.integer "round"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "player_id"
@@ -32,9 +34,11 @@ ActiveRecord::Schema.define(version: 20180507000000) do
   create_table "matches", force: :cascade do |t|
     t.integer "home_team_id"
     t.integer "away_team_id"
+    t.integer "gameweek"
     t.integer "home_score", default: 0
     t.integer "away_score", default: 0
-    t.integer "gameweek"
+    t.integer "home_points", default: 0
+    t.integer "away_points", default: 0
     t.boolean "played", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
