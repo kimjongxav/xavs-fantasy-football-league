@@ -10,8 +10,7 @@ class BidsController < TeamsController
 
   def index
     @bids = Bid.paginate(:page => params[:page])
-    @summer_rounds = @team.bids.where(:window => 'summer').map(&:round).uniq
-    @january_rounds = @team.bids.where(:window => 'january').map(&:round).uniq
+    @rounds = @team.bids.group_by { |h| [h[:round], h[:window]] }.map(&:second)
   end
 
   def create
@@ -23,10 +22,6 @@ class BidsController < TeamsController
       :round => 1,
     )
     redirect_to :bids
-  end
-
-  def round
-    
   end
 
   def available_formations

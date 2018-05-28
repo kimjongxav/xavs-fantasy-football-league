@@ -15,9 +15,7 @@ Rails.application.routes.draw do
   resources :premier_league_teams
 
   resources :teams do
-    resources :bids, :only => %i[index new create]
-
-    get '/bids/round/:window/:round' => 'bids#round'
+    resources :bids, :shallow => true
   end
 
   resources :leagues

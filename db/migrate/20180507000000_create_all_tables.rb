@@ -47,7 +47,7 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
     add_reference :teams, :league, :foreign_key => true
 
     create_table :bids do |t|
-      t.integer :value
+      t.string :value
       t.string :window
       t.integer :round
 

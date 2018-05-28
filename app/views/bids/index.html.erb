@@ -8,16 +8,11 @@
   </div>
 </div>
 
-<h3>Summer</h3>
-<ul class="list">
-  <% @summer_rounds.each do |round| %>
-    <%= round %>
-  <% end %>
-</ul>
-
-<h3>January</h3>
-<ul class="list">
-  <% @january_rounds.each do |round| %>
-    <%= round %>
-  <% end %>
-</ul>
+<% @rounds.each do |round| %>
+  <h3><%= "#{round.first.window.capitalize} round #{round.first.round}" %></h3>
+  <ul class="list">
+    <% round.each do |bid| %>
+      <li><%= "£#{bid.value}m for #{bid.player.common_name}" %></li>
+    <% end %>
+  </ul>
+<% end %>
