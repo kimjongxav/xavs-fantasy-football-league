@@ -1,15 +1,27 @@
 <h1>New bid</h1>
 
 <h3>Choose formation</h3>
-<select>
-  <option value=''>None</option>
-  <% @available_formations.each do |formation| %>
-    <option value='<%= formation %>'><%= formation %></option>
-  <% end %>
-</select>
+<div class='dropdown' style='width:150px;'>
+  <%= select_tag(:formation_id, options_for_select(@available_formations, :selected => :formation_id)) %>
+</div>
 
-<%= form_for @bid, :url => {:action => "create"}, :html => {:class => "nifty_form"} do |f| %>
-  <div style='width:100px'>Player ID <%= f.text_field :player_id %></div>
-  <div style='width:100px'>Value <%= f.text_field :value %></div>
-  <%= f.submit "Submit" %>
-<% end %>
+<div>
+  <%= form_for @bid, :url => {:action => "create"}, :html => {:class => "nifty_form"} do |f| %>
+    <table>
+      <tr>
+        <th>Position</th>
+        <th>Player ID</th>
+        <th>Value</th>
+      </tr>
+      <% 11.times.each do |i| %>
+        <tr>
+          <%# <td><%= position_calculator(i, formation_id) </td> %>
+          <td>GK</td>
+          <td><%= f.text_field :player_id %></td>
+          <td><%= f.text_field :value %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
