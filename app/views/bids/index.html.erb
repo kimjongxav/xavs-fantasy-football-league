@@ -1,0 +1,18 @@
+<% provide(:title, 'All bids') %>
+<div class='title-bar'>
+  <div class='main-title'>
+    <%= "All bids for #{@team.name}" %>
+  </div>
+  <div class='title-extra'>
+    <%= link_to 'New bid', new_team_bid_url(@team.id) %>
+  </div>
+</div>
+
+<% @rounds.each do |round| %>
+  <h3><%= "#{round.first.window.capitalize} round #{round.first.round}" %></h3>
+  <ul class="list">
+    <% round.each do |bid| %>
+      <li><%= "£#{bid.value}m for #{bid.player.common_name}" %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -5,4 +5,6 @@ class Bid < ApplicationRecord
   validates :team_id, :presence => true
   validates :player_id, :presence => true
   validates :value, :presence => true
+  validates :window, :presence => true
+  validates :round, :presence => true
 end

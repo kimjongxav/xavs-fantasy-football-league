@@ -4,6 +4,6 @@ class Team < ApplicationRecord
 
   has_many :player_team_relationships
   has_many :players, :through => :player_team_relationships
-
+  has_many :bids
   has_many :matches
 end

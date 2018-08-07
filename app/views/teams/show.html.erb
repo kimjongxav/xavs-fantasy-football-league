@@ -1,7 +1,12 @@
 <% provide(:title, @team.name) %>
-<h1>
-  <%= @team.name %>
-</h1>
+<div class='title-bar'>
+  <div class='main-title'>
+    <%= @team.name %>
+  </div>
+  <div class='title-extra'>
+    <%= link_to 'Bids', team_bids_url(@team.id) %>
+  </div>
+</div>
 
 <div class="list">
   <h3>Manager: <%= @team.user.name %></h3>
