@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20180507000000) do
 
   create_table "bids", force: :cascade do |t|
-    t.integer "value"
+    t.string "value"
     t.string "window"
     t.integer "round"
     t.datetime "created_at", null: false

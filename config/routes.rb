@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :leagues
+  resources :matches
 
   resources :users
 

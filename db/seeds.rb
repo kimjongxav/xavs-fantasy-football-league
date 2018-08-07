@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'httparty'
+require 'csv'
 
 resp = HTTParty.get('https://fantasy.premierleague.com/drf/bootstrap-static')
 teams = JSON.parse(resp.body)['teams']
@@ -12,16 +13,16 @@ League.create!(
 )
 
 # admin user
-User.create!(
-  :name => 'Xavier Lacey',
-  :email => 'xavlacey@gmail.com',
-  :initials => 'XL',
-  :password => 'cookie123',
-  :password_confirmation => 'cookie123',
-  :admin => true,
-  :activated => true,
-  :activated_at => Time.zone.now,
-)
+# User.create!(
+#   :name => 'Xavier Lacey',
+#   :email => 'xavlacey@gmail.com',
+#   :initials => 'XL',
+#   :password => 'cookie123',
+#   :password_confirmation => 'cookie123',
+#   :admin => true,
+#   :activated => true,
+#   :activated_at => Time.zone.now,
+# )
 
 # premier league teams
 teams.each do |team|
@@ -47,19 +48,43 @@ def position(type)
 end
 
 # users
-16.times do |n|
-  name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
-  initials = name.split.map(&:first).join
-  email = "example-#{n + 1}@railstutorial.org"
+names = [
+  'Alex Dyzenhaus',
+  'Chris Taylor',
+  'Darrelle Wood',
+  'Joe Kelly',
+  'James Thornton',
+  'Kate Wyatt',
+  'Nathaniel Melman',
+  'Phil Buckingham',
+  'Philippe Lacey',
+  'Xavier Lacey',
+]
+initials = %w[AD CT DW JK JT KW NM PB PL XL]
+email = %w[
+  dyzenhaus@gmail.com
+  christr08@gmail.com
+  Darrellewood@outlook.com
+  joe1kelly37@hotmail.co.uk
+  Jamesthornton1@live.co.uk
+  k.wyatt@live.com
+  nathanielmelman@gmail.com
+  Philip.buckingham@hotmail.com
+  philippe.lacey@ad-esse.com
+  xavlacey@gmail.com
+]
+10.times do |n|
+  email = "#{initials[n].downcase}@example.com"
   password = 'password'
   User.create!(
-    :name => name,
+    :name => names[n],
     :email => email,
-    :initials => initials,
+    :initials => initials[n],
     :password => password,
     :password_confirmation => password,
     :activated => true,
     :activated_at => Time.zone.now,
+    :admin => initials[n] == 'XL',
   )
 end
 
@@ -68,10 +93,9 @@ def gameweek_points
 end
 
 # teams
-16.times do |n|
-  name = Faker::Team.name
+10.times do |n|
   Team.create!(
-    :name => name,
+    :name => initials[n],
     :league_id => 1,
     :user_id => n + 1,
     :properties => '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
@@ -79,46 +103,19 @@ end
   )
 end
 
-# matches
-def half_fixtures(original_team_ids, first = true)
-  fixtures = []
-  half_of_gameweeks = (original_team_ids.size - 1)
-  (1..half_of_gameweeks).each do |gw|
-    team_ids = original_team_ids.clone
-    pivot_team = team_ids.pop
-    team_ids.rotate!(gw)
+# matches for a ten-league team
+# every team plays every other team four times
+# then the final two weeks are 1v2, 3v4, etc. with two legs
 
-    fixtures.push(
-      :home_team_id => first ? pivot_team : team_ids.shift,
-      :away_team_id => first ? team_ids.shift : pivot_team,
-      :gameweek => first ? gw : half_of_gameweeks + gw,
-    )
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'fixtures.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
-    while team_ids.any?
-      fixtures.push(
-        :home_team_id => first ? team_ids.pop : team_ids.shift,
-        :away_team_id => first ? team_ids.shift : team_ids.pop,
-        :gameweek => first ? gw : half_of_gameweeks + gw,
-      )
-    end
-  end
-  fixtures
-end
-
-def season_fixtures(league)
-  team_ids = league.teams.map(&:id)
-  first_half_fixtures = half_fixtures(team_ids)
-  second_half_fixtures = half_fixtures(team_ids, false)
-
-  (first_half_fixtures + second_half_fixtures)
-end
-
-season_fixtures(League.first).each do |fixture|
+csv.each do |fixture|
   Match.create!(
     :league_id => 1,
-    :gameweek => fixture[:gameweek],
-    :home_team_id => fixture[:home_team_id],
-    :away_team_id => fixture[:away_team_id],
+    :gameweek => fixture['gameweek'],
+    :home_team_id => fixture['home_team_id'],
+    :away_team_id => fixture['away_team_id'],
   )
 end
 
