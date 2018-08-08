@@ -86,9 +86,11 @@ class CalculateMatchScores
   end
 
   def calculate_points(team, gameweek)
-    players = team.players.where('gameweek_in <= 2 and gameweek_out is null')
+    players = team.players.where('gameweek_in <= ? and gameweek_out is null', gameweek)
     captain = team.players.where(
-      'gameweek_in <= 3 and gameweek_out is null and captain_in <= 3 and captain_out is null',
+      'gameweek_in <= ? and gameweek_out is null and captain_in <= ? and captain_out is null',
+      gameweek,
+      gameweek,
     ).first
 
     players_points = players.map do |p|

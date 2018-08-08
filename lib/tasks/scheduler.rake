@@ -7,7 +7,6 @@ end
 
 task :calculate_match_scores => :environment do
   puts 'calculating match scores'
-  if Time.now.friday? # runs at 3am
-    CalculateMatchScores.call
-  end
+  # runs at 3am
+  CalculateMatchScores.call
 end

@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20180507000000) do
     t.string "name"
     t.integer "transfers_remaining", default: 3
     t.string "properties"
-    t.string "gameweek_points"
+    t.string "gameweek_scores"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
