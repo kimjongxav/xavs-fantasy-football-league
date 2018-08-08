@@ -87,7 +87,7 @@ teams = [
 ]
 
 10.times do |n|
-  email = "#{initials[n].downcase}@example.com"
+  email = "#{initials[n].downcase}@xfl.com"
   password = 'password'
   User.create!(
     :name => names[n],
