@@ -22,7 +22,7 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :transfers_remaining, :default => 3
       t.string :properties # this will be a string in the style of json
-      t.string :gameweek_points # this will be a string in the style of json
+      t.string :gameweek_scores # this will be a string in the style of json
 
       t.timestamps
     end

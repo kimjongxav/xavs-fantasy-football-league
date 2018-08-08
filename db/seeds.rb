@@ -108,7 +108,7 @@ end
     :league_id => 1,
     :user_id => n + 1,
     :properties => '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
-    :gameweek_points => '{"1": 0 }',
+    :gameweek_scores => '{"1": 0 }',
   )
 end
 

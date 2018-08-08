@@ -1,19 +1,13 @@
 desc 'This task is called by the Heroku scheduler add-on'
 task :get_player_points => :environment do
   puts 'getting player points'
-  if Time.now.thursday?
-    GetPlayerPoints.call
-  end
+  # runs at 2am
+  GetPlayerPoints.call
 end
 
 task :calculate_match_scores => :environment do
   puts 'calculating match scores'
-  if Time.now.thursday?
+  if Time.now.friday? # runs at 3am
     CalculateMatchScores.call
   end
-end
-
-task :calculate_team_points => :environment do
-  puts 'calculating team points'
-  CalculateTeamPoints.call
 end
