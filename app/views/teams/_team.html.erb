@@ -1,4 +1,4 @@
 <tr>
   <td><%= link_to team.name, team %></td>
-  <td><%= JSON.parse(team.gameweek_points).inject(:+) %></td>
+  <td><%= JSON.parse(team.gameweek_points).values.inject(:+) %></td>
 </tr>

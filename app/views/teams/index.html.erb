@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @teams.sort_by { |team| -JSON.parse(team['gameweek_points']).inject(:+) } %>
+        <%= render @teams.sort_by { |team| -JSON.parse(team['gameweek_points']).values.inject(:+) } %>
       </tbody>
     </table>
   </li>

@@ -73,6 +73,19 @@ email = %w[
   philippe.lacey@ad-esse.com
   xavlacey@gmail.com
 ]
+teams = [
+  'Your Sessegnon Fire',
+  'F.C. Lloris Academy 4',
+  'Chamakh My Pitch Up United',
+  'JK',
+  'Aaaaaaaa FC',
+  'Hakuna JuanMata FC',
+  'MelMan City',
+  'Pun Basedonmyinitials FC',
+  'Lupus Non Mordet Lupum AFC',
+  'Borussalah VfL 1992 Mönchenxavbach e.V.',
+]
+
 10.times do |n|
   email = "#{initials[n].downcase}@example.com"
   password = 'password'
@@ -88,18 +101,14 @@ email = %w[
   )
 end
 
-def gameweek_points
-  (1..38).map{ 0 }.to_s
-end
-
 # teams
 10.times do |n|
   Team.create!(
-    :name => initials[n],
+    :name => teams[n],
     :league_id => 1,
     :user_id => n + 1,
     :properties => '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
-    :gameweek_points => gameweek_points,
+    :gameweek_points => {},
   )
 end
 
@@ -131,7 +140,7 @@ players.each do |player|
   next unless response.ok?
 
   player_match_history = JSON.parse(response.body)['history']
-  gameweek_history = Hash.new
+  gameweek_history = {}
 
   player_match_history.each do |m|
     current_score = gameweek_history[m['round']] || 0
