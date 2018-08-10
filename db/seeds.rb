@@ -77,10 +77,10 @@ teams = [
   'Your Sessegnon Fire',
   'F.C. Lloris Academy 4',
   'Chamakh My Pitch Up United',
-  'JK',
+  'Real Joeissobad',
   'Aaaaaaaa FC',
   'Hakuna JuanMata FC',
-  'MelMan City',
+  'Knowing Mee, Knowing Giroud (Zaha) FC',
   'Pun Basedonmyinitials FC',
   'Lupus Non Mordet Lupum AFC',
   'Borussalah VfL 1992 Mönchenxavbach e.V.',
@@ -160,13 +160,28 @@ players.each do |player|
 end
 
 # player team relationships
-# Player.all.each do |player|
-#   PlayerTeamRelationship.create!(
-#     :player_id => player['id'],
-#     :team_id => (player['id'] % 16) + 1,
-#     :gameweek_in => 1,
-#     :gameweek_out => nil,
-#     :captain_in => player['id'] <= 16,
-#     :captain_out => false,
-#   )
-# end
+starting_team_relationships = {
+  '1' => [282, 142, 71, 265, 367, 150, 251, 412, 231, 480, 234], # AD
+  '2' => [24, 355, 70, 5, 184, 459, 122, 223, 417, 87, 437], # CT
+  '3' => [154, 169, 239, 7, 330, 440, 132, 451, 134, 235, 45], # DW
+  '4' => [260, 359, 264, 115, 357, 8, 275, 13, 270, 164, 372], # JK
+  '5' => [468, 353, 288, 12, 119, 382, 295, 256, 18, 23, 150], # JT
+  '6' => [47, 113, 222, 312, 271, 364, 59, 272, 432, 257, 326], # KW
+  '7' => [400, 267, 118, 117, 465, 14, 302, 172, 346, 158, 281], # NM
+  '8' => [351, 359, 293, 262, 273, 271, 365, 256, 124, 22, 280], # PB
+  '9' => [67, 247, 192, 246, 49, 126, 76, 434, 339, 300, 107], # PL
+  '10' => [2, 28, 222, 4, 393, 478, 253, 370, 440, 236, 305], # XL
+}
+
+starting_team_relationships.each do |team|
+  team.each do |team_id, player_id|
+    PlayerTeamRelationship.create!(
+      :player_id => player_id,
+      :team_id => team_id,
+      :gameweek_in => 1,
+      :gameweek_out => nil,
+      :captain_in => false,
+      :captain_out => false,
+    )
+  end
+end
