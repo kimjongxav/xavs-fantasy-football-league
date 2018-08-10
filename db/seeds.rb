@@ -173,8 +173,9 @@ starting_team_relationships = {
   '10' => [2, 28, 222, 4, 393, 478, 253, 370, 440, 236, 305], # XL
 }
 
-starting_team_relationships.each do |team|
-  team.each do |team_id, player_id|
+starting_team_relationships.each do |team_id, player_ids|
+  player_ids.each do |player_id|
+    puts "team_id #{team_id}, player_id #{player_id}"
     PlayerTeamRelationship.create!(
       :player_id => player_id,
       :team_id => team_id,
