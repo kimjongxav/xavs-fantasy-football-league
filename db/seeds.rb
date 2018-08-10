@@ -107,7 +107,7 @@ end
     :name => teams[n],
     :league_id => 1,
     :user_id => n + 1,
-    :properties => '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0}',
+    :properties => '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0, "top_weekly": 0, "bottom_weekly": 0, "over_sixty": 0}',
     :gameweek_scores => '{"1": 0 }',
   )
 end
@@ -153,7 +153,7 @@ players.each do |player|
     :common_name => surname,
     :position => position,
     :premier_league_team_id => player['team'],
-    :gameweek_points => gameweek_history.to_json,
+    :gameweek_points => '{"1": 0 }',
   )
 
   puts "done #{full_name}" if (player['id'].to_i % 50).zero?
@@ -161,7 +161,7 @@ end
 
 # player team relationships
 starting_team_relationships = {
-  '1' => [282, 142, 71, 265, 367, 150, 251, 412, 231, 480, 234], # AD
+  '1' => [282, 142, 71, 265, 367, 150, 251, 506, 433, 480, 234], # AD
   '2' => [24, 355, 70, 5, 184, 459, 122, 223, 417, 87, 437], # CT
   '3' => [154, 169, 239, 7, 330, 440, 132, 451, 134, 235, 45], # DW
   '4' => [260, 359, 264, 115, 357, 8, 275, 13, 270, 164, 372], # JK
@@ -173,6 +173,8 @@ starting_team_relationships = {
   '10' => [2, 28, 222, 4, 393, 478, 253, 370, 440, 236, 305], # XL
 }
 
+captains = [234, 122, 239, 372, 232, 57, 302, 280, 300, 253]
+
 starting_team_relationships.each do |team_id, player_ids|
   player_ids.each do |player_id|
     puts "team_id #{team_id}, player_id #{player_id}"
@@ -181,7 +183,7 @@ starting_team_relationships.each do |team_id, player_ids|
       :team_id => team_id,
       :gameweek_in => 1,
       :gameweek_out => nil,
-      :captain_in => false,
+      :captain_in => captains.include?(player_id),
       :captain_out => false,
     )
   end

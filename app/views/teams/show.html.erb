@@ -2,6 +2,7 @@
 <div class='title-bar'>
   <div class='main-title'>
     <%= @team.name %>
+    <%= @team.formation %>
   </div>
 </div>
 
@@ -10,14 +11,31 @@
   <table class='nice-table striped'>
     <thead>
       <tr>
-        <th style=''>player</th>
-        <th style=''>position</th>
+        <th>player</th>
+        <th>position</th>
         <th>pl team</th>
-        <th style=''>points</th>
+        <th>points</th>
       </tr>
     </thead>
     <tbody>
       <%= render @players %>
+    </tbody>
+  </table>
+  <br>
+  <h3>Ex-players</h3>
+  <table class='nice-table striped'>
+    <thead>
+      <tr>
+        <th>player</th>
+        <th>position</th>
+        <th>pl team</th>
+        <th>gameweek joined</th>
+        <th>gameweek left</th>
+        <th>points during time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render 'ex_players' %>
     </tbody>
   </table>
 </div>

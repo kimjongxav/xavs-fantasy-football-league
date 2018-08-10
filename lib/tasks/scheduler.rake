@@ -6,7 +6,9 @@ task :get_player_points => :environment do
 end
 
 task :calculate_match_scores => :environment do
-  puts 'calculating match scores'
-  # runs at 3am
-  CalculateMatchScores.call
+  if DateTime.now.friday?
+    puts 'calculating match scores'
+    # runs at 3am
+    CalculateMatchScores.call
+  end
 end

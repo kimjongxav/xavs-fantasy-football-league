@@ -19,12 +19,36 @@ class CalculateMatchScores
       if home_team_points == away_team_points
         home_team_score += 2
         away_team_score += 2
+
+        home_team.properties['draws'] = home_team.properties['draws'] + 1
+        home_team.properties_will_change!
+        home_team.save
+
+        away_team.properties['draws'] = away_team.properties['draws'] + 1
+        away_team.properties_will_change!
+        away_team.save
       elsif home_team_points > away_team_points
         home_team_score += 4
         away_team_score += 1 if (home_team_points - away_team_points) <= 5
+
+        home_team.properties['wins'] = home_team.properties['wins'] + 1
+        home_team.properties_will_change!
+        home_team.save
+
+        away_team.properties['losses'] = away_team.properties['losses'] + 1
+        away_team.properties_will_change!
+        away_team.save
       elsif home_team_points < away_team_points
         away_team_score += 4
         home_team_score += 1 if (away_team_points - home_team_points) <= 5
+
+        home_team.properties['losses'] = home_team.properties['losses'] + 1
+        home_team.properties_will_change!
+        home_team.save
+
+        away_team.properties['wins'] = away_team.properties['wins'] + 1
+        away_team.properties_will_change!
+        away_team.save
       end
 
       match.update!(
@@ -56,42 +80,62 @@ class CalculateMatchScores
         score = m['home_score']
         score += 1
         match.update!(:home_score => score)
+
+        home_team.properties['top_weekly'] = home_team.properties['top_weekly'] + 1
+        home_team.properties_will_change!
+        home_team.save
       end
       if most_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
         match.update!(:away_score => score)
+
+        away_team.properties['top_weekly'] = away_team.properties['top_weekly'] + 1
+        away_team.properties_will_change!
+        away_team.save
       end
       if fewest_points_teams.include?(m['home_team_id'])
         score = m['home_score']
         score -= 1
         match.update!(:home_score => score)
+
+        home_team.properties['bottom_weekly'] = home_team.properties['bottom_weekly'] + 1
+        home_team.properties_will_change!
+        home_team.save
       end
       if fewest_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score -= 1
         match.update!(:away_score => score)
+
+        away_team.properties['bottom_weekly'] = away_team.properties['bottom_weekly'] + 1
+        away_team.properties_will_change!
+        away_team.save
       end
       if over_sixty_teams.include?(m['home_team_id'])
         score = m['home_score']
         score += 1
         match.update!(:home_score => score)
+
+        home_team.properties['over_sixty'] = home_team.properties['over_sixty'] + 1
+        home_team.properties_will_change!
+        home_team.save
       end
       if over_sixty_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
         match.update!(:away_score => score)
+
+        away_team.properties['over_sixty'] = away_team.properties['over_sixty'] + 1
+        away_team.properties_will_change!
+        away_team.save
       end
     end
   end
 
   def calculate_points(team, gameweek)
-    players = team.players.where('gameweek_in <= ? and gameweek_out is null', gameweek)
-    captain = team.players.where(
-      'gameweek_in <= ? and gameweek_out is null and captain_in <= ? and captain_out is null',
-      gameweek,
-      gameweek,
-    ).first
+    players = team.current_players
+    captain = team.current_captain
 
     players_points = players.map do |p|
       JSON.parse(p['gameweek_points'])[gameweek.to_s]

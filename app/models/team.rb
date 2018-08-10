@@ -6,4 +6,34 @@ class Team < ApplicationRecord
   has_many :players, :through => :player_team_relationships
   has_many :bids
   has_many :matches
+
+  def all_time_players
+    self.players
+  end
+
+  def current_players
+    all_time_players.where('gameweek_in <= ? and gameweek_out is null', gameweek)
+  end
+
+  def current_captain
+    current_players.where("captain_in = 't'").first
+  end
+
+  def formation
+    number_of_def = current_players.where(:position => 'DEF').count
+    number_of_mid = current_players.where(:position => 'MID').count
+    number_of_fwd = current_players.where(:position => 'FWD').count
+    "(#{number_of_def}-#{number_of_mid}-#{number_of_fwd})"
+  end
+
+  def ex_players
+    all_time_players.where('gameweek_out is not null')
+  end
+
+  def gameweek
+    url = 'https://fantasy.premierleague.com/drf/bootstrap-static'
+    response = HTTParty.get(url)
+    1 unless response
+    JSON.parse(response.body)['current-event'] if response.ok?
+  end
 end

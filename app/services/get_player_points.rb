@@ -6,11 +6,18 @@ class GetPlayerPoints
       next unless response.ok?
 
       player_match_history = JSON.parse(response.body)['history']
-      gameweek_history = {}
+      player_gameweek_points = JSON.parse(player.gameweek_points)
 
       player_match_history.each do |m|
-        current_score = gameweek_history[m['round']] || 0
-        gameweek_history[m['round']] = m['total_points'] += current_score
+        # TODO: change this to work with player_match_history that has two of the same round
+        points = m['total_points']
+
+        new_gameweek_points = player_gameweek_points.merge(
+          player_gameweek_points[m['round'].to_s] => points,
+        )
+
+        player['gameweek_points'] = new_gameweek_points.to_json
+        player.save!
       end
     end
   end
