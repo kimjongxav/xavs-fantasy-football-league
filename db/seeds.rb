@@ -173,7 +173,7 @@ starting_team_relationships = {
   '10' => [2, 28, 222, 4, 393, 478, 253, 370, 440, 236, 305], # XL
 }
 
-captains = [234, 122, 239, 372, 232, 57, 302, 280, 300, 253]
+captains = [234, 122, 239, 372, 23, 257, 302, 280, 300, 253]
 
 starting_team_relationships.each do |team_id, player_ids|
   player_ids.each do |player_id|

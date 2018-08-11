@@ -1,9 +1,6 @@
 <tr>
-  <% gameweek_in = @team.player_team_relationships.where(:player_id => player.id).first.gameweek_in %>
-  <% gameweek_out = @team.player_team_relationships.where(:player_id => player.id).first.gameweek_out %>
-
-  <td><%= link_to player.common_name, player %><%= ' (c)' if player.id == @team.current_captain.id  %></td>
+  <td><%= link_to player.common_name, player %></td>
   <td><%= player.position %></td>
   <td><%= link_to player.premier_league_team.name, player.premier_league_team %></td>
-  <td><%= JSON.parse(player.gameweek_points).select { |k| k >= gameweek_in.to_s }.values.sum %></td>
+  <td><%= total_player_points(player) || 0 %></td>
 </tr>

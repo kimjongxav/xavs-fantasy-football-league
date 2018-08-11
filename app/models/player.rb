@@ -1,6 +1,5 @@
 class Player < ApplicationRecord
   belongs_to :premier_league_team
-  # belongs_to :team
 
   has_many :bids
   has_many :player_team_relationships
@@ -10,4 +9,12 @@ class Player < ApplicationRecord
   validates :common_name, :presence => true, length: { maximum: 50 }
   validates :position, :presence => true, length: { maximum: 10 }
   validates :premier_league_team_id, :presence => true
+
+
+  def team_points(gameweek_in, captain)
+    points = JSON.parse(self.gameweek_points).select { |k| k >= gameweek_in.to_s }.values.sum
+
+    points unless captain
+    points * 2
+  end
 end
