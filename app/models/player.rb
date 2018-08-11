@@ -14,7 +14,7 @@ class Player < ApplicationRecord
   def team_points(gameweek_in, captain)
     points = JSON.parse(self.gameweek_points).select { |k| k >= gameweek_in.to_s }.values.sum
 
-    points unless captain
-    points * 2
+    return points * 2 if captain
+    points
   end
 end

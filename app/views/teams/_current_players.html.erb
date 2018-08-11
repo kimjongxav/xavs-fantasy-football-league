@@ -1,7 +1,7 @@
 <% @team.current_players.each do |player| %>
   <% gameweek_in = @team.player_team_relationships.where(:player_id => player.id).first.gameweek_in %>
   <% gameweek_out = @team.player_team_relationships.where(:player_id => player.id).first.gameweek_out %>
-  <% captain = player.id == @team.current_captain.id %>
+  <% captain = (player.id == @team.current_captain.id) %>
   <tr>
     <td><%= link_to player.common_name, player %><%= ' (c)' if captain %></td>
     <td><%= player.position %></td>
