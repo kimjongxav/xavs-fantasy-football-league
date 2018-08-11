@@ -36,4 +36,16 @@ class Team < ApplicationRecord
     1 unless response
     JSON.parse(response.body)['current-event'] if response.ok?
   end
+
+  def sort_by_position(players)
+    positions = {
+      'GK' => 1,
+      'DEF' => 2,
+      'MID' => 3,
+      'FWD' => 4,
+    }
+    players.sort_by do |player|
+      positions[player.position]
+    end
+  end
 end
