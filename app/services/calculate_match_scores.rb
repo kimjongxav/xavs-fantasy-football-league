@@ -63,7 +63,7 @@ class CalculateMatchScores
     update_scores(gameweek)
   end
 
-  def update_scores
+  def self.update_scores
     matches = Match.where(:gameweek => gameweek)
     team_points = {}
     matches.each do |m|
@@ -133,7 +133,7 @@ class CalculateMatchScores
     end
   end
 
-  def calculate_points(team, gameweek)
+  def self.calculate_points(team, gameweek)
     players = team.current_players
     captain = team.current_captain
 
