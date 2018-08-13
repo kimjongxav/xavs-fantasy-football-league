@@ -16,37 +16,40 @@ class CalculateMatchScores
       home_team_points = calculate_points(home_team, gameweek)
       away_team_points = calculate_points(away_team, gameweek)
 
+      puts "home team: #{home_team.id} (#{home_team_points})"
+      puts "away team: #{away_team.id} (#{away_team_points})"
+
       if home_team_points == away_team_points
         home_team_score += 2
         away_team_score += 2
 
-        home_team.properties['draws'] = home_team.properties['draws'] + 1
+        home_team.properties['draws'].to_i = home_team.properties['draws'].to_i + 1
         home_team.properties_will_change!
         home_team.save
 
-        away_team.properties['draws'] = away_team.properties['draws'] + 1
+        away_team.properties['draws'].to_i = away_team.properties['draws'].to_i + 1
         away_team.properties_will_change!
         away_team.save
       elsif home_team_points > away_team_points
         home_team_score += 4
         away_team_score += 1 if (home_team_points - away_team_points) <= 5
 
-        home_team.properties['wins'] = home_team.properties['wins'] + 1
+        home_team.properties['wins'].to_i = home_team.properties['wins'].to_i + 1
         home_team.properties_will_change!
         home_team.save
 
-        away_team.properties['losses'] = away_team.properties['losses'] + 1
+        away_team.properties['losses'].to_i = away_team.properties['losses'].to_i + 1
         away_team.properties_will_change!
         away_team.save
       elsif home_team_points < away_team_points
         away_team_score += 4
         home_team_score += 1 if (away_team_points - home_team_points) <= 5
 
-        home_team.properties['losses'] = home_team.properties['losses'] + 1
+        home_team.properties['losses'] = home_team.properties['losses'].to_i + 1
         home_team.properties_will_change!
         home_team.save
 
-        away_team.properties['wins'] = away_team.properties['wins'] + 1
+        away_team.properties['wins'] = away_team.properties['wins'].to_i + 1
         away_team.properties_will_change!
         away_team.save
       end
