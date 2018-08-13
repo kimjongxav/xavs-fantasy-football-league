@@ -23,35 +23,56 @@ class CalculateMatchScores
         home_team_score += 2
         away_team_score += 2
 
-        home_team.properties['draws'].to_i = home_team.properties['draws'].to_i + 1
-        home_team.properties_will_change!
-        home_team.save
+        home_team_props = JSON.parse(home_team.properties)
+        away_team_props = JSON.parse(away_team.properties)
 
-        away_team.properties['draws'].to_i = away_team.properties['draws'].to_i + 1
-        away_team.properties_will_change!
-        away_team.save
+        home_draws = home_team_props['draws'] += 1
+        away_draws = away_team_props['draws'] += 1
+
+        home_team_props['draws'] = home_draws
+        away_team_props['draws'] = away_draws
+
+        home_team.properties = home_team_props.to_json
+        home_team.save!
+
+        away_team.properties = away_team_props.to_json
+        away_team.save!
       elsif home_team_points > away_team_points
         home_team_score += 4
         away_team_score += 1 if (home_team_points - away_team_points) <= 5
 
-        home_team.properties['wins'].to_i = home_team.properties['wins'].to_i + 1
-        home_team.properties_will_change!
-        home_team.save
+        home_team_props = JSON.parse(home_team.properties)
+        away_team_props = JSON.parse(away_team.properties)
 
-        away_team.properties['losses'].to_i = away_team.properties['losses'].to_i + 1
-        away_team.properties_will_change!
-        away_team.save
+        wins = home_team_props['wins'] += 1
+        losses = away_team_props['losses'] += 1
+
+        home_team_props['wins'] = wins
+        away_team_props['losses'] = losses
+
+        home_team.properties = home_team_props.to_json
+        home_team.save!
+
+        away_team.properties = away_team_props.to_json
+        away_team.save!
       elsif home_team_points < away_team_points
         away_team_score += 4
         home_team_score += 1 if (away_team_points - home_team_points) <= 5
 
-        home_team.properties['losses'] = home_team.properties['losses'].to_i + 1
-        home_team.properties_will_change!
-        home_team.save
+        home_team_props = JSON.parse(home_team.properties)
+        away_team_props = JSON.parse(away_team.properties)
 
-        away_team.properties['wins'] = away_team.properties['wins'].to_i + 1
-        away_team.properties_will_change!
-        away_team.save
+        losses = home_team_props['losses'] += 1
+        wins = away_team_props['wins'] += 1
+
+        home_team_props['losses'] = losses
+        away_team_props['wins'] = wins
+
+        home_team.properties = home_team_props.to_json
+        home_team.save!
+
+        away_team.properties = away_team_props.to_json
+        away_team.save!
       end
 
       match.update!(
@@ -84,54 +105,66 @@ class CalculateMatchScores
         score += 1
         match.update!(:home_score => score)
 
-        home_team.properties['top_weekly'] = home_team.properties['top_weekly'] + 1
-        home_team.properties_will_change!
-        home_team.save
+        home_team_props = JSON.parse(home_team.properties)
+        top_weekly = home_team_props['top_weekly'] += 1
+        home_team_props['top_weekly'] = top_weekly
+        home_team.properties = home_team_props.to_json
+        home_team.save!
       end
       if most_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
         match.update!(:away_score => score)
 
-        away_team.properties['top_weekly'] = away_team.properties['top_weekly'] + 1
-        away_team.properties_will_change!
-        away_team.save
+        away_team_props = JSON.parse(away_team.properties)
+        top_weekly = away_team_props['top_weekly'] += 1
+        away_team_props['top_weekly'] = top_weekly
+        away_team.properties = away_team_props.to_json
+        away_team.save!
       end
       if fewest_points_teams.include?(m['home_team_id'])
         score = m['home_score']
         score -= 1
         match.update!(:home_score => score)
 
-        home_team.properties['bottom_weekly'] = home_team.properties['bottom_weekly'] + 1
-        home_team.properties_will_change!
-        home_team.save
+        home_team_props = JSON.parse(home_team.properties)
+        bottom_weekly = home_team_props['bottom_weekly'] += 1
+        home_team_props['bottom_weekly'] = bottom_weekly
+        home_team.properties = home_team_props.to_json
+        home_team.save!
       end
       if fewest_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score -= 1
         match.update!(:away_score => score)
 
-        away_team.properties['bottom_weekly'] = away_team.properties['bottom_weekly'] + 1
-        away_team.properties_will_change!
-        away_team.save
+        away_team_props = JSON.parse(away_team.properties)
+        bottom_weekly = away_team_props['bottom_weekly'] += 1
+        away_team_props['bottom_weekly'] = bottom_weekly
+        away_team.properties = away_team_props.to_json
+        away_team.save!
       end
       if over_sixty_teams.include?(m['home_team_id'])
         score = m['home_score']
         score += 1
         match.update!(:home_score => score)
 
-        home_team.properties['over_sixty'] = home_team.properties['over_sixty'] + 1
-        home_team.properties_will_change!
-        home_team.save
+        home_team_props = JSON.parse(home_team.properties)
+        bottom_weekly = home_team_props['over_sixty'] += 1
+        home_team_props['over_sixty'] = bottom_weekly
+        home_team.properties = home_team_props.to_json
+        home_team.save!
       end
       if over_sixty_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
         match.update!(:away_score => score)
 
-        away_team.properties['over_sixty'] = away_team.properties['over_sixty'] + 1
-        away_team.properties_will_change!
-        away_team.save
+        away_team_props = JSON.parse(away_team.properties)
+        bottom_weekly = away_team_props['over_sixty'] += 1
+        away_team_props['over_sixty'] = bottom_weekly
+        away_team.properties = away_team_props.to_json
+        away_team.save!
       end
     end
   end
