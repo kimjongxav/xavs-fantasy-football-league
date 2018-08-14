@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @matches.sort_by { |match| JSON.parse(match['gameweek']) } %>
+      <%= render @matches.sort_by { |match| match['gameweek'] } %>
     </tbody>
   </table>
 </div>
