@@ -17,5 +17,17 @@ class ApplicationController < ActionController::Base
     JSON.parse(player.gameweek_points).values.inject(:+)
   end
 
+  def sort_by_position(players)
+    positions = {
+      'GK' => 1,
+      'DEF' => 2,
+      'MID' => 3,
+      'FWD' => 4,
+    }
+    players.sort_by do |player|
+      positions[player.position]
+    end
+  end
+
   helper_method :total_player_points
 end
