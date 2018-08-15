@@ -9,4 +9,5 @@ task :calculate_match_scores => :environment do
   puts 'calculating match scores'
   # runs at 3am
   CalculateMatchScores.call
+  puts 'successfully calculated all match scores'
 end
