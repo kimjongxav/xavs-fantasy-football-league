@@ -12,7 +12,7 @@ class Player < ApplicationRecord
   validates :premier_league_team_id, :presence => true
 
   def team_points(gameweek_in, captain)
-    points = gameweek_points.select { |k| k >= gameweek_in.to_s }.values.sum
+    points = gameweek_points.select { |k| k >= gameweek_in }.values.sum
 
     return points * 2 if captain
     points

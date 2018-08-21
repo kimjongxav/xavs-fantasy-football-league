@@ -7,6 +7,6 @@
     <td><%= link_to player.premier_league_team.name, player.premier_league_team %></td>
     <td><%= gameweek_in %></td>
     <td><%= gameweek_out %></td>
-    <td><%= player.gameweek_points.select { |k| k >= gameweek_in.to_s && k < gameweek_out.to_s }.values.sum %></td>
+    <td><%= player.gameweek_points.select { |k| k >= gameweek_in && k < gameweek_out }.values.sum %></td>
   </tr>
 <% end %>
