@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-    @points = JSON.parse(@player['gameweek_points'])
+    @points = @player['gameweek_points']
   end
 
   def new
