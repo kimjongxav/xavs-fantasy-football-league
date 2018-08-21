@@ -3,11 +3,9 @@
 one:
   gameweek_in: 1
   gameweek_out: 1
-  captain_in: false
-  captain_out: false
+  captain: false
 
 two:
   gameweek_in: 1
   gameweek_out: 1
-  captain_in: false
-  captain_out: false
+  captain: false

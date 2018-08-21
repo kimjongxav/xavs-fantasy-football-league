@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180821204941) do
+ActiveRecord::Schema.define(version: 20180821220725) do
 
   create_table "bids", force: :cascade do |t|
     t.string "value"
@@ -52,10 +52,9 @@ ActiveRecord::Schema.define(version: 20180821204941) do
     t.integer "team_id"
     t.integer "gameweek_in"
     t.integer "gameweek_out"
-    t.boolean "captain_in"
-    t.boolean "captain_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "captain", default: false
   end
 
   create_table "players", force: :cascade do |t|

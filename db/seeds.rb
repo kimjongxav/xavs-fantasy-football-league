@@ -183,8 +183,7 @@ starting_team_relationships.each do |team_id, player_ids|
       :team_id => team_id,
       :gameweek_in => 1,
       :gameweek_out => nil,
-      :captain_in => captains.include?(player_id),
-      :captain_out => false,
+      :captain => captains.include?(player_id),
     )
   end
 end
