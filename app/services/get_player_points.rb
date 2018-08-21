@@ -18,7 +18,7 @@ class GetPlayerPoints
         round.merge(points) { |_, old_v, new_v| old_v + new_v }
       end
 
-      player['gameweek_points'] = merged_history.to_json
+      player['gameweek_points'] = merged_history
       player.save!
     end
   end
