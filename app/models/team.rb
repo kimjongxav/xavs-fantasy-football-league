@@ -18,7 +18,7 @@ class Team < ApplicationRecord
   end
 
   def current_captain
-    current_players.where(:captain => true).first
+    current_players.where("captain = 't'").first
   end
 
   def formation
