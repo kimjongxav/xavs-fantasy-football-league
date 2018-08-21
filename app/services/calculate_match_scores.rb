@@ -115,7 +115,7 @@ class CalculateMatchScores
       if most_points_teams.include?(m['home_team_id'])
         score = m['home_score']
         score += 1
-        match.update!(:home_score => score)
+        m.update!(:home_score => score)
 
         home_team_props = JSON.parse(home_team.properties)
         home_team_scores = JSON.parse(home_team.gameweek_scores)
@@ -130,7 +130,7 @@ class CalculateMatchScores
       if most_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
-        match.update!(:away_score => score)
+        m.update!(:away_score => score)
 
         away_team_props = JSON.parse(away_team.properties)
         away_team_scores = JSON.parse(away_team.gameweek_scores)
@@ -145,7 +145,7 @@ class CalculateMatchScores
       if fewest_points_teams.include?(m['home_team_id'])
         score = m['home_score']
         score -= 1
-        match.update!(:home_score => score)
+        m.update!(:home_score => score)
 
         home_team_props = JSON.parse(home_team.properties)
         home_team_scores = JSON.parse(home_team.gameweek_scores)
@@ -160,7 +160,7 @@ class CalculateMatchScores
       if fewest_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score -= 1
-        match.update!(:away_score => score)
+        m.update!(:away_score => score)
 
         away_team_props = JSON.parse(away_team.properties)
         away_team_scores = JSON.parse(away_team.gameweek_scores)
@@ -175,7 +175,7 @@ class CalculateMatchScores
       if over_sixty_teams.include?(m['home_team_id'])
         score = m['home_score']
         score += 1
-        match.update!(:home_score => score)
+        m.update!(:home_score => score)
 
         home_team_props = JSON.parse(home_team.properties)
         home_team_scores = JSON.parse(home_team.gameweek_scores)
@@ -190,7 +190,7 @@ class CalculateMatchScores
       if over_sixty_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
-        match.update!(:away_score => score)
+        m.update!(:away_score => score)
 
         away_team_props = JSON.parse(away_team.properties)
         away_team_scores = JSON.parse(away_team.gameweek_scores)
@@ -202,7 +202,6 @@ class CalculateMatchScores
         away_team.gameweek_scores = away_team_scores.to_json
         away_team.save!
       end
-
     end
   end
 
