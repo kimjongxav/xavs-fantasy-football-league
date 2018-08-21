@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
+  serialize :gameweek_scores, Hash
+  serialize :properties, Hash
   belongs_to :user
   belongs_to :league
 

@@ -107,8 +107,8 @@ end
     :name => teams[n],
     :league_id => 1,
     :user_id => n + 1,
-    :properties => '{"wins": 0, "losses": 0, "draws": 0, "matches_within_five_points": 0, "top_weekly": 0, "bottom_weekly": 0, "over_sixty": 0}',
-    :gameweek_scores => '{"1": 0 }',
+    :properties => {:wins => 0, :losses => 0, :draws => 0, :matches_within_five_points => 0, :top_weekly => 0, :bottom_weekly => 0, :over_sixty => 0},
+    :gameweek_scores => {1 => 0 },
   )
 end
 
@@ -153,7 +153,7 @@ players.each do |player|
     :common_name => surname,
     :position => position,
     :premier_league_team_id => player['team'],
-    :gameweek_points => '{"1": 0 }',
+    :gameweek_points => {1 => 0 },
   )
 
   puts "done #{full_name}" if (player['id'].to_i % 50).zero?

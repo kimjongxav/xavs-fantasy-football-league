@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507000000) do
+ActiveRecord::Schema.define(version: 20180821204941) do
 
   create_table "bids", force: :cascade do |t|
     t.string "value"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20180507000000) do
     t.string "full_name"
     t.string "common_name"
     t.string "position"
-    t.string "gameweek_points"
+    t.text "gameweek_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "premier_league_team_id"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20180507000000) do
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "transfers_remaining", default: 3
-    t.string "properties"
-    t.string "gameweek_scores"
+    t.text "properties"
+    t.text "gameweek_scores"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

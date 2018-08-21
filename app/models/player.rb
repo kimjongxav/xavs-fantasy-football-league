@@ -1,4 +1,5 @@
 class Player < ApplicationRecord
+  serialize :gameweek_points, Hash
   belongs_to :premier_league_team
 
   has_many :bids
