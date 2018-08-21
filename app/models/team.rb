@@ -29,7 +29,7 @@ class Team < ApplicationRecord
   end
 
   def ex_players
-    all_time_players.where('gameweek_out is not null')
+    all_time_players.where('gameweek_out is not null').where('player_id <> ?', current_captain.id)
   end
 
   def gameweek
