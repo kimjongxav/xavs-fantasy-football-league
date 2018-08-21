@@ -15,7 +15,7 @@
       <% (1..38).each do |gw| %>
       <tr>
         <td><%= gw %></td>
-        <td><%= @points[gw.to_s] || 0 %></td>
+        <td><%= @points[gw] || 0 %></td>
       </tr>
       <% end %>
     </tbody>

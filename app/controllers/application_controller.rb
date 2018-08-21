@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def total_player_points(player)
-    JSON.parse(player.gameweek_points).values.inject(:+)
+    player.gameweek_points.values.inject(:+)
   end
 
   def sort_by_position(players)
