@@ -9,7 +9,7 @@ class GetPlayerPoints
 
       updated_history = player_match_history.map do |m|
         points = m['total_points']
-        round = m['round'].to_s
+        round = m['round']
 
         { round => points }
       end
