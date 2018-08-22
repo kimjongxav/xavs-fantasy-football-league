@@ -10,7 +10,7 @@
     <td><%= gameweek_in %></td>
     <td><%= gameweek_out %></td>
     <% (1..@gameweek).each do |i| %>
-      <td><%= (gameweek_out > i) ? (player.gameweek_points[i].to_i * (captain ? 2 : 1)) : 0 %></td>
+      <td><%= (gameweek_out > i) ? (player.gameweek_points[i].to_i * (captain ? 2 : 1)) : '-' %></td>
     <% end %>
   </tr>
 <% end %>

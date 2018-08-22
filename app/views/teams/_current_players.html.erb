@@ -8,7 +8,7 @@
     <td><%= link_to player.premier_league_team.name, player.premier_league_team %></td>
     <td><%= gameweek_in %></td>
     <% (1..@gameweek).each do |i| %>
-      <td><%= (gameweek_in <= i) ? (player.gameweek_points[i].to_i * (captain ? 2 : 1)) : 0 %></td>
+      <td><%= (gameweek_in <= i) ? (player.gameweek_points[i].to_i * (captain ? 2 : 1)) : '-' %></td>
     <% end %>
   </tr>
 <% end %>
