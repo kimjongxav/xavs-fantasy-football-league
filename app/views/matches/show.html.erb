@@ -1,0 +1,44 @@
+<% provide(:title, @match.id) %>
+<h3>
+  <%= link_to @match.home_team.name, @match.home_team %> v <%= link_to @match.away_team.name, @match.away_team %>
+</h3>
+
+<h2>(Gameweek <%= @match.gameweek %>)</h2>
+<div class="list">
+  <table class='nice-table striped'>
+    <thead>
+      <tr>
+        <th style=''>Home team</th>
+        <th style=''>points</th>
+        <th style=''> </th>
+        <th style=''>points</th>
+        <th style=''>Away team</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (0..10).each do |i| %>
+        <tr>
+          <td><%= link_to @home_players[i].common_name, @home_players[i] %> <%= '(c)' if @home_players[i].id == @home_captain.id  %></td>
+          <td><%= @home_players[i].gameweek_points[@match.gameweek] %></td>
+          <td></td>
+          <td><%= @away_players[i].gameweek_points[@match.gameweek] %></td>
+          <td><%= link_to @away_players[i].common_name, @away_players[i] %> <%= '(c)' if @away_players[i].id == @away_captain.id  %></td>
+        </tr>
+      <% end %>
+      <tr>
+       <td></td>
+       <td>TOTAL</td>
+       <td></td>
+       <td>TOTAL</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td></td>
+       <td><%= @home_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
+       <td></td>
+       <td><%= @away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
+       <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
