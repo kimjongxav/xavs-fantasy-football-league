@@ -25,20 +25,22 @@
           <td><%= link_to @away_players[i].common_name, @away_players[i] %> <%= '(c)' if @away_players[i].id == @away_captain.id  %></td>
         </tr>
       <% end %>
-      <tr>
-       <td></td>
-       <td>TOTAL</td>
-       <td></td>
-       <td>TOTAL</td>
-       <td></td>
-      </tr>
-      <tr>
-       <td></td>
-       <td><%= @home_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
-       <td></td>
-       <td><%= @away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
-       <td></td>
-      </tr>
+      <% if @match.played %>
+        <tr>
+        <td></td>
+        <td>TOTAL</td>
+        <td></td>
+        <td>TOTAL</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td><%= @home_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
+        <td></td>
+        <td><%= @away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
+        <td></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
