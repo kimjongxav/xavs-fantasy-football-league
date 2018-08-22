@@ -1,11 +1,14 @@
 <% @team.sort_by_position(@team.current_players).each do |player| %>
-  <% gameweek_in = @team.player_team_relationships.where(:player_id => player.id).first.gameweek_in %>
-  <% captain = (player.id == @team.current_captain.id) %>
+  <% ptr = @team.player_team_relationships.where(:player_id => player.id).last %>
+  <% gameweek_in = ptr.gameweek_in %>
+  <% captain = ptr.captain %>
   <tr>
     <td><%= link_to player.common_name, player %><%= ' (c)' if captain %></td>
     <td><%= player.position %></td>
     <td><%= link_to player.premier_league_team.name, player.premier_league_team %></td>
-    <td><%= player.team_points(gameweek_in, captain) %></td>
     <td><%= gameweek_in %></td>
+    <% (1..@gameweek).each do |i| %>
+      <td><%= (gameweek_in <= i) ? (player.gameweek_points[i].to_i * (captain ? 2 : 1)) : 0 %></td>
+    <% end %>
   </tr>
 <% end %>

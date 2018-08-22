@@ -8,15 +8,17 @@
 
 <div class="list">
   <h3>Manager: <%= @team.user.name %></h3>
-  <h4>Transfers remaining: <%= 8 - @team.ex_players.count %></h4>
+  <h4>Transfers remaining: <%= 8 - @team.ex_players.where('player_id <> ?', @team.current_captain.id).count %></h4>
   <table class='nice-table striped'>
     <thead>
       <tr>
         <th>player</th>
         <th>position</th>
         <th>pl team</th>
-        <th>points</th>
         <th>gameweek in</th>
+        <% (1..@team.gameweek).each do |i| %>
+          <th><%= "GW#{i}" %></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +35,9 @@
         <th>pl team</th>
         <th>gameweek in</th>
         <th>gameweek out</th>
-        <th>points during time</th>
+        <% (1..@team.gameweek).each do |i| %>
+          <th><%= "GW#{i}" %></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
