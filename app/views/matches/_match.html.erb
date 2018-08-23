@@ -1,10 +1,8 @@
-<% @matches.order(:gameweek).each do |match| %>
-  <tr>
-    <td><%= match.gameweek %></td>
-    <td><%= link_to match.home_team.name, match.home_team %></td>
-    <td><%= match.home_score %> (<%= match.home_points %>)</td>
-    <td><%= link_to 'v', match %></td>
-    <td><%= match.away_score %> (<%= match.away_points %>)</td>
-    <td><%= link_to match.away_team.name, match.away_team %></td>
-  </tr>
-<% end %>
+<tr>
+  <td><%= match.gameweek %></td>
+  <td><%= link_to match.home_team.name, match.home_team %></td>
+  <td><%= match.home_score %> (<%= match.home_points %>)</td>
+  <td><%= link_to 'v', match %></td>
+  <td><%= match.away_score %> (<%= match.away_points %>)</td>
+  <td><%= link_to match.away_team.name, match.away_team %></td>
+</tr>
