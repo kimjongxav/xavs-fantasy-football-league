@@ -35,9 +35,9 @@
         </tr>
         <tr>
         <td></td>
-        <td><%= @home_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
+        <td><%= @home_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum + @home_captain.gameweek_points[@match.gameweek] %></td>
         <td></td>
-        <td><%= @away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum %></td>
+        <td><%= @away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum + @away_captain.gameweek_points[@match.gameweek]  %></td>
         <td></td>
         </tr>
       <% end %>
