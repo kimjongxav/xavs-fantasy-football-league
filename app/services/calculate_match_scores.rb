@@ -16,6 +16,14 @@ class CalculateMatchScores
       home_team_points = calculate_points(home_team, gameweek)
       away_team_points = calculate_points(away_team, gameweek)
 
+      home_team.gameweek_points[gameweek] = home_team_points
+      home_team.gameweek_points_will_change!
+      home_team.save!
+
+      away_team.gameweek_points[gameweek] = away_team_points
+      away_team.gameweek_points_will_change!
+      away_team.save!
+
       puts "home team: #{home_team.id} (#{home_team_points})"
       puts "away team: #{away_team.id} (#{away_team_points})"
 
