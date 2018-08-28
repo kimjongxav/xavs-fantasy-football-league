@@ -1,23 +1,22 @@
 <% provide(:title, 'All players') %>
 <h1>All players</h1>
 
-<%= will_paginate %>
 
 <div class="list">
   <table class='nice-table striped'>
     <thead>
       <tr>
-        <th style=''>player</th>
-        <th style=''>position</th>
+        <th>player</th>
+        <th>position</th>
         <th>pl team</th>
-        <th style=''>points</th>
+        <th>points</th>
+        <th>available</th>
       </tr>
     </thead>
     <tbody>
-      <%= render @players %>
+      <%= render @players.sort_by { |player| player['premier_league_team_id'] } %>
     </tbody>
   </table>
 </div>
 
-<%= will_paginate %>
 

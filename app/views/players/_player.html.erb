@@ -3,4 +3,5 @@
   <td><%= player.position %></td>
   <td><%= link_to player.premier_league_team.name, player.premier_league_team %></td>
   <td><%= total_player_points(player) || 0 %></td>
+  <td><%= player.owned? ? '-' : 'Yes' %></td>
 </tr>

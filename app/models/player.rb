@@ -17,4 +17,8 @@ class Player < ApplicationRecord
     return points * 2 if captain
     points
   end
+
+  def owned?
+    PlayerTeamRelationship.where(:player_id => self.id, :gameweek_out => nil).any?
+  end
 end
