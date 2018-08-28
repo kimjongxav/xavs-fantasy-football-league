@@ -1,4 +1,11 @@
 <tr>
   <td><%= link_to team.name, team %></td>
+  <td><%= team.properties[:wins] %></td>
+  <td><%= team.properties[:losses] %></td>
+  <td><%= team.properties[:top_weekly] %></td>
+  <td><%= team.properties[:bottom_weekly] %></td>
+  <td><%= team.properties[:over_sixty] %></td>
+  <td><%= team.properties[:matches_within_five_points] %></td>
+  <td><%= team.gameweek_points.values.inject(:+) %></td>
   <td><%= team.gameweek_scores.values.inject(:+) %></td>
 </tr>
