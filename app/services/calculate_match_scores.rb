@@ -64,11 +64,11 @@ class CalculateMatchScores
         :played => true,
       )
 
-      home_team.gameweek_scores[gameweek.to_s] = home_team_score
+      home_team.gameweek_scores[gameweek] = home_team_score
       home_team.gameweek_scores_will_change!
       home_team.save!
 
-      away_team.gameweek_scores[gameweek.to_s] = away_team_score
+      away_team.gameweek_scores[gameweek] = away_team_score
       away_team.gameweek_scores_will_change!
       away_team.save!
     end
@@ -98,7 +98,7 @@ class CalculateMatchScores
         home_team.properties_will_change!
         home_team.save!
 
-        home_team.gameweek_scores[gameweek.to_s] += 1
+        home_team.gameweek_scores[gameweek] += 1
         home_team.gameweek_scores_will_change!
         home_team.save!
       end
@@ -111,7 +111,7 @@ class CalculateMatchScores
         away_team.properties_will_change!
         away_team.save!
 
-        away_team.gameweek_scores[gameweek.to_s] += 1
+        away_team.gameweek_scores[gameweek] += 1
         away_team.gameweek_scores_will_change!
         away_team.save!
       end
@@ -124,7 +124,7 @@ class CalculateMatchScores
         home_team.properties_will_change!
         home_team.save!
 
-        home_team.gameweek_scores[gameweek.to_s] -= 1
+        home_team.gameweek_scores[gameweek] -= 1
         home_team.gameweek_scores_will_change!
         home_team.save!
       end
@@ -137,7 +137,7 @@ class CalculateMatchScores
         away_team.properties_will_change!
         away_team.save!
 
-        away_team.gameweek_scores[gameweek.to_s] -= 1
+        away_team.gameweek_scores[gameweek] -= 1
         away_team.gameweek_scores_will_change!
         away_team.save!
       end
@@ -150,7 +150,7 @@ class CalculateMatchScores
         home_team.properties_will_change!
         home_team.save!
 
-        home_team.gameweek_scores[gameweek.to_s] += 1
+        home_team.gameweek_scores[gameweek] += 1
         home_team.gameweek_scores_will_change!
         home_team.save!
       end
@@ -163,7 +163,7 @@ class CalculateMatchScores
         away_team.properties_will_change!
         away_team.save!
 
-        away_team.gameweek_scores[gameweek.to_s] += 1
+        away_team.gameweek_scores[gameweek] += 1
         away_team.gameweek_scores_will_change!
         away_team.save!
       end
@@ -175,9 +175,9 @@ class CalculateMatchScores
     captain = team.current_captain
 
     players_points = players.map do |p|
-      p.gameweek_points[gameweek.to_s]
+      p.gameweek_points[gameweek]
     end
-    captain_points = captain.gameweek_points[gameweek.to_s]
+    captain_points = captain.gameweek_points[gameweek]
 
     players_points.sum + captain_points
   end
