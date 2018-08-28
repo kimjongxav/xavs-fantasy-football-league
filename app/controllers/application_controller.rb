@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
       'FWD' => 4,
     }
     players.sort_by do |player|
-      positions[player.position]
+      [player.premier_league_team_id, positions[player.position]]
     end
   end
 
