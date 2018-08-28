@@ -10,8 +10,8 @@ class CalculateMatchScores
     #   home_team_score = 0
     #   away_team_score = 0
 
-    #   home_team = match.home_team
-    #   away_team = match.away_team
+      home_team = match.home_team
+      away_team = match.away_team
 
     #   home_team_points = calculate_points(home_team, gameweek)
     #   away_team_points = calculate_points(away_team, gameweek)
