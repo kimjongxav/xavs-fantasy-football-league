@@ -6,7 +6,7 @@ class CalculateMatchScores
 
     matches = Match.where(:gameweek => gameweek)
 
-    # matches.each do |match|
+    matches.each do |match|
     #   home_team_score = 0
     #   away_team_score = 0
 
@@ -71,9 +71,9 @@ class CalculateMatchScores
     #   away_team.gameweek_scores[gameweek] = away_team_score
     #   away_team.gameweek_scores_will_change!
     #   away_team.save!
-    # end
+      update_scores(gameweek, home_team, away_team)
+    end
 
-    update_scores(gameweek, home_team, away_team)
   end
 
   def self.update_scores(gameweek, home_team, away_team)
