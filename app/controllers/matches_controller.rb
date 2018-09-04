@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   before_action :logged_in_user, :only => [:index]
 
   def index
-    @matches = Match.paginate(:page => params[:page])
+    @matches = Match.all
   end
 
   def show

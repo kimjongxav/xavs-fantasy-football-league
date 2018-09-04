@@ -1,18 +1,16 @@
 <% provide(:title, 'All matches') %>
 <h1>All matches</h1>
 
-<%= will_paginate %>
-
 <div class="list">
   <table class='nice-table striped'>
     <thead>
       <tr>
         <th style=''>gameweek</th>
-        <th style=''>home team</th>
-        <th style=''>home score (points)</th>
-        <th style=''> </th>
-        <th style=''>away score (points)</th>
-        <th style=''>away team</th>
+        <th style='text-align: right'>home team</th>
+        <th style='text-align: right; width: 100px;'>(P) S</th>
+        <th style='width: 20px'> </th>
+        <th style='text-align: left; width: 100px;'>S (P)</th>
+        <th style='text-align: left'>away team</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +18,3 @@
     </tbody>
   </table>
 </div>
-
-<%= will_paginate %>
-
