@@ -1,8 +1,6 @@
 class CalculateMatchScores
   def self.call
-    url = 'https://fantasy.premierleague.com/drf/bootstrap-static'
-    response = HTTParty.get(url)
-    gameweek = JSON.parse(response.body)['current-event']
+    gameweek = GetGameweek.call
 
     matches = Match.where(:gameweek => gameweek)
 
@@ -92,8 +90,8 @@ class CalculateMatchScores
       team_points[m['away_team_id']] = m['away_points']
     end
 
-    most_points_teams = team_points.each { |k, v| k if v == team_points.values.max }.compact
-    fewest_points_teams = team_points.each { |k, v| k if v == team_points.values.min }.compact
+    most_points_teams = team_points.map { |k, v| k if v == team_points.values.max }.compact
+    fewest_points_teams = team_points.map { |k, v| k if v == team_points.values.min }.compact
     over_sixty_teams = team_points.map { |k, v| k if v > 60 }.compact
 
     matches.each do |m|
@@ -103,7 +101,8 @@ class CalculateMatchScores
       if most_points_teams.include?(m['home_team_id'])
         score = m['home_score']
         score += 1
-        m.update!(:home_score => score)
+        m.home_score = score
+        m.save!
 
         home_team.properties[:top_weekly] += 1
         home_team.properties_will_change!
@@ -116,7 +115,8 @@ class CalculateMatchScores
       if most_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
-        m.update!(:away_score => score)
+        m.away_score = score
+        m.save!
 
         away_team.properties[:top_weekly] += 1
         away_team.properties_will_change!
@@ -129,7 +129,8 @@ class CalculateMatchScores
       if fewest_points_teams.include?(m['home_team_id'])
         score = m['home_score']
         score -= 1
-        m.update!(:home_score => score)
+        m.home_score = score
+        m.save!
 
         home_team.properties[:bottom_weekly] += 1
         home_team.properties_will_change!
@@ -142,7 +143,8 @@ class CalculateMatchScores
       if fewest_points_teams.include?(m['away_team_id'])
         score = m['away_score']
         score -= 1
-        m.update!(:away_score => score)
+        m.away_score = score
+        m.save!
 
         away_team.properties[:bottom_weekly] += 1
         away_team.properties_will_change!
@@ -155,7 +157,8 @@ class CalculateMatchScores
       if over_sixty_teams.include?(m['home_team_id'])
         score = m['home_score']
         score += 1
-        m.update!(:home_score => score)
+        m.home_score = score
+        m.save!
 
         home_team.properties[:over_sixty] += 1
         home_team.properties_will_change!
@@ -168,7 +171,8 @@ class CalculateMatchScores
       if over_sixty_teams.include?(m['away_team_id'])
         score = m['away_score']
         score += 1
-        m.update!(:away_score => score)
+        m.away_score = score
+        m.save!
 
         away_team.properties[:over_sixty] += 1
         away_team.properties_will_change!
