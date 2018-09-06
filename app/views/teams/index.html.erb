@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @teams.sort_by { |team| -team['gameweek_scores'].values.inject(:+) } %>
+        <%= render @teams.sort { |a, b| [b['gameweek_scores'].values.inject(:+), b['gameweek_points'].values.inject(:+)] <=> [a['gameweek_scores'].values.inject(:+), a['gameweek_points'].values.inject(:+)] } %>
       </tbody>
     </table>
   </li>
