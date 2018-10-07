@@ -1,10 +1,10 @@
-<% ptrs = PlayerTeamRelationship.where(team_id: @team.id).where("gameweek_out is not null") %>
-<% ptrs.each do |ptr| %>
-  <%# <% ptr = @team.player_team_relationships.where(:player_id => player.id).first %> 
-  <% player = ptr.player %>
-  <% gameweek_in = ptr.gameweek_in %>
-  <% gameweek_out = ptr.gameweek_out %>
-  <% captain = ptr.captain %>
+<% ptr1s = PlayerTeamRelationship.where(team_id: @team.id).where("gameweek_out is not null") %>
+<% ptr1s.each do |ptr1| %>
+  <%# <% ptr1 = @team.player_team_relationships.where(:player_id => player.id).first %> 
+  <% player = ptr1.player %>
+  <% gameweek_in = ptr1.gameweek_in %>
+  <% gameweek_out = ptr1.gameweek_out %>
+  <% captain = ptr1.captain %>
   <tr>
     <td><%= link_to player.common_name, player %><%= ' (c)' if captain %></td>
     <td><%= player.position %></td>
@@ -12,7 +12,7 @@
     <td><%= gameweek_in %></td>
     <td><%= gameweek_out %></td>
     <% (1..@gameweek).each do |i| %>
-      <td><%= (gameweek_out > i) ? (player.gameweek_points[i].to_i * (captain ? 2 : 1)) : '-' %></td>
+      <td><%= (gameweek_out > i && gameweek_in <= i) ? (player.gameweek_points[i].to_i * (captain ? 2 : 1)) : '-' %></td>
     <% end %>
   </tr>
 <% end %>
