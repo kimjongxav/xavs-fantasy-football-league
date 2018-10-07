@@ -5,7 +5,7 @@
   <tr>
     <td><%= link_to player.common_name, player %><%= ' (c)' if captain %></td>
     <td><%= player.position %></td>
-    <td><%= link_to player.premier_league_team.name, player.premier_league_team %></td>
+    <td><%= link_to player.premier_league_team.short_name, player.premier_league_team %></td>
     <td><%= gameweek_in %></td>
     <td><strong><%= player.gameweek_points.map{ |gw, v| gw >= ptr.gameweek_in ? v * (captain ? 2 : 1) : 0 }.sum %></strong></td>
     <% (1..@gameweek).each do |i| %>

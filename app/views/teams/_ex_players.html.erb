@@ -1,12 +1,14 @@
-<% @team.ex_players.each do |player| %>
-  <% ptr = @team.player_team_relationships.where(:player_id => player.id).first %>
+<% ptrs = PlayerTeamRelationship.where(team_id: @team.id).where("gameweek_out is not null") %>
+<% ptrs.each do |ptr| %>
+  <%# <% ptr = @team.player_team_relationships.where(:player_id => player.id).first %> 
+  <% player = ptr.player %>
   <% gameweek_in = ptr.gameweek_in %>
   <% gameweek_out = ptr.gameweek_out %>
   <% captain = ptr.captain %>
   <tr>
     <td><%= link_to player.common_name, player %><%= ' (c)' if captain %></td>
     <td><%= player.position %></td>
-    <td><%= link_to player.premier_league_team.name, player.premier_league_team %></td>
+    <td><%= link_to player.premier_league_team.short_name, player.premier_league_team %></td>
     <td><%= gameweek_in %></td>
     <td><%= gameweek_out %></td>
     <% (1..@gameweek).each do |i| %>
