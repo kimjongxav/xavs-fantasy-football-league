@@ -1,5 +1,6 @@
 class MakeTransfer
-  def self.call(team, player_out_id, player_in_id, new_captain_id = nil)
+  def self.call(team_id, player_out_id, player_in_id, new_captain_id = nil)
+    team = Team.find(team_id)
     gameweek = GetGameweek.call
     relation = PlayerTeamRelationship.
                where(:team_id => team.id, :player_id => player_out_id).
@@ -21,6 +22,7 @@ class MakeTransfer
         max_by { |h| h[:gameweek_in] }
 
       new_captain.gameweek_out = gameweek
+      new_captain.save!
 
       PlayerTeamRelationship.create!(
         :player_id => new_captain_id,
