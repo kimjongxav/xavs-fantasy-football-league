@@ -1,7 +1,5 @@
 class CalculateMatchScores
-  def self.call
-    gameweek = GetGameweek.call
-
+  def self.call(gameweek)
     matches = Match.where(:gameweek => gameweek)
 
     matches.each do |match|
