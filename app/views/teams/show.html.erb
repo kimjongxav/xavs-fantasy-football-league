@@ -24,9 +24,20 @@
     </thead>
     <tbody>
       <%= render 'current_players' %>
+      <tr>
+        <td style='font-weight: bold;'>Totals</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <% (1..@gameweek).each do |i| %>
+          <td style='font-weight: bold;'><%= @team.gameweek_points[i] %></td>
+        <% end %>
+      </tr>
     </tbody>
   </table>
   <br>
+
   <h3>Ex-players</h3>
   <table class='nice-table striped' style='width: auto;'>
     <thead>
