@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   post '/login', :to => 'sessions#create'
   delete '/logout', :to => 'sessions#destroy'
 
+  get '/fixtures', :to => 'matches#fixtures'
+  get '/results', :to => 'matches#results'
+
   resources :players
   resources :premier_league_teams
 

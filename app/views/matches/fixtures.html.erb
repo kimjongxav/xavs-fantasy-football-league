@@ -1,0 +1,20 @@
+<% provide(:title, 'All matches') %>
+<h1>Fixtures</h1>
+
+<div class="list">
+  <table class='nice-table striped'>
+    <thead>
+      <tr>
+        <th style=''>gameweek</th>
+        <th style='text-align: right'>home team</th>
+        <th style='text-align: right; width: 100px;'>(P) S</th>
+        <th style='width: 20px'> </th>
+        <th style='text-align: left; width: 100px;'>S (P)</th>
+        <th style='text-align: left'>away team</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @matches.sort_by { |match| match['gameweek'] } %>
+    </tbody>
+  </table>
+</div>
