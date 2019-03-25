@@ -1,8 +1,8 @@
 class MatchesController < ApplicationController
-  before_action :logged_in_user, :only => [:index]
+  before_action :logged_in_user, :only => [:results]
 
-  def index
-    @matches = Match.all
+  def results
+    @matches = Match.played
   end
 
   def show
@@ -13,6 +13,10 @@ class MatchesController < ApplicationController
     @away_players = sort_by_position(away_players)
     @home_captain = home_captain
     @away_captain = away_captain
+  end
+
+  def fixtures
+    @matches = Match.unplayed
   end
 
   def new

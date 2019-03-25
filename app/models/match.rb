@@ -7,4 +7,7 @@ class Match < ApplicationRecord
   validates :home_team_id, :presence => true
   validates :away_team_id, :presence => true
   validates :gameweek, :presence => true
+
+  scope :played, -> { where(:played => true) }
+  scope :unplayed, -> { where(:played => false) }
 end

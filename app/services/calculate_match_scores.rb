@@ -188,9 +188,9 @@ class CalculateMatchScores
     captain = team.current_captain
 
     players_points = players.map do |p|
-      p.gameweek_points[gameweek]
+      p.gameweek_points[gameweek] ? p.gameweek_points[gameweek] : 0
     end
-    captain_points = captain.gameweek_points[gameweek]
+    captain_points = captain.gameweek_points[gameweek] ? captain.gameweek_points[gameweek] : 0
 
     players_points.sum + captain_points
   end
