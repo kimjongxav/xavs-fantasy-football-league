@@ -14,6 +14,14 @@ class Team < ApplicationRecord
     self.players
   end
 
+  def players_during_gameweek(gameweek)
+    all_time_players.where('gameweek_in <= ? and (gameweek_out > ? or gameweek_out is null)', gameweek, gameweek)
+  end
+
+  def captain_during_gameweek(gameweek)
+    players_during_gameweek(gameweek).where("captain = 't'").first
+  end
+
   def current_players
     all_time_players.where('gameweek_in <= ? and gameweek_out is null', gameweek)
   end
