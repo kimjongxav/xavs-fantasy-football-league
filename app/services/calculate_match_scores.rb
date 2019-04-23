@@ -51,7 +51,7 @@ class CalculateMatchScores
         home_team_score += 1 if (away_team_points - home_team_points) <= 5
 
         home_team.properties[:losses] += 1
-        away_team.properties[:matches_within_five_points] += 1 if (away_team_points - home_team_points) <= 5
+        home_team.properties[:matches_within_five_points] += 1 if (away_team_points - home_team_points) <= 5
         home_team.properties_will_change!
         home_team.save!
 
