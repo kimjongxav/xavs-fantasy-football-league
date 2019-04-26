@@ -80,7 +80,7 @@ class UndoCalculateMatchScores
       away_team.save!
     elsif m.home_points < m.away_points
       home_team.properties[:losses] -= 1
-      away_team.properties[:matches_within_five_points] -= 1 if (m.away_points - m.home_points) <= 5
+      home_team.properties[:matches_within_five_points] -= 1 if (m.away_points - m.home_points) <= 5
       home_team.properties_will_change!
       home_team.save!
 
