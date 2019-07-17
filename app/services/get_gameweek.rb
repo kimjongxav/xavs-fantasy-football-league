@@ -1,6 +1,6 @@
 class GetGameweek
   def self.call
-    url = 'https://fantasy.premierleague.com/drf/bootstrap-static'
+    url = 'https://fantasy.premierleague.com/api/bootstrap-static'
     response = HTTParty.get(url)
     1 unless response
     body = JSON.parse(response.body)

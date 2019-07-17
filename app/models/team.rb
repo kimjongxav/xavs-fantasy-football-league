@@ -41,8 +41,7 @@ class Team < ApplicationRecord
     all_time_players.where('gameweek_out is not null')
   end
 
-  def gameweek
-    url = 'https://fantasy.premierleague.com/drf/bootstrap-static'
+    url = 'https://fantasy.premierleague.com/api/bootstrap-static'
     response = HTTParty.get(url)
     1 unless response
     body = JSON.parse(response.body)
