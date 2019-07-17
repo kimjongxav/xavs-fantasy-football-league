@@ -2,7 +2,7 @@ require 'rubygems'
 require 'httparty'
 require 'csv'
 
-resp = HTTParty.get('https://fantasy.premierleague.com/drf/bootstrap-static')
+resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static')
 teams = JSON.parse(resp.body)['teams']
 players = JSON.parse(resp.body)['elements']
 
@@ -135,7 +135,7 @@ players.each do |player|
   position = position(player['element_type'])
 
   # Get specific player url
-  url = 'https://fantasy.premierleague.com/drf/element-summary/' + player['id'].to_s
+  url = 'https://fantasy.premierleague.com/api/element-summary/' + player['id'].to_s
   response = HTTParty.get(url)
   next unless response.ok?
 
