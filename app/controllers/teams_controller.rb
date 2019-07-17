@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @players = @team.sort_by_position(@team.current_players)
     @bids = @team.bids
-    @gameweek = gameweek
+    @gameweek = 5 # @TODO replace with GetGameweek
   end
 
   def new

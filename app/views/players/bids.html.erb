@@ -1,0 +1,34 @@
+<% provide(:title, 'Bids') %>
+<h1>Bids</h1>
+
+<div style="display: flex;">
+  <div class="list" style="width: 50%; overflow: auto; height: 500px; padding: 10px;">
+    <table class='nice-table striped'>
+      <thead>
+        <tr>
+          <th>player</th>
+          <th>position</th>
+          <th>pl team</th>
+          <th>points</th>
+          <th>id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'bid_player' %>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="width: 50%; overflow: auto; height: 500px; padding: 10px;">
+    <div style="display: flex; height: 20px">
+      <p>Player</p>
+      <p>Bid</p>
+    </div>
+    <% (1..11).each do %>
+      <div style="display: flex; height: 8%;">
+        <div style="border: 1px solid grey; width: 80%; margin: 4px; flex: auto;"></div>
+        <div style="border: 1px solid grey; width: 10px; margin: 4px; flex: auto;"></div>
+      </div>
+    <% end %>
+  </div>
+</div>

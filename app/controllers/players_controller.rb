@@ -10,6 +10,10 @@ class PlayersController < ApplicationController
     @points = @player['gameweek_points']
   end
 
+  def bids
+    @players = sort_by_position(Player.all)
+  end
+
   def new
   end
 end
