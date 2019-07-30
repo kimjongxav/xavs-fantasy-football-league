@@ -28,7 +28,13 @@ textarea {
 .center {
   text-align: center;
   h1 {
-    margin-bottom: 10px;
+    font-size: 105px;
+    margin-top: 5px;
+    position: relative;
+    z-index: 1;
+    font-family: Exo;
+    margin-bottom: -121px;
+    color: #eeeeee;
   }
 }
 
@@ -250,7 +256,7 @@ img {
   height: auto;
 }
 
-.prem-logo {
+.flonx-logo {
   width: 500px;
   margin: auto;
 }
