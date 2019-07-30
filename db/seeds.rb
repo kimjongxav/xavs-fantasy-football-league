@@ -2,14 +2,14 @@ require 'rubygems'
 require 'httparty'
 require 'csv'
 
-resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static')
-teams = JSON.parse(resp.body)['teams']
-players = JSON.parse(resp.body)['elements']
+resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static'); nil
+teams = JSON.parse(resp.body)['teams']; nil
+players = JSON.parse(resp.body)['elements']; nil
 
 # league
 League.create!(
-  :season => '2018/2019',
-  :name => 'Test League',
+  :season => '2019/2020',
+  :name => 'FLONX',
 )
 
 # admin user
@@ -50,8 +50,12 @@ end
 # users
 names = [
   'Alex Dyzenhaus',
+  'Adam D',
+  'Arnaud Lacey',
   'Chris Taylor',
   'Darrelle Wood',
+  'Graeme M',
+  'Hannah Taylor',
   'Joe Kelly',
   'James Thornton',
   'Kate Wyatt',
@@ -60,11 +64,15 @@ names = [
   'Philippe Lacey',
   'Xavier Lacey',
 ]
-initials = %w[AD CT DW JK JT KW NM PB PL XL]
+initials = %w[AD AD2 AL CT DW GM HT JK JT KW NM PB PL XL]
 email = %w[
   dyzenhaus@gmail.com
+  adamd@xx.com
+  arnaudlacey@gmail.com
   christr08@gmail.com
   Darrellewood@outlook.com
+  gm@xx.com
+  htaylor6406@gmail.com
   joe1kelly37@hotmail.co.uk
   Jamesthornton1@live.co.uk
   k.wyatt@live.com
@@ -86,7 +94,7 @@ teams = [
   'Borussalah VfL 1992 Mönchenxavbach e.V.',
 ]
 
-10.times do |n|
+email.count.times do |n|
   email = "#{initials[n].downcase}@xfl.com"
   password = 'password'
   User.create!(
@@ -102,7 +110,7 @@ teams = [
 end
 
 # teams
-10.times do |n|
+email.count.times do |n|
   Team.create!(
     :name => teams[n],
     :league_id => 1,
@@ -153,7 +161,7 @@ players.each do |player|
     :common_name => surname,
     :position => position,
     :premier_league_team_id => player['team'],
-    :gameweek_points => {1 => 0 },
+    :gameweek_points => { 1 => 0 },
   )
 
   puts "done #{full_name}" if (player['id'].to_i % 50).zero?
