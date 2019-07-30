@@ -4,6 +4,6 @@ class AddLeagueToPlayers < ActiveRecord::Migration[5.1]
   end
 
   def down
-    remove_column :players, :league
+    remove_column :players, :league_id
   end
 end
