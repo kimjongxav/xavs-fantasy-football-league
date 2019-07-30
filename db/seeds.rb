@@ -50,7 +50,7 @@ end
 # users
 names = [
   'Alex Dyzenhaus',
-  'Adam D',
+  'Adam Davies',
   'Arnaud Lacey',
   'Chris Taylor',
   'Darrelle Wood',
