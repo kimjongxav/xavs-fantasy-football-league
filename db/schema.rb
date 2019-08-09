@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20190809200855) do
   end
 
   create_table "gameweeks", force: :cascade do |t|
+    t.integer "gameweek"
     t.integer "deadline_time_epoch"
   end
 

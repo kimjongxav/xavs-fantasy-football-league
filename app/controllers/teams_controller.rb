@@ -16,13 +16,6 @@ class TeamsController < ApplicationController
   end
 
   def gameweek
-    url = 'https://fantasy.premierleague.com/api/bootstrap-static'
-    response = HTTParty.get(url)
-    1 unless response
-    body = JSON.parse(response.body)
-    gameweek = body['current-event'] if response.ok?
-    finished = body['events'].select { |e| e['id'] == 1 }.first['finished']
-    return gameweek + 1 if finished
-    gameweek
+    Gameweek.where("deadline_time_epoch < ?", DateTime.now.to_i).order(:deadline_time_epoch).last[:gameweek]
   end
 end
