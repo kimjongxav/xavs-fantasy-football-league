@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190730082207) do
+ActiveRecord::Schema.define(version: 20190809200855) do
 
   create_table "bids", force: :cascade do |t|
     t.string "value"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20190730082207) do
     t.integer "team_id"
     t.index ["player_id"], name: "index_bids_on_player_id"
     t.index ["team_id"], name: "index_bids_on_team_id"
+  end
+
+  create_table "gameweeks", force: :cascade do |t|
+    t.integer "deadline_time_epoch"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -65,7 +69,7 @@ ActiveRecord::Schema.define(version: 20190730082207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "premier_league_team_id"
-    t.integer "league"
+    t.integer "league_id"
     t.index ["common_name"], name: "index_players_on_common_name"
     t.index ["premier_league_team_id"], name: "index_players_on_premier_league_team_id"
   end
