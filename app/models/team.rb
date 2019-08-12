@@ -42,7 +42,8 @@ class Team < ApplicationRecord
   end
 
   def gameweek
-    Gameweek.where("deadline_time_epoch < ?", DateTime.now.to_i).order(:deadline_time_epoch).last[:gameweek]
+    resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static')
+    resp['events'].find{|e| e['finished'] == false}['id']
   end
 
   def sort_by_position(players)
