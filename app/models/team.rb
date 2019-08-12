@@ -43,7 +43,7 @@ class Team < ApplicationRecord
 
   def gameweek
     resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static')
-    resp['events'].find{|e| e['finished'] == false}['id']
+    [resp['events'].find{|e| e['finished'] == false}['id'], 38].min
   end
 
   def sort_by_position(players)
