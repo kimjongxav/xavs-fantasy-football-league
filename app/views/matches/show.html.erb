@@ -25,7 +25,7 @@
           <td><%= link_to @away_players[i].common_name, @away_players[i] %> <%= '(c)' if @away_players[i].id == @away_captain.id  %></td>
         </tr>
       <% end %>
-      <% if @match.played? %>
+
         <tr>
         <td></td>
         <td>TOTAL</td>
@@ -40,7 +40,7 @@
         <td><%= @away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum + @away_captain.gameweek_points[@match.gameweek]  %></td>
         <td></td>
         </tr>
-      <% end %>
+
     </tbody>
   </table>
 </div>
