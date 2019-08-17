@@ -94,6 +94,23 @@ teams = [
   'Borussalah VfL 1992 Mönchenxavbach e.V.',
 ]
 
+teams = [
+  'The Season is Cancelloed',
+  'Emerson, Ake and Palmer FC',
+  'Expected Tolouse',
+  'Sterling Albion',
+  "Ndombele's Going to Get Ya",
+  'Hakuna JuanMata FC',
+  'aubaNMe-wang',
+  "Uh Oh! Look Out! It's Team PB! FC",
+  'Neves Say Dijk',
+  'Borussegnon 1992 Mönchenxavbach',
+  'Police El Mohamady',
+  'AL Team',
+  'Lost Leroy y las Cebollas',
+  'Names of the Game',
+]
+
 email.count.times do |n|
   email = "#{initials[n].downcase}@xfl.com"
   password = 'password'
@@ -202,20 +219,3 @@ starting_team_relationships.each do |team_id, player_ids|
     )
   end
 end
-
-names = [
-  'The Season is Cancelloed',
-  'Emerson, Ake and Palmer FC',
-  'Expected Tolouse',
-  'Sterling Albion',
-  "Ndombele's Going to Get Ya",
-  'Hakuna JuanMata FC',
-  'aubaNMe-wang',
-  "Uh Oh! Look Out! It's Team PB! FC",
-  'Neves Say Dijk',
-  'Borussegnon 1992 Mönchenxavbach',
-  'Police El Mohamady',
-  'AL Team',
-  'Lost Leroy y las Cebollas',
-  'Names of the Game',
-]
