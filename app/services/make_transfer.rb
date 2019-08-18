@@ -1,4 +1,5 @@
 class MakeTransfer
+  # gameweek is first gw you want the player to play in
   def self.call(gameweek, team_id, player_out_id, player_in_id, new_captain_id = nil)
     team = Team.find(team_id)
     relation = PlayerTeamRelationship.
