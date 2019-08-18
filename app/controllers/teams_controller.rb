@@ -16,11 +16,7 @@ class TeamsController < ApplicationController
   end
 
   def gameweek
-    resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static')
-    if resp['events'].nil?
-      return Gameweek.where("deadline_time_epoch < ?", Time.now.to_i).last.gameweek + 1
-    end
-
+    resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static/')
     [resp['events'].find{|e| e['finished'] == false}['id'], 38].min
   end
 end
