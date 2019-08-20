@@ -1,3 +1,40 @@
+.image {
+  
+  width: 120px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgb(55, 230, 230);
+  border-radius: 15%;
+}
+
+.home {
+  width: 60%;
+  float: left;
+  background-color: rgb(9, 199, 9)
+
+}
+
+.positioning {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.name {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+
+
 .nice-table {
   margin: auto;
   width: 100%;
