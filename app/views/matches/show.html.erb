@@ -1,16 +1,17 @@
 <% provide(:title, @match.id) %>
 <h3>
-  <%= link_to @match.home_team.name, @match.home_team %> v <%= link_to @match.away_team.name, @match.away_team %>
-</h3>
+
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
 <div class="home">
 
-  #HomeTeam
-  <div>
-  <%= link_to @match.home_team.name, @match.home_team %>
+  
+  <div class="team-score">
+  <%= link_to @match.home_team.name, @match.home_team %> - <%=@home_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum + @home_captain.gameweek_points[@match.gameweek]%>
   </div>
+
+  <div class="pitch">
 
   <% homeTeam = [] %>
 
@@ -65,6 +66,73 @@
   <div class="positioning">
   <% fwdh = position("FWD", homeTeam) %>
   <% showImages(fwdh) %>
+  </div>
+  </div>
+</div>
+
+<div class="away">
+
+  
+  <div class="team-score">
+  <%= link_to @match.away_team.name, @match.away_team %> - <%=@away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum + @away_captain.gameweek_points[@match.gameweek]%>
+  </div>
+
+  <div class="pitch">
+
+  <% awayTeam = [] %>
+
+  <% (0..10).each do |i| %>
+    <% awayTeam.push([@away_players[i].common_name, @away_players[i].position, @away_players[i].gameweek_points[@match.gameweek], @away_players[i].picture]) %>
+
+  <% end %>
+
+  <% awayTeam = awayTeam.sort_by{|k|k[1]} %>
+  <% def position(pos, team) %>
+    <% return team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3]]} %>
+  <% end %> 
+
+  <% def playerImage(i, pos) %>
+    <% image_tag 'https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p' + pos[i][2] + '.png' %>
+  <% end %>
+
+  <% def showImages(array) %>
+    <% array.length.times do |i| %>
+      <div class="player">
+      <div class="image">
+        <%= playerImage(i, array) %>        
+      </div>
+
+      <div class="name">
+        <%= array[i][0] %> - <%= array[i][1] %>
+      </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
+  
+  <div class="positioning">
+
+  <% gka = position("GK", awayTeam)%>
+  <% showImages(gka) %>  
+
+  </div>
+
+  <div class="positioning">
+
+  <% defa = position("DEF", awayTeam) %>
+  <% showImages(defa) %>
+  </div>
+
+  <div class="positioning">
+
+  <% mida = position("MID", awayTeam) %>
+  <% showImages(mida) %>
+  </div>
+  <div class="positioning">
+  <% fwda = position("FWD", awayTeam) %>
+  <% showImages(fwda) %>
+  </div>
   </div>
 </div>
 

@@ -1,23 +1,41 @@
 .image {
   
-  width: 120px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: rgb(55, 230, 230);
-  border-radius: 15%;
+
+  background-color: rgba(55, 230, 230, 0.8);
+  
+  border-radius: 15% 15% 0% 0%;
+
+  
+
 }
 
 .home {
-  width: 60%;
+  width: 550px;
   float: left;
-  background-color: rgb(9, 199, 9)
+  margin-right: 1px;
+}
 
+.away {
+  width: 550px;
+  float: right;
+  margin-left: 1px;
+}
+
+.team-score {
+  text-align: center;
+  font-size: 30px;
+}
+
+.pitch {
+  background-image: url('football-pitch.png');
+  background-size: cover;
+  background-size: contain;
 }
 
 .positioning {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  
   justify-content: center;
 }
 
@@ -25,12 +43,20 @@
   display: flex;
   flex-direction: column;
   border: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 100px;
 }
 
 .name {
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 15px;
+  background-color: rgb(37, 3, 116);
+  color: white;
+  border-radius: 0% 0% 10% 10%
+  
+
 }
 
 
