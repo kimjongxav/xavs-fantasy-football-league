@@ -4,6 +4,33 @@
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
+
+<% def position(pos, team) %>
+    <% return team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3], k[4]]} %>
+  <% end %> 
+
+<% def playerImage(i, pos) %>
+  <% image_tag 'https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p' + pos[i][2] + '.png' %>
+<% end %>
+
+<% def showImages(array) %>
+  <% array.length.times do |i| %>
+    <% array[i][3] %>
+    <a href= <%= array[i][3] %> >
+    <div class="player">
+    <div class="image">
+      <%= playerImage(i, array) %>        
+    </div>
+
+    <div class="name">
+      <%= array[i][0] %> - <%= array[i][1] %>
+    </div>
+    </div>
+    </a>
+  <% end %>
+<% end %>
+
+
 <div class="home">
 
   
@@ -16,34 +43,13 @@
   <% homeTeam = [] %>
 
   <% (0..10).each do |i| %>
-    <% homeTeam.push([@home_players[i].common_name, @home_players[i].position, @home_players[i].gameweek_points[@match.gameweek], @home_players[i].picture]) %>
+    <% homeTeam.push([@home_players[i].common_name, @home_players[i].position, @home_players[i].gameweek_points[@match.gameweek], @home_players[i].picture, (link_to "", @home_players[i])[9..-7]]) %>
+    
 
   <% end %>
 
   <% homeTeam = homeTeam.sort_by{|k|k[1]} %>
-  <% def position(pos, team) %>
-    <% return team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3]]} %>
-  <% end %> 
-
-  <% def playerImage(i, pos) %>
-    <% image_tag 'https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p' + pos[i][2] + '.png' %>
-  <% end %>
-
-  <% def showImages(array) %>
-    <% array.length.times do |i| %>
-      <div class="player">
-      <div class="image">
-        <%= playerImage(i, array) %>        
-      </div>
-
-      <div class="name">
-        <%= array[i][0] %> - <%= array[i][1] %>
-      </div>
-      </div>
-    <% end %>
-  <% end %>
-
-
+  
   
   <div class="positioning">
 
@@ -70,6 +76,7 @@
   </div>
 </div>
 
+
 <div class="away">
 
   
@@ -78,7 +85,9 @@
   </div>
 
   <div class="pitch">
-
+    
+  
+  
   <% awayTeam = [] %>
 
   <% (0..10).each do |i| %>
@@ -87,29 +96,6 @@
   <% end %>
 
   <% awayTeam = awayTeam.sort_by{|k|k[1]} %>
-  <% def position(pos, team) %>
-    <% return team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3]]} %>
-  <% end %> 
-
-  <% def playerImage(i, pos) %>
-    <% image_tag 'https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p' + pos[i][2] + '.png' %>
-  <% end %>
-
-  <% def showImages(array) %>
-    <% array.length.times do |i| %>
-      <div class="player">
-      <div class="image">
-        <%= playerImage(i, array) %>        
-      </div>
-
-      <div class="name">
-        <%= array[i][0] %> - <%= array[i][1] %>
-      </div>
-      </div>
-    <% end %>
-  <% end %>
-
-
   
   <div class="positioning">
 
@@ -137,49 +123,3 @@
 </div>
 
 
-
-
-
-<div class="list">
-  <table class='nice-table striped'>
-    <thead>
-      <tr>
-        <th style=''>Home team</th>
-        <th style=''>points</th>
-        <th style=''> </th>
-        <th style=''>points</th>
-        <th style=''>Away team</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% (0..10).each do |i| %>
-
-
-
-        <tr>
-          <td><%= link_to @home_players[i].common_name, @home_players[i] %> <%= '(c)' if @home_players[i].id == @home_captain.id  %></td>
-          <td><%= @home_players[i].gameweek_points[@match.gameweek] * (@home_players[i].id == @home_captain.id ? 2 : 1) %></td>
-          <td></td>
-          <td><%= @away_players[i].gameweek_points[@match.gameweek] * (@away_players[i].id == @away_captain.id ? 2 : 1) %></td>
-          <td><%= link_to @away_players[i].common_name, @away_players[i] %> <%= '(c)' if @away_players[i].id == @away_captain.id  %></td>
-        </tr>
-      <% end %>
-      
-        <tr>
-        <td></td>
-        <td>TOTAL</td>
-        <td></td>
-        <td>TOTAL</td>
-        <td></td>
-        </tr>
-        <tr>
-        <td></td>
-        <td><%= @home_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum + @home_captain.gameweek_points[@match.gameweek] %></td>
-        <td></td>
-        <td><%= @away_players.map{ |pl| pl.gameweek_points[@match.gameweek] }.sum + @away_captain.gameweek_points[@match.gameweek]  %></td>
-        <td></td>
-        </tr>
-      
-    </tbody>
-  </table>
-</div>
