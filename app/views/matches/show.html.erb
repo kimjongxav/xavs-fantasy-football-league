@@ -1,13 +1,11 @@
 <% provide(:title, @match.id) %>
 <h3>
 
-
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-
 <% def position(pos, team) %>
-    <% return team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3], k[4]]} %>
-  <% end %> 
+  <% team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3], k[4]]} %>
+<% end %> 
 
 <% def playerImage(i, pos) %>
   <% image_tag 'https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p' + pos[i][2] + '.png' %>
@@ -17,15 +15,15 @@
   <% array.length.times do |i| %>
     <% array[i][3] %>
     <a href= <%= array[i][3] %> >
-    <div class="player">
-    <div class="image">
-      <%= playerImage(i, array) %>        
-    </div>
+      <div class="player">
+        <div class="image">
+          <%= playerImage(i, array) %>        
+        </div>
 
-    <div class="name">
-      <%= array[i][0] %> - <%= array[i][1] %>
-    </div>
-    </div>
+        <div class="name">
+          <%= array[i][0] %> - <%= array[i][1] %>
+        </div>
+      </div>
     </a>
   <% end %>
 <% end %>
@@ -40,39 +38,40 @@
 
   <div class="pitch">
 
-  <% homeTeam = [] %>
+    <% homeTeam = [] %>
 
-  <% (0..10).each do |i| %>
-    <% homeTeam.push([@home_players[i].common_name, @home_players[i].position, @home_players[i].gameweek_points[@match.gameweek], @home_players[i].picture, (link_to "", @home_players[i])[9..-7]]) %>
-    
+    <% (0..10).each do |i| %>
+      <% homeTeam.push([@home_players[i].common_name, @home_players[i].position, @home_players[i].gameweek_points[@match.gameweek], @home_players[i].picture, (link_to "", @home_players[i])[9..-7]]) %>
+    <% end %>
 
-  <% end %>
+    <% homeTeam = homeTeam.sort_by{|k|k[1]} %>
+       
+    <div class="positioning">
 
-  <% homeTeam = homeTeam.sort_by{|k|k[1]} %>
-  
-  
-  <div class="positioning">
+      <% gkh = position("GK", homeTeam)%>
+      <% showImages(gkh) %>  
 
-  <% gkh = position("GK", homeTeam)%>
-  <% showImages(gkh) %>  
+    </div>
 
-  </div>
+    <div class="positioning">
 
-  <div class="positioning">
+      <% defh = position("DEF", homeTeam) %>
+      <% showImages(defh) %>
 
-  <% defh = position("DEF", homeTeam) %>
-  <% showImages(defh) %>
-  </div>
+    </div>
 
-  <div class="positioning">
+    <div class="positioning">
 
-  <% midh = position("MID", homeTeam) %>
-  <% showImages(midh) %>
-  </div>
-  <div class="positioning">
-  <% fwdh = position("FWD", homeTeam) %>
-  <% showImages(fwdh) %>
-  </div>
+      <% midh = position("MID", homeTeam) %>
+      <% showImages(midh) %>
+    </div>
+
+    <div class="positioning">
+
+      <% fwdh = position("FWD", homeTeam) %>
+      <% showImages(fwdh) %>
+
+    </div>
   </div>
 </div>
 
