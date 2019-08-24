@@ -183,8 +183,7 @@ players.each do |player|
     :position => position,
     :premier_league_team_id => player['team'],
     :picture => picture,
-    :gameweek_points => { 1 => 0 },
-    
+    :gameweek_points => { 1 => 0 },    
   )
 
   puts "done #{full_name}" if (player['id'].to_i % 50).zero?
