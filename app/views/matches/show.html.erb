@@ -57,7 +57,7 @@
   <div class= "<%=team%>" >    
     
     <div class="team-score">
-      <%= link_to squad.name, squad %> - <%=players.map{ |pl| pl.gameweek_points[@match.gameweek]||0}.sum + (captain.gameweek_points[@match.gameweek]||0)%>
+      <%= link_to squad.name, squad %> - <%=players.map{ |pl| pl.gameweek_points[@match.gameweek] || 0}.sum + (captain.gameweek_points[@match.gameweek] || 0)%>
     </div>
 
     <div class="pitch">
