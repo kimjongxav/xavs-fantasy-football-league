@@ -3,13 +3,6 @@
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<% def position(pos, team) %>
-  <% team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3], k[4], k[5]]} %>
-<% end %> 
-
-<% def playerImage(i, pos) %>
-  <% image_tag 'https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p' + pos[i][2] + '.png' %>
-<% end %>
 
 <% def showImages(array) %>
   <% array.length.times do |i| %>
@@ -40,6 +33,7 @@
     <% showImages(posArray) %>  
 
   </div>
+  
 <% end %>
 
 <% def setPitch(team) %>
@@ -81,6 +75,7 @@
     </div>
   </div>
 <% end %>
+
 
 <% setPitch("home") %>
 
