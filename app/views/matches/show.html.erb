@@ -1,49 +1,11 @@
 <% provide(:title, @match.id) %>
-<h3>
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<% def setPitch(team) %>
-
-  <%  if team=="home" %>
-    <% squad = @match.home_team %>
-    <% players = @home_players %>
-    <% captain = @home_captain  %>
-  <% else  %>
-    <% squad = @match.away_team %>
-    <% players = @away_players %>
-    <% captain = @away_captain  %>
-  <% end %>
-
-  <div class= "<%=team%>" >    
-    
-    <div class="team-score">
-      <%= link_to squad.name, squad %> - <%=players.map{ |pl| pl.gameweek_points[@match.gameweek] || 0}.sum + (captain.gameweek_points[@match.gameweek] || 0)%>
-    </div>
-
-    <div class="pitch">
-
-      <% side = [] %>
-
-      <% (0..10).each do |i| %>
-        <% side.push([players[i].common_name, players[i].position, players[i].gameweek_points[@match.gameweek], players[i].picture, (link_to "", players[i])[9..-7], players[i].id == captain.id]) %>
-      <% end %>
-
-      <% side = side.sort_by{|k|k[1]} %>
-
-      <% inPosition("GK", side) %>
-
-      <% inPosition("DEF", side) %>
-
-      <% inPosition("MID", side) %>
-
-      <% inPosition("FWD", side) %>     
-     
-    </div>
-  </div>
-<% end %>
 
 
-<% setPitch("home") %>
+<%= setPitch("home") %>
 
-<% setPitch("away") %>
+hi
+
+<%= setPitch("away") %>
