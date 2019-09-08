@@ -18,16 +18,12 @@ def image_link(player)
   }.png"
 end
 
-def home_squad_score_so_far
-  @home_players.map do
-    |pl| pl.gameweek_points[@match.gameweek] || 0
-  end.sum + (@home_captain.gameweek_points[@match.gameweek] || 0)
-end
+def squad_score_so_far(stadium)
+  players = stadium == 'home' ? @home_players : @away_players
+  captain = stadium == 'home' ? @home_captain : @away_captain
 
-def away_squad_score_so_far
-  @away_players.map do
-    |pl| pl.gameweek_points[@match.gameweek] || 0
-  end.sum + (@away_captain.gameweek_points[@match.gameweek] || 0)
+  players.map { |pl| pl.gameweek_points[@match.gameweek] || 0 }.sum +
+    (captain.gameweek_points[@match.gameweek] || 0)
 end
 
 def player_score(player)
