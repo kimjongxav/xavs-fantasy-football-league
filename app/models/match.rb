@@ -32,8 +32,8 @@ end
 
 def player_score(player)
   if [@home_captain, @away_captain].include?(player)
-    2 * (player.gameweek_points[@match.gameweek])
+    2 * (player.gameweek_points[@match.gameweek] || 0)
   else
-    player.gameweek_points[@match.gameweek]
+    player.gameweek_points[@match.gameweek] || 0
   end
 end
