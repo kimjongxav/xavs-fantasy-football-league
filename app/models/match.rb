@@ -12,7 +12,7 @@ class Match < ApplicationRecord
   scope :unplayed, -> { where(:played => false) }
 end
 
-def position(pos, team)
+def pstn(pos, team)
   team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3], k[4], k[5]]}
 end 
 
@@ -43,7 +43,7 @@ def showImages(array)
         '</div>'.html_safe
 
         '<div class="name">'.html_safe
-            (array[i][0] + '-' + array[i][1]).html_safe
+            (array[i][0].to_s + '-' + array[i][1].to_s).html_safe
         '</div>'.html_safe
     '</div>'.html_safe
     '</a>'.html_safe
@@ -54,7 +54,9 @@ def inPosition(pos, side)
   
   '<div class="positioning">'.html_safe
 
-    showImages(position(pos, side))
+    array = pstn(pos,side)
+      
+    showImages(array)
 
   '</div>'.html_safe
   
@@ -75,7 +77,7 @@ def setPitch(team)
   '<div class= "' + team + '" >'.html_safe    
     
     '<div class="team-score">'.html_safe 
-      (link_to squad.name, squad + '-' + players.map{ |pl| pl.gameweek_points[@match.gameweek] || 0}.sum + (captain.gameweek_points[@match.gameweek] || 0)).html_safe
+      (link_to squad.name, squad) + '-' + (players.map{ |pl| pl.gameweek_points[@match.gameweek] || 0}.sum + (captain.gameweek_points[@match.gameweek] || 0)).to_s
     '</div>'.html_safe 
 
     '<div class="pitch">'.html_safe 
@@ -94,8 +96,8 @@ def setPitch(team)
 
       inPosition("MID", side)
 
-      inPosition("FWD", side)     
-     
+      inPosition("FWD", side)
+          
     '</div>'.html_safe 
   '</div>'.html_safe 
 end
