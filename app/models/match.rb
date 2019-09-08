@@ -12,7 +12,7 @@ class Match < ApplicationRecord
   scope :unplayed, -> { where(:played => false) }
 end
 
-def position(pos, team) 
+def position(pos, team)
   team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3], k[4], k[5]]}
 end 
 
@@ -26,4 +26,76 @@ end
 
 def linktoName()
   link_to squad.name, squad
+end
+
+def showImages(array)
+  array.length.times do |i|
+    ('<a href=' + array[i][3] + '>').html_safe
+        '<div class="player">'.html_safe
+        if array[i][4] == false
+          '<div class="image">'.html_safe
+        else
+          '<div class="captainimage">'.html_safe
+        end
+
+            playerImage(i, array)
+
+        '</div>'.html_safe
+
+        '<div class="name">'.html_safe
+            (array[i][0] + '-' + array[i][1]).html_safe
+        '</div>'.html_safe
+    '</div>'.html_safe
+    '</a>'.html_safe
+  end
+end
+
+def inPosition(pos, side)
+  
+  '<div class="positioning">'.html_safe
+
+    showImages(position(pos, side))
+
+  '</div>'.html_safe
+  
+end
+
+def setPitch(team)
+
+  if team=="home"
+    squad = @match.home_team
+    players = @home_players
+    captain = @home_captain
+  else
+    squad = @match.away_team
+    players = @away_players
+    captain = @away_captain
+  end
+
+  '<div class= "' + team + '" >'.html_safe    
+    
+    '<div class="team-score">'.html_safe 
+      (link_to squad.name, squad + '-' + players.map{ |pl| pl.gameweek_points[@match.gameweek] || 0}.sum + (captain.gameweek_points[@match.gameweek] || 0)).html_safe
+    '</div>'.html_safe 
+
+    '<div class="pitch">'.html_safe 
+
+      side = []
+
+      (0..10).each do |i|
+        side.push([players[i].common_name, players[i].position, players[i].gameweek_points[@match.gameweek], players[i].picture, (link_to "", players[i])[9..-7], players[i].id == captain.id])
+      end
+
+      side = side.sort_by{|k|k[1]}
+
+      inPosition("GK", side)
+
+      inPosition("DEF", side)
+
+      inPosition("MID", side)
+
+      inPosition("FWD", side)     
+     
+    '</div>'.html_safe 
+  '</div>'.html_safe 
 end

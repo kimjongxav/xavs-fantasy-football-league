@@ -3,39 +3,6 @@
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-
-<% def showImages(array) %>
-  <% array.length.times do |i| %>
-    <a href= <%= array[i][3] %> >
-      <div class="player">
-      <% if array[i][4] == false%>
-        <div class="image">
-      <% else %>
-        <div class="captainimage">
-      <%end%>
-
-          <%= playerImage(i, array) %>        
-        </div>
-
-        <div class="name">
-          <%= array[i][0] %> - <%= array[i][1] %>
-        </div>
-      </div>
-    </a>
-  <% end %>
-<% end %>
-
-<% def inPosition(pos, side)%>
-  
-  <div class="positioning">
-
-    <% posArray = position(pos, side) %>
-    <% showImages(posArray) %>  
-
-  </div>
-  
-<% end %>
-
 <% def setPitch(team) %>
 
   <%  if team=="home" %>
