@@ -32,6 +32,7 @@ class CreateAllTables < ActiveRecord::Migration[5.1]
       t.string :common_name
       t.string :position
       t.string :gameweek_points # this will be a string in the style of json
+      t.string :picture
 
       t.timestamps
     end
