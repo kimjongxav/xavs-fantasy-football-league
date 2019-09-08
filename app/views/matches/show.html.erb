@@ -1,87 +1,24 @@
 <% provide(:title, @match.id) %>
-<h3>
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<% def position(pos, team) %>
-  <% team.select{|k| pos==k[1]}.map{|k| [k[0],k[2], k[3], k[4], k[5]]} %>
-<% end %> 
-
-<% def playerImage(i, pos) %>
-  <% image_tag 'https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p' + pos[i][2] + '.png' %>
-<% end %>
-
-<% def showImages(array) %>
-  <% array.length.times do |i| %>
-    <a href= <%= array[i][3] %> >
-      <div class="player">
-      <% if array[i][4] == false%>
-        <div class="image">
-      <% else %>
-        <div class="captainimage">
-      <%end%>
-
-          <%= playerImage(i, array) %>        
-        </div>
-
-        <div class="name">
-          <%= array[i][0] %> - <%= array[i][1] %>
-        </div>
-      </div>
-    </a>
-  <% end %>
-<% end %>
-
-<% def inPosition(pos, side)%>
-  
-  <div class="positioning">
-
-    <% posArray = position(pos, side) %>
-    <% showImages(posArray) %>  
-
+<div class="home">
+  <div class="team-score">
+    <%= link_to @match.home_team.name, @match.home_team %>
+    -
+    <%= home_squad_score_so_far %>
   </div>
-<% end %>
 
-<% def setPitch(team) %>
+  <%= render 'pitch', stadium: 'home' %>
+</div>
 
-  <%  if team=="home" %>
-    <% squad = @match.home_team %>
-    <% players = @home_players %>
-    <% captain = @home_captain  %>
-  <% else  %>
-    <% squad = @match.away_team %>
-    <% players = @away_players %>
-    <% captain = @away_captain  %>
-  <% end %>
-
-  <div class= "<%=team%>" >    
-    
-    <div class="team-score">
-      <%= link_to squad.name, squad %> - <%=players.map{ |pl| pl.gameweek_points[@match.gameweek] || 0}.sum + (captain.gameweek_points[@match.gameweek] || 0)%>
-    </div>
-
-    <div class="pitch">
-
-      <% side = [] %>
-
-      <% (0..10).each do |i| %>
-        <% side.push([players[i].common_name, players[i].position, players[i].gameweek_points[@match.gameweek], players[i].picture, (link_to "", players[i])[9..-7], players[i].id == captain.id]) %>
-      <% end %>
-
-      <% side = side.sort_by{|k|k[1]} %>
-
-      <% inPosition("GK", side) %>
-
-      <% inPosition("DEF", side) %>
-
-      <% inPosition("MID", side) %>
-
-      <% inPosition("FWD", side) %>     
-     
-    </div>
+<div class="away">
+  <div class="team-score">
+    <%= link_to @match.away_team.name, @match.away_team %>
+    -
+    <%= away_squad_score_so_far %>
   </div>
-<% end %>
 
-<% setPitch("home") %>
+  <%= render 'pitch', stadium: 'away' %>
+</div>
 
-<% setPitch("away") %>

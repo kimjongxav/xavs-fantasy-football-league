@@ -1,0 +1,7 @@
+<div class="pitch">
+  <% ['GK', 'DEF', 'MID', 'FWD'].each do |position| %>
+    <div class="positioning">
+      <%= render 'player', position: position, stadium: stadium %>
+    </div>
+  <% end %>
+</div>

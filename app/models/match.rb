@@ -11,3 +11,29 @@ class Match < ApplicationRecord
   scope :played, -> { where(:played => true) }
   scope :unplayed, -> { where(:played => false) }
 end
+
+def image_link(player)
+  "https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p#{
+    player.picture
+  }.png"
+end
+
+def home_squad_score_so_far
+  @home_players.map do
+    |pl| pl.gameweek_points[@match.gameweek] || 0
+  end.sum + (@home_captain.gameweek_points[@match.gameweek] || 0)
+end
+
+def away_squad_score_so_far
+  @away_players.map do
+    |pl| pl.gameweek_points[@match.gameweek] || 0
+  end.sum + (@away_captain.gameweek_points[@match.gameweek] || 0)
+end
+
+def player_score(player)
+  if [@home_captain, @away_captain].include?(player)
+    2 * (player.gameweek_points[@match.gameweek])
+  else
+    player.gameweek_points[@match.gameweek]
+  end
+end
