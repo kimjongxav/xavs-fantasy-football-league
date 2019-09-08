@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20190908100858) do
     t.datetime "updated_at", null: false
     t.integer "premier_league_team_id"
     t.integer "league_id"
-    t.string "picture"
+    t.text "picture"
     t.index ["common_name"], name: "index_players_on_common_name"
     t.index ["premier_league_team_id"], name: "index_players_on_premier_league_team_id"
   end

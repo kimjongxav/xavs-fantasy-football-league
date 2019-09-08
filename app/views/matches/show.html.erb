@@ -2,10 +2,23 @@
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
+<div class="home">
+  <div class="team-score">
+    <%= link_to @match.home_team.name, @match.home_team %>
+    -
+    <%= home_squad_score_so_far %>
+  </div>
 
+  <%= render 'pitch', stadium: 'home' %>
+</div>
 
-<%= setPitch("home") %>
+<div class="away">
+  <div class="team-score">
+    <%= link_to @match.away_team.name, @match.away_team %>
+    -
+    <%= away_squad_score_so_far %>
+  </div>
 
-hi
+  <%= render 'pitch', stadium: 'away' %>
+</div>
 
-<%= setPitch("away") %>
