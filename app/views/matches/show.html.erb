@@ -1,22 +1,32 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <% provide(:title, @match.id) %>
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<div class="home">
+<button onclick="stadium=stadiumSwitcher()" class="switcher mobile-visible">
+  HOME
+</button>
+
+<button onclick="stadium=stadiumSwitcher()" class="switcher mobile-hidden">
+  AWAY
+</button>
+
+<div class="home mobile-visible">
   <div class="team-score">
     <%= link_to @match.home_team.name, @match.home_team %>
     -
-    <%= home_squad_score_so_far %>
+    <%= squad_score_so_far("home") %>
   </div>
 
   <%= render 'pitch', stadium: 'home' %>
 </div>
 
-<div class="away">
+<div class="away mobile-hidden">
   <div class="team-score">
     <%= link_to @match.away_team.name, @match.away_team %>
     -
-    <%= away_squad_score_so_far %>
+    <%= squad_score_so_far("away") %>
   </div>
 
   <%= render 'pitch', stadium: 'away' %>
