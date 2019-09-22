@@ -4,13 +4,20 @@
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<button onclick="stadium=stadiumSwitcher()" class="switcher mobile-visible">
-  HOME
-</button>
+<div class= "switch-container">
+  <div class="mobile-perm">
+    HOME
+  </div>
 
-<button onclick="stadium=stadiumSwitcher()" class="switcher mobile-hidden">
-  AWAY
-</button>
+  <label class="switch mobile-perm">
+    <input type="checkbox">
+    <span class="slider mobile-perm"></span>
+  </label>
+
+  <div class="mobile-perm">
+    AWAY
+  </div>
+</div>
 
 <div class="home mobile-visible">
   <div class="team-score">
