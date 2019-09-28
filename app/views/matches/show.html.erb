@@ -5,16 +5,16 @@
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
 <div class= "switch-container">
-  <div class="mobile-perm">
+  <div class="mobile-perm highlighted">
     HOME
   </div>
 
   <label class="switch mobile-perm">
-    <input type="checkbox">
+    <input type="checkbox" onclick="stadiumSwitcher()">
     <span class="slider mobile-perm"></span>
   </label>
 
-  <div class="mobile-perm">
+  <div class="mobile-perm unhighlighted">
     AWAY
   </div>
 </div>

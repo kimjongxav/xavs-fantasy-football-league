@@ -11,4 +11,17 @@ function stadiumSwitcher() {
         element.classList.remove('mobile-hidden')
         element.classList.add('mobile-visible')    
     });
+
+    const thingsToHighlight = document.querySelectorAll('.highlighted')
+    const thingsToUnhighlight = document.querySelectorAll('.unhighlighted')
+
+    thingsToHighlight.forEach(element => {
+        element.classList.remove('highlighted')
+        element.classList.add('unhighlighted')    
+    });
+
+    thingsToUnhighlight.forEach(element => {
+        element.classList.remove('unhighlighted')
+        element.classList.add('highlighted')    
+    });
 }
