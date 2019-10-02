@@ -4,31 +4,39 @@
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<button onclick="stadium=stadiumSwitcher()" class="switcher mobile-visible">
-  HOME
-</button>
-
-<button onclick="stadium=stadiumSwitcher()" class="switcher mobile-hidden">
-  AWAY
-</button>
-
-<div class="home mobile-visible">
-  <div class="team-score">
-    <%= link_to @match.home_team.name, @match.home_team %>
-    -
-    <%= squad_score_so_far("home") %>
+<div class="switch-container">
+  <div class="mobile-perm highlighted">
+    HOME
   </div>
 
-  <%= render 'pitch', stadium: 'home' %>
+  <label class="switch mobile-perm">
+    <input type="checkbox" onclick="stadiumSwitcher()">
+    <span class="slider mobile-perm"></span>
+  </label>
+
+  <div class="mobile-perm unhighlighted">
+    AWAY
+  </div>
 </div>
 
-<div class="away mobile-hidden">
-  <div class="team-score">
-    <%= link_to @match.away_team.name, @match.away_team %>
-    -
-    <%= squad_score_so_far("away") %>
+<div class="stadia">
+  <div class="stadium home mobile-visible">
+    <div class="team-score">
+      <%= link_to @match.home_team.name, @match.home_team %>
+      -
+      <%= squad_score_so_far("home") %>
+    </div>
+
+    <%= render 'pitch', stadium: 'home' %>
   </div>
 
-  <%= render 'pitch', stadium: 'away' %>
-</div>
+  <div class="stadium away mobile-hidden">
+    <div class="team-score">
+      <%= link_to @match.away_team.name, @match.away_team %>
+      -
+      <%= squad_score_so_far("away") %>
+    </div>
 
+    <%= render 'pitch', stadium: 'away' %>
+  </div>
+</div>
