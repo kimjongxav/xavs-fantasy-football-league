@@ -1,7 +1,6 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-
 /* mixins, variables, etc.  */
 
 $grey-medium-light: #eaeaea;
@@ -13,12 +12,6 @@ $grey-medium-light: #eaeaea;
 }
 
 /* universal */
-
-
-
-body {
-  padding-top: 3%;
-}
 
 section {
   overflow: auto;
@@ -76,7 +69,6 @@ p {
 /* header */
 
 #logo {
-  float: left;
   margin-right: 1vw;
   font-size: 1.7em;
   color: #fff;
@@ -84,9 +76,55 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  position: relative;
+
   &:hover {
     color: #fff;
     text-decoration: none;
+  }
+}
+
+.topnav {
+  background-color: #333;
+
+  a {
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1001px) {
+  a {
+    display: inline-table;
+
+    &.icon {
+      display: none;
+    }
+  }
+
+  #menu-links {
+    display: contents;
+    float: right;
+  }
+}
+
+@media (max-width: 1000px) {
+  .topnav {
+    a {
+      display: block;
+
+      &.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    #menu-links {
+      display: none;
+    }
   }
 }
 
