@@ -42,7 +42,6 @@ class Team < ApplicationRecord
   end
 
   def gameweek
-    return 1
     resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static/')
     if resp['events'].nil?
       return Gameweek.where("deadline_time_epoch < ?", Time.now.to_i).last.gameweek + 1
