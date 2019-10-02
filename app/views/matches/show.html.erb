@@ -4,7 +4,7 @@
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<div class= "switch-container">
+<div class="switch-container">
   <div class="mobile-perm highlighted">
     HOME
   </div>
@@ -19,23 +19,24 @@
   </div>
 </div>
 
-<div class="home mobile-visible">
-  <div class="team-score">
-    <%= link_to @match.home_team.name, @match.home_team %>
-    -
-    <%= squad_score_so_far("home") %>
+<div class="stadia">
+  <div class="stadium home mobile-visible">
+    <div class="team-score">
+      <%= link_to @match.home_team.name, @match.home_team %>
+      -
+      <%= squad_score_so_far("home") %>
+    </div>
+
+    <%= render 'pitch', stadium: 'home' %>
   </div>
 
-  <%= render 'pitch', stadium: 'home' %>
-</div>
+  <div class="stadium away mobile-hidden">
+    <div class="team-score">
+      <%= link_to @match.away_team.name, @match.away_team %>
+      -
+      <%= squad_score_so_far("away") %>
+    </div>
 
-<div class="away mobile-hidden">
-  <div class="team-score">
-    <%= link_to @match.away_team.name, @match.away_team %>
-    -
-    <%= squad_score_so_far("away") %>
+    <%= render 'pitch', stadium: 'away' %>
   </div>
-
-  <%= render 'pitch', stadium: 'away' %>
 </div>
-

@@ -2,72 +2,67 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.captainimage {
-  background-color: rgba(255, 215, 0, 0.808);
-  border-radius: 15% 15% 0% 0%;
-}
-
 .image {
-  background-color: rgba(55, 230, 230, 0.8);
-  border-radius: 15% 15% 0% 0%;
+  background-color: #37e6e6cc;
+  border-radius: 15px 15px 0 0;
+
+  &.captain {
+    background-color: #ffd700ce;
+  }
 }
 
-.home {
-  width: 49%;
-  float: left;
-  margin-right: 0.1%;
-}
+.stadium {
+  margin: 5px;
 
-.away {
-  width: 49%;
-  float: right;
-  margin-left: 0.1%;
+  &.home {
+    float: left;
+  }
+  &.away {
+    float: right;
+  }
 }
 
 .team-score {
   text-align: center;
-  font-size: 2vw;
+  font-size: 18px;
 }
 
 .pitch {
   background-image: url(/assets/football-pitch.png);
-  background-size: 100% 100%;
+  background-size: 100%;
 }
 
 .positioning {
   display: flex;
-  flex-direction: row;
-
   justify-content: center;
 }
 
 .player {
   display: flex;
   flex-direction: column;
-  margin-left: 0.6%;
-  margin-right: 0.6%;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 8px;
   width: 18%;
 }
 
 .name {
-  height: 2vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 18px;
   text-align: center;
-  font-size: 1.15vw;
-  line-height: 1vw;
-  margin-bottom: 0.9vw;
-  background-color: rgb(37, 3, 116);
+  font-size: 11px;
+  background-color: #250374;
   color: white;
-  border-radius: 0% 0% 10% 10%;
-  /* white-space: nowrap;
-    overflow: hidden; */
+  border-radius: 0 0 5px 5px;
 }
 
-@media (max-width: 1000px)  {
+.stadia {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
   .mobile-hidden {
-      display: none;
+    display: none;
   }
   .mobile-visible {
     margin: auto;
@@ -75,34 +70,21 @@
     width: 80%;
   }
   .mobile-perm {
-    font-size: 3vw;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-top: 1.5%;
-    margin-bottom: 1%;
-    text-align: center;
+    font-size: 26px;
+    margin: 2px;
   }
   .switch-container {
     display: flex;
     justify-content: center;
-    flex-direction: row;
   }
 
   .highlighted {
     font-weight: bold;
   }
 
-  .switch{
+  .switch {
     position: relative;
-    display: inline-block;
     width: 62px;
-    height: 34px;
-  }
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
   }
 
   .slider {
@@ -112,41 +94,31 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(108, 171, 221);
-    -webkit-transition: .4s;
-    transition: .4s;
+    background-color: #6cabdd;
   }
-  
+
   .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    transition: 0.4s;
   }
-  
+
   input:checked + .slider {
-    background-color: rgb(200,16,46);
+    background-color: #c8102e;
   }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
+
   input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
 }
 
 @media (min-width: 1001px) {
-  .switcher{
+  .switch-container {
     display: none;
-    float: none;
   }
 }
