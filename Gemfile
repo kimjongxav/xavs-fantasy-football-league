@@ -16,7 +16,7 @@ gem 'fog-aws', '2.0.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '4.3.1'
 gem 'mini_magick', '4.7.0'
-gem 'nokogiri', '1.8.1'
+gem "nokogiri", ">= 1.10.4"
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
 gem 'sass-rails', '~> 5.0'
