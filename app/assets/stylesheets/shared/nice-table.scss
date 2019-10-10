@@ -1,3 +1,18 @@
+@media (min-width: 1001px) {
+  .team {
+    width: 24%;
+    }
+
+
+}
+
+@media (max-width: 1000px) {
+  .team {
+    width: 33%;
+    }
+
+}
+
 .nice-table {
   margin: auto;
   width: 100%;
@@ -5,6 +20,14 @@
   border-spacing: 0;
   border-collapse: collapse;
   table-layout: fixed;
+
+
+  tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+
+  tbody > tr:hover {background-color: #ddd;}
+
 
   thead > tr > th {
     border-top: 0;
@@ -69,13 +92,26 @@
   tbody > tr > td,
   tbody > tr > th,
   thead > tr > th {
-    padding: 8px;
+    @media (max-width: 1000px) {
+      padding: 1px;
+      font-size: 12px;
+    }
+    @media (min-width: 1001px) {
+      padding: 10px;
+      font-size: 16px;
+    }
     line-height: 1.4;
+    height: 50px;
     vertical-align: top;
     border-top: 1px solid #ddd;
     text-align: left;
-    text-overflow: ellipsis;
+    text-overflow: clip;
     overflow: hidden;
+    vertical-align: middle;
+    
+    
+
+    
 
     .blank {
       font-size: 14px;
@@ -86,6 +122,7 @@
       border-radius: 3px;
       position: absolute;
       margin-left: -5px;
+
     }
 
     .bubble {
@@ -122,6 +159,7 @@
       }
     }
 
+
     .badge {
       display: inline-block;
       font-weight: normal;
@@ -143,12 +181,11 @@
   }
 
   &.striped {
-    tbody > tr:nth-of-type(odd) {
-      background-color: #f9f9f9;
 
-      .blank {
-        background-color: #fff;
-      }
-    }
   }
+
+
+  
 }
+
+
