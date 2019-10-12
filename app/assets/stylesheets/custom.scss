@@ -23,14 +23,40 @@ textarea {
 
 .center {
   text-align: center;
-  h1 {
-    font-size: 105px;
-    margin-top: 5px;
-    position: relative;
-    z-index: 1;
-    font-family: Exo;
-    margin-bottom: -121px;
-    color: #eeeeee;
+  position: relative;
+  color: white;
+  // h1 {
+  //   font-size: 105px;
+  //   top: 20%;
+  //   left: 30%;
+  //   position: absolute;
+  //   font-family: Exo;
+  //   color: #eeeeee;
+  // }
+}
+
+.homepage {
+  text-align: center;
+  position: relative;
+  width: 60%;
+  margin: auto;
+}
+
+.flonx-text {
+  color: #eeeeee;
+  font-size: 120px;
+  font-family: Exo;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 1000px) {
+    font-size: 60px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 40px;
   }
 }
 
@@ -45,12 +71,12 @@ h6 {
   line-height: 1;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
+// h1 {
+//   font-size: 3em;
+//   letter-spacing: -2px;
+//   margin-bottom: 30px;
+//   text-align: center;
+// }
 
 h2 {
   font-size: 1.2em;
@@ -298,7 +324,7 @@ img {
 }
 
 .flonx-logo {
-  width: 500px;
+  width: 80%;
   margin: auto;
 }
 
