@@ -17,6 +17,7 @@
   &.home {
     float: left;
   }
+ 
   &.away {
     float: right;
   }
@@ -29,7 +30,7 @@
 
 .pitch {
   background-image: url(/assets/football-pitch.png);
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 
 .positioning {
@@ -47,12 +48,20 @@
 }
 
 .name {
-  height: 18px;
+  
+  height: 30px;
+  margin: 0 2px 0 2px;
   text-align: center;
-  font-size: 11px;
+  font-size: 15px;
+  line-height: 0.9;
   background-color: #250374;
   color: white;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 7px 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
 }
 
 .stadia {
@@ -67,7 +76,7 @@
   .mobile-visible {
     margin: auto;
     float: none;
-    width: 80%;
+    width: 100%;
   }
   .mobile-perm {
     font-size: 26px;
@@ -115,10 +124,28 @@
   input:checked + .slider:before {
     transform: translateX(26px);
   }
+
+  .name {
+    height: 20px;
+    margin: 0 2px 0 2px;
+    font-size: 10px;
+    line-height: 0.9;
+    border-radius: 0 0 5px 5px;
+
+  }
+
 }
 
 @media (min-width: 1001px) {
   .switch-container {
     display: none;
+  }
+
+  .away {
+    width: 49%
+  }
+
+  .home {
+    width: 49%
   }
 }
