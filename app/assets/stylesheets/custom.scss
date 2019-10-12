@@ -40,6 +40,10 @@ textarea {
   position: relative;
   width: 60%;
   margin: auto;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .flonx-text {
