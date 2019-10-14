@@ -3,16 +3,7 @@
 
 <div class="list">
   <table class='nice-table striped'>
-    <thead>
-      <tr>
-        <th style=''>Game Week</th>
-        <th style='text-align: right; width: 30%;'>home team</th>
-        <th style='text-align: right; width: 12%;'>(P) S</th>
-        <th style='text-align: right; width: 5%'> </th>
-        <th style='text-align: left; width: 12%;'>S (P)</th>
-        <th style='text-align: left; width: 30%;'>away team</th>
-      </tr>
-    </thead>
+    <%= render 'match_table_header' %>
     <tbody>
       <%= render @matches.sort_by { |match| match['gameweek'] } %>
     </tbody>
