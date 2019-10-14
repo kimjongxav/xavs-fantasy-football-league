@@ -1,5 +1,5 @@
 function hamburger() {
-  const x = document.getElementById('menu-links')
+  var x = document.getElementById('menu-links')
 
   if (x.style.display === 'block') {
     x.style.display = 'none'
@@ -9,8 +9,8 @@ function hamburger() {
 }
 
 function stadiumSwitcher() {
-  const thingsToHide = document.querySelectorAll('.mobile-visible')
-  const thingsToShow = document.querySelectorAll('.mobile-hidden')
+  var thingsToHide = document.querySelectorAll('.mobile-visible')
+  var thingsToShow = document.querySelectorAll('.mobile-hidden')
 
   thingsToHide.forEach(element => {
     element.classList.remove('mobile-visible')
@@ -22,8 +22,8 @@ function stadiumSwitcher() {
     element.classList.add('mobile-visible')
   })
 
-  const thingsToHighlight = document.querySelectorAll('.highlighted')
-  const thingsToUnhighlight = document.querySelectorAll('.unhighlighted')
+  var thingsToHighlight = document.querySelectorAll('.highlighted')
+  var thingsToUnhighlight = document.querySelectorAll('.unhighlighted')
 
   thingsToHighlight.forEach(element => {
     element.classList.remove('highlighted')
