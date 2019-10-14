@@ -30,4 +30,4 @@ To compile assets:
 and
 `export S3_SECRET_KEY=****`
 then
-`rake assets:precompile RAILS_ENV=production`
+`bundle exec rake assets:precompile RAILS_ENV=production`
