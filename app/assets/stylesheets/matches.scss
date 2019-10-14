@@ -17,7 +17,7 @@
   &.home {
     float: left;
   }
- 
+
   &.away {
     float: right;
   }
@@ -48,7 +48,6 @@
 }
 
 .name {
-  
   height: 30px;
   margin: 0 2px 0 2px;
   text-align: center;
@@ -60,8 +59,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  
 }
 
 .stadia {
@@ -131,9 +128,7 @@
     font-size: 10px;
     line-height: 0.9;
     border-radius: 0 0 5px 5px;
-
   }
-
 }
 
 @media (min-width: 1001px) {
@@ -142,10 +137,10 @@
   }
 
   .away {
-    width: 49%
+    width: 49%;
   }
 
   .home {
-    width: 49%
+    width: 49%;
   }
 }
