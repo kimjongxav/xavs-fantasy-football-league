@@ -26,3 +26,6 @@
 
 # Ignore uploaded test images.
 /public/uploads
+
+
+/vendor/bundle
