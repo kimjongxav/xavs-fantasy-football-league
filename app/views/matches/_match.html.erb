@@ -2,7 +2,7 @@
   <td><%= match.gameweek %></td>
   <td style='text-align: right'><%= link_to match.home_team.name, match.home_team %></td>
   <td style='text-align: right'>(<%= match.home_points %>) <%= match.home_score %></td>
-  <td><%= link_to 'v', match %></td>
+  <td style='text-align: center'><%= link_to 'v', match %></td>
   <td style='text-align: left'><%= match.away_score %> (<%= match.away_points %>)</td>
   <td style='text-align: left'><%= link_to match.away_team.name, match.away_team %></td>
 </tr>

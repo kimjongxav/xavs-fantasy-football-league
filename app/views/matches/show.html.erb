@@ -1,24 +1,42 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <% provide(:title, @match.id) %>
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
 
-<div class="home">
-  <div class="team-score">
-    <%= link_to @match.home_team.name, @match.home_team %>
-    -
-    <%= home_squad_score_so_far %>
+<div class="switch-container">
+  <div class="mobile-perm highlighted">
+    HOME
   </div>
 
-  <%= render 'pitch', stadium: 'home' %>
+  <label class="switch mobile-perm">
+    <input type="checkbox" onclick="stadiumSwitcher()">
+    <span class="slider mobile-perm"></span>
+  </label>
+
+  <div class="mobile-perm unhighlighted">
+    AWAY
+  </div>
 </div>
 
-<div class="away">
-  <div class="team-score">
-    <%= link_to @match.away_team.name, @match.away_team %>
-    -
-    <%= away_squad_score_so_far %>
+<div class="stadia">
+  <div class="stadium home mobile-visible">
+    <div class="team-score">
+      <%= link_to @match.home_team.name, @match.home_team %>
+      -
+      <%= squad_score_so_far("home") %>
+    </div>
+
+    <%= render 'pitch', stadium: 'home' %>
   </div>
 
-  <%= render 'pitch', stadium: 'away' %>
-</div>
+  <div class="stadium away mobile-hidden">
+    <div class="team-score">
+      <%= link_to @match.away_team.name, @match.away_team %>
+      -
+      <%= squad_score_so_far("away") %>
+    </div>
 
+    <%= render 'pitch', stadium: 'away' %>
+  </div>
+</div>

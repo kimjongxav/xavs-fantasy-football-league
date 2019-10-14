@@ -2,7 +2,145 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.image {
+  background-color: #37e6e6cc;
+  border-radius: 15px 15px 0 0;
+
+  &.captain {
+    background-color: #ffd700ce;
+  }
+}
+
+.stadium {
+  margin: 5px;
+
+  &.home {
+    float: left;
+  }
+
+  &.away {
+    float: right;
+  }
+}
+
+.team-score {
+  text-align: center;
+  font-size: 18px;
+}
+
+.pitch {
+  background-image: url(/assets/football-pitch.png);
+  background-size: 100% 100%;
+}
+
+.positioning {
+  display: flex;
+  justify-content: center;
+}
+
 .player {
-    border-style: solid;
-    border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 8px;
+  width: 18%;
+}
+
+.name {
+  height: 30px;
+  margin: 0 2px 0 2px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 0.9;
+  background-color: #250374;
+  color: white;
+  border-radius: 0 0 7px 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stadia {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
+  .mobile-hidden {
+    display: none;
+  }
+  .mobile-visible {
+    margin: auto;
+    float: none;
+    width: 100%;
+  }
+  .mobile-perm {
+    font-size: 26px;
+    margin: 2px;
+  }
+  .switch-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .highlighted {
+    font-weight: bold;
+  }
+
+  .switch {
+    position: relative;
+    width: 62px;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #6cabdd;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #c8102e;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+
+  .name {
+    height: 20px;
+    margin: 0 2px 0 2px;
+    font-size: 10px;
+    line-height: 0.9;
+    border-radius: 0 0 5px 5px;
+  }
+}
+
+@media (min-width: 1001px) {
+  .switch-container {
+    display: none;
+  }
+
+  .away {
+    width: 49%;
+  }
+
+  .home {
+    width: 49%;
+  }
 }
