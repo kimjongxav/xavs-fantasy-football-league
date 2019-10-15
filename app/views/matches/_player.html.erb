@@ -6,14 +6,15 @@
 
 <% players.each do |player| %>
   <div class="player">
-    <% if [@home_captain, @away_captain].include?(player) %>
-      <div class="image captain">
-    <% else %>
-      <div class="image">
-    <% end %>
-      <%= link_to image_tag(image_link(player)), player, id: player.id %>
+    <div class="image _<%=player.chance_of_playing%> ">
+    <%= link_to image_tag(image_link(player)), player, id: player.id %>
     </div>
-    <div class="name">
+
+    <% if [@home_captain, @away_captain].include?(player) %>
+      <div class="name captain">
+    <% else %>
+      <div class="name">
+    <% end %>
       <%= player.common_name %>   <%= player_score(player) %>
     </div>
   </div>
