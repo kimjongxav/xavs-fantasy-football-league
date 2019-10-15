@@ -1,5 +1,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  function stadiumSwitcher() {
+    var thingsToHide = document.querySelectorAll('.mobile-visible')
+    var thingsToShow = document.querySelectorAll('.mobile-hidden')
 
+    thingsToHide.forEach(element => {
+      element.classList.remove('mobile-visible')
+      element.classList.add('mobile-hidden')
+    })
+
+    thingsToShow.forEach(element => {
+      element.classList.remove('mobile-hidden')
+      element.classList.add('mobile-visible')
+    })
+
+    var thingsToHighlight = document.querySelectorAll('.highlighted')
+    var thingsToUnhighlight = document.querySelectorAll('.unhighlighted')
+
+    thingsToHighlight.forEach(element => {
+      element.classList.remove('highlighted')
+      element.classList.add('unhighlighted')
+    })
+
+    thingsToUnhighlight.forEach(element => {
+      element.classList.remove('unhighlighted')
+      element.classList.add('highlighted')
+    })
+  }
+</script>
 <% provide(:title, @match.id) %>
 
 <h2>(Gameweek <%= @match.gameweek %>)</h2>
