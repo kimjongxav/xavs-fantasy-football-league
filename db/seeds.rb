@@ -156,7 +156,7 @@ end
 def playing_chancer(status, news)
   if status == "a"
     return "_100"
-  elsif status == "i" || status =="u" || status == "s"
+  elsif status == "i" || status =="u" || status == "s" || status == "n"
     return "_0"
   else 
     return "_" << news.gsub(/[^0-9]/, '')
