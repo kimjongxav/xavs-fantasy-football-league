@@ -12,6 +12,19 @@ class TeamsController < ApplicationController
     @gameweek = gameweek
   end
 
+  def charts
+    sum = 0
+    @gameweek_scores = Team.all.map do |team|
+      {
+        name: team.name,
+        data: team.gameweek_scores.map do |k, v|
+          k == 1 ? sum = 0 : sum
+          [k.to_s, sum += v]
+        end.to_h
+      }
+    end
+  end
+
   def new
   end
 
