@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get '/fixtures', :to => 'matches#fixtures'
   get '/results', :to => 'matches#results'
 
+  get 'charts', :to => 'teams#charts'
+
   resources :players
   resources :premier_league_teams
 

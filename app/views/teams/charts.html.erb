@@ -1,0 +1,8 @@
+<h1>Charts</h1>
+
+<%= line_chart @gameweek_scores.map { |team|
+    {
+      name: team[:name],
+      data: team[:data],
+    }
+} %>
