@@ -9,7 +9,9 @@ class GetPlayerPoints
 
       updated_history = player_match_history.map do |m|
         points = m['total_points']
-        round = m['round']
+        # removing 9 because of coronavirus
+        # undo this next season
+        round = m['round'] > 29 ? m['round'] - 9 : m['round']
 
         { round => points }
       end
