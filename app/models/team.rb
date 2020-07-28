@@ -47,7 +47,10 @@ class Team < ApplicationRecord
       return Gameweek.where("deadline_time_epoch < ?", Time.now.to_i).last.gameweek + 1
     end
 
-    [resp['events'].find{|e| e['finished'] == false}['id'], 38].min
+    first_unfinished_event = resp['events'].find{|e| e['finished'] == false}
+    return 38 if first_unfinished_event.nil?
+
+    first_unfinished_event['id']
   end
 
   def sort_by_position(players)
