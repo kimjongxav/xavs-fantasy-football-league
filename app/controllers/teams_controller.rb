@@ -30,6 +30,9 @@ class TeamsController < ApplicationController
 
   def gameweek
     resp = HTTParty.get('https://fantasy.premierleague.com/api/bootstrap-static/')
-    [resp['events'].find{|e| e['finished'] == false}['id'], 38].min
-  end
+
+    first_unfinished_event = resp['events'].find{|e| e['finished'] == false}
+    return 38 if first_unfinished_event.nil?
+
+    first_unfinished_event['id']  end
 end
